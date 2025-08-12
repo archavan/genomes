@@ -1,0 +1,123 @@
+---
+title: "Prepare transcriptome for `kallisto`"
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+---
+
+Started: 2025-08-12  
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>")
+
+library(here)
+library(tidyverse)
+library(bioseq)
+
+basedir <- here("species/scla/refseq_v1")
+mt_chr <- "NC_037072.1"
+
+read_gxf_as_tibble <- function(.file) {
+  rtracklayer::import(.file) |>
+    GenomicRanges::as.data.frame() |>
+    as_tibble()
+}
+
+fasta_to_tibble <- function(x) {
+  x |>
+    enframe(value = "sequence") |>
+    mutate(tid = str_replace(name, "(.+?) (.*)", "\\1")) |>
+    mutate(details = str_replace(name, "(.+?) (.*)", "\\2")) |>
+    relocate(tid, details) |>
+    select(-name)
+}
+```
+
+# Data
+
+```{r}
+#| warning: false
+#| message: false
+rfa <- read_fasta(here(
+  basedir,
+  "data/refseq/GCF_013122585.1_ASM1312258v2_rna.fna.gz"
+)) %>%
+  fasta_to_tibble()
+
+ids <- read_tsv(here(basedir, "results/genes/gid-tid_mapping.tsv"))
+
+gtf <- read_gxf_as_tibble(here(basedir, "results/gtf/gtf_fixed.gtf.gz"))
+```
+
+
+# Check for consistency between GTF and RNA fasta file
+
+- There are fewer transcripts in the RNA fasta file from RefSeq than in the GTF
+
+
+```{r}
+length(unique(rfa$tid))
+length(unique(ids$transcript_id))
+length(unique(gtf$transcript_id))
+```
+
+- But all the transcripts missing from the fasta are so called "unassigned_transcripts"
+
+```{r}
+gtf |>
+  filter(
+    !transcript_id %in% rfa$tid &
+      transcript_id != ""
+  ) |>
+  select(seqnames, gene_id, transcript_id) |>
+  distinct()
+```
+
+```{r}
+gtf |>
+  filter(
+    !transcript_id %in% rfa$tid &
+      transcript_id != ""
+  ) |>
+  select(seqnames, gene_id, transcript_id) |>
+  distinct() |>
+  pull(transcript_id) |>
+  unique() |>
+  (\(x) x[!str_detect(x, "unassigned")])()
+```
+
+
+All transcripts in the fast file are present in the GTF file. 
+
+```{r}
+rfa$tid[!rfa$tid %in% unique(gtf$transcript_id)]
+```
+
+Unfortunately, the mitochondrial transcripts are not present in the fasta file. We will have to forego these transcripts for now in the kallisto index. 
+
+```{r}
+gtf |>
+  filter(
+    !transcript_id %in% rfa$tid &
+      transcript_id != ""
+  ) |>
+  filter(seqnames == mt_chr) |> 
+  select(seqnames, gene_id, transcript_id) |> 
+  distinct()
+```
+
+# Conclusion
+
+This means tha the RNA fasta from RefSeq is for the most part consistent with the fixed GTF file. We can simply use that fasta file to generate an index for `kallisto`. 
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```
