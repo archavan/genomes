@@ -21,7 +21,7 @@ library(tidyverse)
 library(here)
 library(glue)
 
-genomedir <- here("species/bflo/genome/VNyyK/")
+genomedir <- here("species/bflo/VNyyK/")
 
 # data ========================================================================
 genes <- read_tsv(here(genomedir, "results/genes/gene-ids.tsv"))
@@ -30,16 +30,19 @@ ncbi <- read_tsv(here(genomedir, "results/genes/ncbi-genes-table.tsv"))
 
 # consolidate =================================================================
 # some databases have 1:n mapping with ncbi gene id
-ids_xdb <- genes %>% 
-  select(gene_id, ncbi_gene_id) %>% 
-  left_join((kegg %>% 
-               select(ncbi_gene_id, 
-                      kegg_gene_id, 
-                      ko_id)),
-            by = "ncbi_gene_id") %>% 
+ids_xdb <- genes %>%
+  select(gene_id, ncbi_gene_id) %>%
+  left_join(
+    (kegg %>%
+      select(ncbi_gene_id, kegg_gene_id, ko_id)),
+    by = "ncbi_gene_id"
+  ) %>%
   distinct()
 
 # write files =================================================================
-write_tsv(ids_xdb, here(genomedir, "results/genes/gene-ids-across-databases.tsv"))
+write_tsv(
+  ids_xdb,
+  here(genomedir, "results/genes/gene-ids-across-databases.tsv")
+)
 
 # end =========================================================================

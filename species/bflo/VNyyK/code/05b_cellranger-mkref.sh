@@ -9,7 +9,7 @@
 
 
 
-cd /home/arc78/endoderm/species/bflo/genome/VNyyK/results
+cd /home/arc78/genomes/species/bflo/VNyyK/results
 
 ~/applications/cellranger-7.1.0/cellranger mkref \
 	--genome=cellranger-7.1.0 \

@@ -4,7 +4,7 @@
 # from http://ghost.zool.kyoto-u.ac.jp/download_ht.html
 
 
-cd ~/Dropbox/research/projects/endoderm/species/crob/genome/KY21/data/ghost-db/
+cd ~/Dropbox/research/projects/genomes/species/crob/KY21/data/ghost-db/
 
 # genome sequence
 curl http://ghost.zool.kyoto-u.ac.jp/datas/HT.Ref.fasta.zip -O

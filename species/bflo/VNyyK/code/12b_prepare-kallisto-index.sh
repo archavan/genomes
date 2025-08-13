@@ -11,7 +11,7 @@
 module load Python 
 module load kallisto
 
-cd /home/arc78/endoderm/species/bflo/genome/VNyyK
+cd /home/arc78/genomes/species/bflo/VNyyK
 
 mkdir -p results/kallisto
 

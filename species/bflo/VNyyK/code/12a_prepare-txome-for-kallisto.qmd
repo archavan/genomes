@@ -21,7 +21,7 @@ library(here)
 library(tidyverse)
 library(bioseq)
 
-basedir <- here("species/bflo/genome/VNyyK")
+basedir <- here("species/bflo/VNyyK")
 ```
 
 # Data

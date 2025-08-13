@@ -10,6 +10,6 @@
 
 module load R/4.2.0-foss-2020b
 
-cd /home/arc78/endoderm # must start at project root to use renv
+cd /home/arc78/genomes # must start at project root to use renv
 
-Rscript --no-save species/bflo/genome/VNyyK/code/06a_kegg_fetch-annotations.R
+Rscript --no-save species/bflo/VNyyK/code/06a_kegg_fetch-annotations.R

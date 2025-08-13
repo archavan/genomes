@@ -24,7 +24,7 @@ library(rtracklayer)
 library(tidyverse)
 library(here)
 
-genomedir <- here("species/bflo/genome/VNyyK/")
+genomedir <- here("species/bflo/VNyyK/")
 ```
 
 ```{r}
