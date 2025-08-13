@@ -13,20 +13,27 @@ library(tidyverse)
 library(here)
 library(glue)
 
-genomedir <- here("species/crob/genome/KY21")
+genomedir <- here("species/crob/KY21")
 
 read_gxf_as_tibble <- function(.file) {
-  rtracklayer::import(.file) %>% 
-    GenomicRanges::as.data.frame() %>% 
+  rtracklayer::import(.file) %>%
+    GenomicRanges::as.data.frame() %>%
     as_tibble()
-} 
+}
 
 # data ========================================================================
 gtf <- read_gxf_as_tibble(here(genomedir, "results/gtf/ky21_fixed.gtf.gz"))
 
-tx_ky21 <- readDNAStringSet(here(genomedir, "data/ghost-db/HT.KY21Gene.2.fasta.gz"))
-cdna_ens <- readDNAStringSet("https://ftp.ensembl.org/pub/release-113/fasta/ciona_intestinalis/cdna/Ciona_intestinalis.KH.cdna.all.fa.gz")
-ncrna_ens <- readDNAStringSet("https://ftp.ensembl.org/pub/release-113/fasta/ciona_intestinalis/ncrna/Ciona_intestinalis.KH.ncrna.fa.gz")
+tx_ky21 <- readDNAStringSet(here(
+  genomedir,
+  "data/ghost-db/HT.KY21Gene.2.fasta.gz"
+))
+cdna_ens <- readDNAStringSet(
+  "https://ftp.ensembl.org/pub/release-113/fasta/ciona_intestinalis/cdna/Ciona_intestinalis.KH.cdna.all.fa.gz"
+)
+ncrna_ens <- readDNAStringSet(
+  "https://ftp.ensembl.org/pub/release-113/fasta/ciona_intestinalis/ncrna/Ciona_intestinalis.KH.ncrna.fa.gz"
+)
 
 # get mitochondrial transcripts from ensembl fasta ============================
 strip_fasta_description <- function(x) {
@@ -37,18 +44,18 @@ remove_id_version <- function(x) {
   str_replace(x, "(ENSCINT\\d+)\\.\\d+", "\\1")
 }
 
-names(cdna_ens) <- names(cdna_ens) %>% 
-  strip_fasta_description() %>% 
+names(cdna_ens) <- names(cdna_ens) %>%
+  strip_fasta_description() %>%
   remove_id_version()
 
-names(ncrna_ens) <- names(ncrna_ens) %>% 
-  strip_fasta_description() %>% 
+names(ncrna_ens) <- names(ncrna_ens) %>%
+  strip_fasta_description() %>%
   remove_id_version()
 
-mt_tx_ids <- gtf %>% 
-  filter(seqnames == "MT") %>% 
-  filter(!is.na(transcript_id)) %>% 
-  pull(transcript_id) %>% 
+mt_tx_ids <- gtf %>%
+  filter(seqnames == "MT") %>%
+  filter(!is.na(transcript_id)) %>%
+  pull(transcript_id) %>%
   unique()
 
 # Not all mitochondrial trascript ids are actually present in the cdna fasta
@@ -65,21 +72,30 @@ tx_mt <- c(cdna_mt, ncrna_mt)
 # file but are not to be found in the GTF file. We will remove them from the
 # transcriptome fasta file consistency with the GTF.
 
-names(tx_ky21)[!names(tx_ky21) %in% gtf$transcript_id[!is.na(gtf$transcript_id)]] # 304
-gtf$transcript_id[!is.na(gtf$transcript_id)][!gtf$transcript_id[!is.na(gtf$transcript_id)] %in% names(tx_ky21)] # 0, except for ENSEMBL transcripts from MT chromosome
+names(tx_ky21)[
+  !names(tx_ky21) %in% gtf$transcript_id[!is.na(gtf$transcript_id)]
+] # 304
+gtf$transcript_id[!is.na(gtf$transcript_id)][
+  !gtf$transcript_id[!is.na(gtf$transcript_id)] %in% names(tx_ky21)
+] # 0, except for ENSEMBL transcripts from MT chromosome
 
-tx_ky21 <- tx_ky21[names(tx_ky21) %in% gtf$transcript_id[!is.na(gtf$transcript_id)]]
+tx_ky21 <- tx_ky21[
+  names(tx_ky21) %in% gtf$transcript_id[!is.na(gtf$transcript_id)]
+]
 
 # append ======================================================================
 tx_all <- c(tx_mt, tx_ky21)
 
-stopifnot(length(tx_all) == length(unique(gtf$transcript_id[!is.na(gtf$transcript_id)])))
+stopifnot(
+  length(tx_all) == length(unique(gtf$transcript_id[!is.na(gtf$transcript_id)]))
+)
 
 # write file ==================================================================
-writeXStringSet(tx_all, 
-                here(genomedir, 
-                     "results/fasta/KY21_transcripts_with-mito.fasta.gz"), 
-                format = "fasta", 
-                compress = "gzip")
+writeXStringSet(
+  tx_all,
+  here(genomedir, "results/fasta/KY21_transcripts_with-mito.fasta.gz"),
+  format = "fasta",
+  compress = "gzip"
+)
 
 # end =========================================================================

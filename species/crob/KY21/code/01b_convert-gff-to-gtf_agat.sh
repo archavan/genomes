@@ -11,10 +11,10 @@
 module load miniconda
 conda activate agat
 
-cd /home/arc78/endoderm/species/crob/genome/KY21/data/ghost-db
+cd /home/arc78/endoderm/species/crob/KY21/data/ghost-db
 gunzip HT.KY21Gene.2.gff3.gz
 
-cd /home/arc78/endoderm/species/crob/genome/KY21
+cd /home/arc78/endoderm/species/crob/KY21
 
 agat_convert_sp_gff2gtf.pl \
 --gff data/ghost-db/HT.KY21Gene.2.gff3 \

@@ -22,7 +22,7 @@ library(here)
 ```
 
 ```{r}
-crgenomedir <- here("species/crob/genome/KY21")
+crgenomedir <- here("species/crob/KY21")
 mmgenomedir <- here("species/mmus/genome/interaction")
 orthdir <- here("orthofinder/results/2025-03-06")
 

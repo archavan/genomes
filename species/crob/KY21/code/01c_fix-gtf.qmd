@@ -22,8 +22,8 @@ library(rtracklayer)
 library(here)
 library(tidyverse)
 
-genomedir <- here("species/crob/genome/KY21")
-khdir <- here("species/crob/genome/refseq_KH")
+genomedir <- here("species/crob/KY21")
+khdir <- here("species/crob/refseq_KH")
 ```
 
 # Data

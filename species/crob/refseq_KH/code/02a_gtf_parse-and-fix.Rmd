@@ -27,7 +27,7 @@ library(tidyverse)
 library(here)
 
 # here setup
-genomedir <- here("species/crob/genome/refseq_KH")
+genomedir <- here("species/crob/refseq_KH")
 ```
 
 ```{r}

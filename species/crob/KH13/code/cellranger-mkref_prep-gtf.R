@@ -21,41 +21,51 @@ library(glue)
 # functions ===================================================================
 extract_attribute <- function(gxf, x) {
   query <- glue::glue(".*({x} \")([^\\s]+?)\".*")
-  ifelse(grepl(x, gxf$attribute), 
-         gsub(query, "\\2", gxf$attribute), 
-         "") 
-} 
+  ifelse(grepl(x, gxf$attribute), gsub(query, "\\2", gxf$attribute), "")
+}
 
 # data ========================================================================
-gxf_headers <- c("seqname", 
-                 "source", 
-                 "feature", 
-                 "start", 
-                 "end", 
-                 "score", 
-                 "strand", 
-                 "frame", 
-                 "attribute")
+gxf_headers <- c(
+  "seqname",
+  "source",
+  "feature",
+  "start",
+  "end",
+  "score",
+  "strand",
+  "frame",
+  "attribute"
+)
 
-gtf <- read_tsv("species/crob/genome/KH13/data/ghost-db/KH.KHGene.2013_agat-converted.gtf",
-                comment = "#",
-                col_names = gxf_headers,
-                col_types = cols())
+gtf <- read_tsv(
+  "species/crob/KH13/data/ghost-db/KH.KHGene.2013_agat-converted.gtf",
+  comment = "#",
+  col_names = gxf_headers,
+  col_types = cols()
+)
 
 # extract gene_id and transcript_ids ==========================================
-gtf <- gtf %>% 
-  mutate(gene_id       = extract_attribute(., "gene_id"),
-         transcript_id = extract_attribute(., "transcript_id")) 
+gtf <- gtf %>%
+  mutate(
+    gene_id = extract_attribute(., "gene_id"),
+    transcript_id = extract_attribute(., "transcript_id")
+  )
 
 # replace attribute column with a simplified one with only gene_id and transcript_id
 gtf <- gtf %>%
-  mutate(attribute = ifelse(transcript_id == "",
-                            glue("gene_id \"{gene_id}\";"),
-                            glue("gene_id \"{gene_id}\"; transcript_id \"{transcript_id}\";"))) %>% 
+  mutate(
+    attribute = ifelse(
+      transcript_id == "",
+      glue("gene_id \"{gene_id}\";"),
+      glue("gene_id \"{gene_id}\"; transcript_id \"{transcript_id}\";")
+    )
+  ) %>%
   select(-gene_id, -transcript_id)
 
 # write file ==================================================================
-write_tsv(gtf, 
-          "species/crob/genome/KH13/data/ghost-db/KH.KHGene.2013_agat-converted_only-gid-tid.gtf", 
-          col_names = FALSE)
+write_tsv(
+  gtf,
+  "species/crob/KH13/data/ghost-db/KH.KHGene.2013_agat-converted_only-gid-tid.gtf",
+  col_names = FALSE
+)
 # end =========================================================================

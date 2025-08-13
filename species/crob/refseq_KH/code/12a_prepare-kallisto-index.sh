@@ -11,7 +11,7 @@
 module load Python 
 module load kallisto
 
-cd /home/arc78/endoderm/species/crob/genome/refseq_KH
+cd /home/arc78/endoderm/species/crob/refseq_KH
 
 mkdir -p results/kallisto
 

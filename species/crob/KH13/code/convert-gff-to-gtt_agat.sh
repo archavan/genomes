@@ -10,7 +10,7 @@
 module load miniconda
 conda activate agat
 
-cd /home/arc78/scratch60/endoderm/species/crob/genome/KH13/data/ghost-db
+cd /home/arc78/scratch60/endoderm/species/crob/KH13/data/ghost-db
 
 agat_convert_sp_gff2gtf.pl --gff KH.KHGene.2013.gff3 --out KH.KHGene.2013_agat-converted.gtf 2>convert-gff-to-gtf_agat.log
 

@@ -9,7 +9,7 @@
 
 
 
-cd ~/palmer_scratch/endoderm/species/crob/genome/refseq_KH
+cd ~/palmer_scratch/endoderm/species/crob/refseq_KH
 
 gunzip data/refseq/GCF_000224145.3_KH_genomic.fna.gz
 

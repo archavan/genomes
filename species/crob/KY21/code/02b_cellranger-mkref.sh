@@ -8,7 +8,7 @@
 #SBATCH --mail-user=arun.chavan@yale.edu
 
 
-cd /home/arc78/endoderm/species/crob/genome/KY21
+cd /home/arc78/endoderm/species/crob/KY21
 
 gunzip results/fasta/genome_with_mito.fasta.gz
 gunzip results/gtf/ky21_fixed_minimal.gtf.gz

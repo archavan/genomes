@@ -12,4 +12,4 @@ module load R/4.0.3-foss-2020b
 
 cd /home/arc78/endoderm
 
-Rscript --no-save species/crob/genome/refseq_KH/code/06a_kegg_fetch-annotations.R
+Rscript --no-save species/crob/refseq_KH/code/06a_kegg_fetch-annotations.R

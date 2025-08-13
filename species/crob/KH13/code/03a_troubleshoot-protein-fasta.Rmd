@@ -24,7 +24,7 @@ library(tidyverse)
 library(bioseq)
 
 # here setup
-basedir <- here("species/crob/genome/KH13")
+basedir <- here("species/crob/KH13")
 ```
 
 # Background

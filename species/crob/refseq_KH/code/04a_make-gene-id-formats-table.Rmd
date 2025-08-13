@@ -30,7 +30,7 @@ knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>", error = TRUE)
 library(tidyverse)
 library(here)
 
-genomedir <- here("species/crob/genome/refseq_KH/")
+genomedir <- here("species/crob/refseq_KH/")
 ```
 
 # Data

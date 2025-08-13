@@ -23,31 +23,38 @@ library(tidyverse)
 library(here)
 library(glue)
 
-genomedir <- here("species/crob/genome/refseq_KH/")
+genomedir <- here("species/crob/refseq_KH/")
 
 # data ========================================================================
 genes <- read_tsv(here(genomedir, "results/genes/gene-ids.tsv"))
 kegg <- read_tsv(here(genomedir, "results/kegg/kegg-genes.tsv"))
-ghost <- read_tsv(here(genomedir, "results/ghost/refseq-ghost-gene-id-mapping.tsv"))
+ghost <- read_tsv(here(
+  genomedir,
+  "results/ghost/refseq-ghost-gene-id-mapping.tsv"
+))
 ncbi <- read_tsv(here(genomedir, "results/genes/ncbi-genes-table.tsv"))
 
 # consolidate =================================================================
 # some databases have 1:n mapping with ncbi gene id
-ids_xdb <- genes %>% 
-  select(gene_id, ncbi_gene_id) %>% 
-  left_join(ghost, by = c("gene_id" = "ncbi_gene_id")) %>% 
-  left_join((kegg %>% 
-               select(ncbi_gene_id, 
-                      kegg_gene_id, 
-                      ko_id, 
-                      uniprot_id)),
-            by = "ncbi_gene_id") %>% 
-  left_join((ncbi %>% 
-               select(ncbi_gene_id, ensembl_gene_id)),
-            by = "ncbi_gene_id") %>% 
+ids_xdb <- genes %>%
+  select(gene_id, ncbi_gene_id) %>%
+  left_join(ghost, by = c("gene_id" = "ncbi_gene_id")) %>%
+  left_join(
+    (kegg %>%
+      select(ncbi_gene_id, kegg_gene_id, ko_id, uniprot_id)),
+    by = "ncbi_gene_id"
+  ) %>%
+  left_join(
+    (ncbi %>%
+      select(ncbi_gene_id, ensembl_gene_id)),
+    by = "ncbi_gene_id"
+  ) %>%
   distinct()
 
 # write files =================================================================
-write_tsv(ids_xdb, here(genomedir, "results/genes/gene-ids-across-databases.tsv"))
+write_tsv(
+  ids_xdb,
+  here(genomedir, "results/genes/gene-ids-across-databases.tsv")
+)
 
 # end =========================================================================

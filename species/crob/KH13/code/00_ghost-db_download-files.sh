@@ -4,7 +4,7 @@
 # from http://ghost.zool.kyoto-u.ac.jp/download_kh.html
 
 
-cd ~/research/endoderm/species/crob/genome/KH13/data/ghost-db
+cd ~/research/endoderm/species/crob/KH13/data/ghost-db
 
 # genome sequence
 curl http://ghost.zool.kyoto-u.ac.jp/datas/JoinedScaffold.zip -O

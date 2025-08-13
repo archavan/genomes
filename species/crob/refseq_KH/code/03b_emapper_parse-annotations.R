@@ -18,28 +18,32 @@ library(tidyverse)
 library(here)
 library(glue)
 
-genomedir <- here("species/crob/genome/refseq_KH/")
+genomedir <- here("species/crob/refseq_KH/")
 
 # genes data ==================================================================
 genes.ids <- read_tsv(here(genomedir, "results/genes/gene-ids.tsv"))
 
-genes.gtf <- read_tsv(here(genomedir, "results/gtf/gtf_fixed_parsed.tsv"), 
-                      col_types = cols(
-                        .default = col_character(),
-                        start = col_double(),
-                        end = col_double(),
-                        width = col_double(),
-                        exon_number = col_double()
-                      ))
+genes.gtf <- read_tsv(
+  here(genomedir, "results/gtf/gtf_fixed_parsed.tsv"),
+  col_types = cols(
+    .default = col_character(),
+    start = col_double(),
+    end = col_double(),
+    width = col_double(),
+    exon_number = col_double()
+  )
+)
 
 genes.ncbi <- read_tsv(here(genomedir, "results/genes/ncbi-genes-table.tsv"))
 
 gid.pid <- read_tsv(here(genomedir, "results/genes/gid-pid_mapping.tsv"))
 
 # emapper output ==============================================================
-emap <- read_tsv(here(genomedir, "results/emapper/out/out.emapper.annotations"),
-                 col_names = FALSE,
-                 comment = "#")
+emap <- read_tsv(
+  here(genomedir, "results/emapper/out/out.emapper.annotations"),
+  col_names = FALSE,
+  comment = "#"
+)
 
 # from: https://github.com/eggnogdb/eggnog-mapper/wiki/eggNOG-mapper-v2.1.5-to-v2.1.8#annotations-file
 emap_headers <- c(
@@ -73,10 +77,9 @@ colnames(emap) <- emap_headers
 
 # the emapper output is at the protein id level -- we need to add gene ids to
 # the emapper output so that we summarize at the level of genes
-emap <- gid.pid %>% 
-  select(gene_id, protein_id) %>% 
+emap <- gid.pid %>%
+  select(gene_id, protein_id) %>%
   left_join(emap, by = c("protein_id" = "query_name"))
-
 
 
 # functions for processing the output =========================================
@@ -92,7 +95,6 @@ emap <- gid.pid %>%
 #' @return data frame in tidy format with two columns, gene_id and values from the extracted column
 
 unnest_to_gene_level <- function(df = emap, eggnog_col, rename.to = NULL) {
-  
   eggnog_col <- sym(eggnog_col)
 
   # GO IDs/KEGG ids are present as a character string for each protein id. Here, we
@@ -100,7 +102,7 @@ unnest_to_gene_level <- function(df = emap, eggnog_col, rename.to = NULL) {
   # them, and find unique ones. Then, we unnest the df on the list column with GO/KEGG
   # IDs so that we end up with a df with two columns in tidy format: gene_id and
   # go/KEGG_id
-  
+
   df <- df %>%
     dplyr::select(gene_id, {{ eggnog_col }}) %>%
     group_by(gene_id) %>%
@@ -114,41 +116,39 @@ unnest_to_gene_level <- function(df = emap, eggnog_col, rename.to = NULL) {
     ) %>%
     dplyr::filter(!is.na({{ eggnog_col }})) %>%
     unnest(col = {{ eggnog_col }})
-  
+
   # emapper output contains dashes when it doesn't have any information. There
   # are NAs too, but it looks like NAs are used when no seed was found in the
   # eggnog database and therefore there is not information at all on the query.
   # For cases where only some information is missing, you have dashes instead.
   # We want to get rid of these rows too because they are essentially NAs.
-  
+
   df <- df %>%
     filter(!{{ eggnog_col }} == "-")
-  
-  
+
   if (!is.null(rename.to)) {
-    rename.to  <- sym(rename.to)
+    rename.to <- sym(rename.to)
     df <- dplyr::rename(df, {{ rename.to }} := {{ eggnog_col }})
   }
-  
+
   return(df)
-  
 }
 
 #' Fetch name for a given kegg_id
 #' (Actually, keggList() works better for what we need to do here, so we don't need this function)
-#' @param kegg_id 
+#' @param kegg_id
 #'
 #' @return named character string
- 
-fetch_kegg_name <- function(kegg_id) { 
+
+fetch_kegg_name <- function(kegg_id) {
   # we have to use tryCatch because REST errors out if it doesn't find a kegg_id
-  out <- tryCatch( 
+  out <- tryCatch(
     keggGet(dbentries = kegg_id)[[1]]$NAME,
     error = function(cond) {
       message(glue("{kegg_id} failed: {cond}"))
       return(NA)
     }
-  )    
+  )
   return(out)
 }
 
@@ -156,54 +156,58 @@ fetch_kegg_name <- function(kegg_id) {
 #' Fetch ids and names for all entries from a given kegg database
 #'
 #' @param database one of KEGGREST::listDatabases()
-#' @param prefix ids are returned with a prefix e.g. "path:" for pathway ids, 
+#' @param prefix ids are returned with a prefix e.g. "path:" for pathway ids,
 #'   which needs to be removed to match with emap output
 #'
 #' @return tibble columns kegg id and kegg name
 
 fetch_kegg_list <- function(database, prefix = NULL) {
-  
-  df <- keggList(database) %>% 
+  df <- keggList(database) %>%
     enframe() # kegglist returns of named list
-  
+
   if (!is.null(prefix)) {
     df <- mutate(df, name = str_remove(name, prefix))
-  }  
-  
+  }
+
   names(df)[names(df) == "name"] <- glue("kegg_{database}_id")
   names(df)[names(df) == "value"] <- glue("kegg_{database}_name")
-  
+
   return(df)
-  
 }
 
 # GO ids and terms ============================================================
-emap.go <- unnest_to_gene_level(df = emap, eggnog_col = "GOs", rename.to = "go_id")
+emap.go <- unnest_to_gene_level(
+  df = emap,
+  eggnog_col = "GOs",
+  rename.to = "go_id"
+)
 
-## Now we add GO term to this df. We get the GO terms associated with GO ids using {GO.db}. 
+## Now we add GO term to this df. We get the GO terms associated with GO ids using {GO.db}.
 ### First create a dataframe with GOID, TERM, and ONTOLOGY mapping
-godb <- AnnotationDbi::select(GO.db, 
-                              keys = unique(emap.go$go_id), 
-                              columns = c("ONTOLOGY", "TERM"), 
-                              keytype = "GOID")
-godb <- godb %>% 
+godb <- AnnotationDbi::select(
+  GO.db,
+  keys = unique(emap.go$go_id),
+  columns = c("ONTOLOGY", "TERM"),
+  keytype = "GOID"
+)
+godb <- godb %>%
   dplyr::filter(!is.na(TERM)) %>% # emapper also returns some obsolete GO IDs for which GO.db returns NA for term
-  dplyr::mutate(TERM = glue("[{ONTOLOGY}] {TERM}")) %>% 
-  dplyr::rename(go_term = TERM) %>% 
+  dplyr::mutate(TERM = glue("[{ONTOLOGY}] {TERM}")) %>%
+  dplyr::rename(go_term = TERM) %>%
   dplyr::select(-ONTOLOGY)
 
-  
+
 ### join with emap.go
-emap.go <- left_join(emap.go, godb, by = c("go_id" = "GOID")) %>% 
+emap.go <- left_join(emap.go, godb, by = c("go_id" = "GOID")) %>%
   dplyr::filter(!is.na(go_term)) # get rid of rows with obsolete go_ids
 
 write_tsv(emap.go, here(genomedir, "results/emapper/processed/emapper_go.tsv"))
 
 # KEGG database lists =========================================================
-kegg.ko      <- fetch_kegg_list("ko")
+kegg.ko <- fetch_kegg_list("ko")
 kegg.pathway <- fetch_kegg_list("pathway", "path:")
-kegg.module  <- fetch_kegg_list("module", "md:")
-kegg.brite   <- fetch_kegg_list("brite", "br:")
+kegg.module <- fetch_kegg_list("module", "md:")
+kegg.brite <- fetch_kegg_list("brite", "br:")
 
 # Almost all ids from these databases that are output by emapper are found in
 # the lists we fetched from KEGG REST API. For kegg.pathway, however, we only
@@ -218,90 +222,130 @@ kegg.brite   <- fetch_kegg_list("brite", "br:")
 # ignore ko: ids.
 
 # KEGG pathway ================================================================
-emap.kegg.pathway <- unnest_to_gene_level(df = emap, 
-                                          eggnog_col = "KEGG_Pathway", 
-                                          rename.to = "kegg_pathway_id")
+emap.kegg.pathway <- unnest_to_gene_level(
+  df = emap,
+  eggnog_col = "KEGG_Pathway",
+  rename.to = "kegg_pathway_id"
+)
 
-emap.kegg.pathway <- left_join(emap.kegg.pathway, 
-                               kegg.pathway, 
-                               by = "kegg_pathway_id") %>% 
+emap.kegg.pathway <- left_join(
+  emap.kegg.pathway,
+  kegg.pathway,
+  by = "kegg_pathway_id"
+) %>%
   dplyr::filter(!is.na(kegg_pathway_name))
 
-write_tsv(emap.kegg.pathway, 
-          here(genomedir, "results/emapper/processed/emapper_kegg_pathway.tsv"))
+write_tsv(
+  emap.kegg.pathway,
+  here(genomedir, "results/emapper/processed/emapper_kegg_pathway.tsv")
+)
 
 # KEGG KO =====================================================================
-emap.kegg.ko <- unnest_to_gene_level(df = emap, 
-                                     eggnog_col = "KEGG_ko", 
-                                     rename.to = "kegg_ko_id")
+emap.kegg.ko <- unnest_to_gene_level(
+  df = emap,
+  eggnog_col = "KEGG_ko",
+  rename.to = "kegg_ko_id"
+)
 
-emap.kegg.ko <- left_join(emap.kegg.ko,
-                          kegg.ko,
-                          by = "kegg_ko_id") %>% 
+emap.kegg.ko <- left_join(emap.kegg.ko, kegg.ko, by = "kegg_ko_id") %>%
   dplyr::filter(!is.na(kegg_ko_name))
 
-write_tsv(emap.kegg.ko, here(genomedir, "results/emapper/processed/emapper_kegg_ko.tsv"))
+write_tsv(
+  emap.kegg.ko,
+  here(genomedir, "results/emapper/processed/emapper_kegg_ko.tsv")
+)
 
 # KEGG module =================================================================
-emap.kegg.module <- unnest_to_gene_level(df = emap, 
-                                         eggnog_col = "KEGG_Module", 
-                                         rename.to = "kegg_module_id")
+emap.kegg.module <- unnest_to_gene_level(
+  df = emap,
+  eggnog_col = "KEGG_Module",
+  rename.to = "kegg_module_id"
+)
 
-emap.kegg.module <- left_join(emap.kegg.module, 
-                              kegg.module,
-                              by = "kegg_module_id") %>% 
+emap.kegg.module <- left_join(
+  emap.kegg.module,
+  kegg.module,
+  by = "kegg_module_id"
+) %>%
   dplyr::filter(!is.na(kegg_module_name))
 
-write_tsv(emap.kegg.module, 
-          here(genomedir, "results/emapper/processed/emapper_kegg_module.tsv"))
+write_tsv(
+  emap.kegg.module,
+  here(genomedir, "results/emapper/processed/emapper_kegg_module.tsv")
+)
 
 # BRITE =======================================================================
-emap.kegg.brite <- unnest_to_gene_level(df = emap, 
-                                        eggnog_col = "BRITE", 
-                                        rename.to = "kegg_brite_id")
+emap.kegg.brite <- unnest_to_gene_level(
+  df = emap,
+  eggnog_col = "BRITE",
+  rename.to = "kegg_brite_id"
+)
 
-emap.kegg.brite <- left_join(emap.kegg.brite, 
-                             kegg.brite,
-                             by = "kegg_brite_id") %>% 
+emap.kegg.brite <- left_join(
+  emap.kegg.brite,
+  kegg.brite,
+  by = "kegg_brite_id"
+) %>%
   dplyr::filter(!is.na(kegg_brite_name))
 
-write_tsv(emap.kegg.brite, here(genomedir, "results/emapper/processed/emapper_kegg_brite.tsv"))
+write_tsv(
+  emap.kegg.brite,
+  here(genomedir, "results/emapper/processed/emapper_kegg_brite.tsv")
+)
 
 # Predicted protein name ======================================================
-emap.protein.name <- unnest_to_gene_level(df = emap,
-                                          eggnog_col = "Preferred_name",
-                                          rename.to = "predicted_protein_name")
+emap.protein.name <- unnest_to_gene_level(
+  df = emap,
+  eggnog_col = "Preferred_name",
+  rename.to = "predicted_protein_name"
+)
 
-write_tsv(emap.protein.name, 
-          here(genomedir, "results/emapper/processed/emapper_predicted-protein-name.tsv"))
+write_tsv(
+  emap.protein.name,
+  here(
+    genomedir,
+    "results/emapper/processed/emapper_predicted-protein-name.tsv"
+  )
+)
 
 # PFAM domains ================================================================
-emap.pfam <- unnest_to_gene_level(df = emap, 
-                                  eggnog_col = "PFAMs",
-                                  rename.to = "pfam_domain")
+emap.pfam <- unnest_to_gene_level(
+  df = emap,
+  eggnog_col = "PFAMs",
+  rename.to = "pfam_domain"
+)
 
-write_tsv(emap.pfam,
-          here(genomedir, "results/emapper/processed/emapper_pfam-domains.tsv"))
+write_tsv(
+  emap.pfam,
+  here(genomedir, "results/emapper/processed/emapper_pfam-domains.tsv")
+)
 
 # description =================================================================
 # 51 genes have more than one descriptions associated with them because
 # different proteins asociated with those genes have different descriptions. We
 # will write them all to file -- they are in the tidy format.
-emap.descriptions <- emap %>% 
-  select(gene_id, Description) %>% 
-  rename(description = Description) %>% 
-  distinct() %>% 
+emap.descriptions <- emap %>%
+  select(gene_id, Description) %>%
+  rename(description = Description) %>%
+  distinct() %>%
   filter(!is.na(description))
 
-write_tsv(emap.descriptions, 
-          here(genomedir, "results/emapper/processed/emapper_description.tsv"))
+write_tsv(
+  emap.descriptions,
+  here(genomedir, "results/emapper/processed/emapper_description.tsv")
+)
 
 # enzyme EC code ==============================================================
-emap.ec <- unnest_to_gene_level(df = emap, 
-                                eggnog_col = "EC", 
-                                rename.to = "enzyme_ec")
+emap.ec <- unnest_to_gene_level(
+  df = emap,
+  eggnog_col = "EC",
+  rename.to = "enzyme_ec"
+)
 
-write_tsv(emap.ec, here(genomedir, "results/emapper/processed/emapper_enzyme-ec.tsv"))
+write_tsv(
+  emap.ec,
+  here(genomedir, "results/emapper/processed/emapper_enzyme-ec.tsv")
+)
 
 
 ###############################################################################
@@ -310,15 +354,15 @@ write_tsv(emap.ec, here(genomedir, "results/emapper/processed/emapper_enzyme-ec.
 
 # TF genes ====================================================================
 # We will define TF genes as those belonging to either of the following:
-# 1) GO:0003700 (DNA-binding transcription factor activity) https://www.ebi.ac.uk/QuickGO/term/GO:0003700 
+# 1) GO:0003700 (DNA-binding transcription factor activity) https://www.ebi.ac.uk/QuickGO/term/GO:0003700
 # 2) BRITE ko03000 (Transcription factors): https://www.genome.jp/kegg-bin/get_htext?ko03000.keg
 
-tf.go <- dplyr::filter(emap.go, go_id == "GO:0003700") %>% 
-  select(gene_id) %>% 
+tf.go <- dplyr::filter(emap.go, go_id == "GO:0003700") %>%
+  select(gene_id) %>%
   distinct() # 525 genes
 
-tf.brite <- dplyr::filter(emap.kegg.brite, kegg_brite_id == "ko03000") %>% 
-  select(gene_id) %>% 
+tf.brite <- dplyr::filter(emap.kegg.brite, kegg_brite_id == "ko03000") %>%
+  select(gene_id) %>%
   distinct() # 365 genes
 
 # STATS:
@@ -326,16 +370,24 @@ tf.brite <- dplyr::filter(emap.kegg.brite, kegg_brite_id == "ko03000") %>%
 # union = 598 genes.
 
 # Take union of the unique genes and extract those rows from emapper output
-tf <- emap %>% 
-  dplyr::filter((gene_id %in% tf.go$gene_id) | (gene_id %in% tf.brite$gene_id)) %>% 
-  dplyr::select(gene_id, Preferred_name) %>% 
-  dplyr::rename(predicted_protein_name = Preferred_name) %>% 
-  dplyr::distinct() %>% 
-  mutate(predicted_protein_name = ifelse(predicted_protein_name == "-", 
-                                         NA_character_, 
-                                         predicted_protein_name))
+tf <- emap %>%
+  dplyr::filter(
+    (gene_id %in% tf.go$gene_id) | (gene_id %in% tf.brite$gene_id)
+  ) %>%
+  dplyr::select(gene_id, Preferred_name) %>%
+  dplyr::rename(predicted_protein_name = Preferred_name) %>%
+  dplyr::distinct() %>%
+  mutate(
+    predicted_protein_name = ifelse(
+      predicted_protein_name == "-",
+      NA_character_,
+      predicted_protein_name
+    )
+  )
 
-write_tsv(tf, here(genomedir, "results/emapper/processed/emapper_geneset_tf.tsv"))
+write_tsv(
+  tf,
+  here(genomedir, "results/emapper/processed/emapper_geneset_tf.tsv")
+)
 
 # end =========================================================================
-

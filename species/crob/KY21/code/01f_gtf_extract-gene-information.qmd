@@ -23,7 +23,7 @@ library(Biostrings)
 library(tidyverse)
 library(here)
 
-genomedir <- here("species/crob/genome/KY21")
+genomedir <- here("species/crob/KY21")
 
 resdir <- here(genomedir, "results/genes")
 fs::dir_create(here(resdir))

@@ -17,7 +17,7 @@ library(httr)
 library(parallel)
 library(parallelly)
 
-genomedir <- here("species/crob/genome/refseq_KH")
+genomedir <- here("species/crob/refseq_KH")
 resdir <- here(genomedir, "results/prost/processed")
 
 # data ========================================================================
@@ -28,7 +28,7 @@ best_hits_gene_level <- read_tsv(here(resdir, "best-hits_gene-level.tsv"))
 get_gene_name <- function(uniprot_id) {
   url <- paste0("https://www.uniprot.org/uniprot/", uniprot_id, ".txt")
   response <- GET(url)
-  
+
   if (response$status_code == 200) {
     x <- content(response, as = "text", encoding = "UTF-8")
     lines <- strsplit(x, "\n")[[1]]
@@ -36,16 +36,29 @@ get_gene_name <- function(uniprot_id) {
     if (length(gene_name_line) > 0) {
       gene_name <- gsub("(^GN\\s+Name=)(.+?)[ ;].*", "\\2", gene_name_line)
       return(gene_name)
-    } else return(NA_character_)
-  } else return(NA_character_)
+    } else {
+      return(NA_character_)
+    }
+  } else {
+    return(NA_character_)
+  }
 }
 
-best_hits_with_gene_names <- best_hits_gene_level %>% 
-  mutate(gene_name = mclapply(uniprot_id, FUN = get_gene_name, mc.cores = availableCores() - 1)) %>% 
-  mutate(gene_name = map_chr(gene_name, `[[`, 1)) %>% 
+best_hits_with_gene_names <- best_hits_gene_level %>%
+  mutate(
+    gene_name = mclapply(
+      uniprot_id,
+      FUN = get_gene_name,
+      mc.cores = availableCores() - 1
+    )
+  ) %>%
+  mutate(gene_name = map_chr(gene_name, `[[`, 1)) %>%
   relocate(gene_name, .after = protein_name)
 
 # write files =================================================================
-write_tsv(best_hits_with_gene_names, here(resdir, "best-hits_gene-level_with-gene-names.tsv"))
+write_tsv(
+  best_hits_with_gene_names,
+  here(resdir, "best-hits_gene-level_with-gene-names.tsv")
+)
 
 # end =========================================================================

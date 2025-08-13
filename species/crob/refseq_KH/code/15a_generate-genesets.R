@@ -9,26 +9,29 @@
 library(tidyverse)
 library(here)
 
-genomedir <- here("species/crob/genome/refseq_KH")
+genomedir <- here("species/crob/refseq_KH")
 resdir <- here(genomedir, "results/genes")
 
 # data ========================================================================
 genes <- read_tsv(here(resdir, "gene-display-names.tsv"))
 
 go <- read_tsv(here(resdir, "go_coalesced.tsv.gz"))
-keggbrite <- read_tsv(here(genomedir, "results/emapper/processed/emapper_kegg_brite.tsv"))
+keggbrite <- read_tsv(here(
+  genomedir,
+  "results/emapper/processed/emapper_kegg_brite.tsv"
+))
 
 # TF genes ====================================================================
 # We will define TF genes as those belonging to either of the following:
-# 1) GO:0003700 (DNA-binding transcription factor activity) https://www.ebi.ac.uk/QuickGO/term/GO:0003700 
+# 1) GO:0003700 (DNA-binding transcription factor activity) https://www.ebi.ac.uk/QuickGO/term/GO:0003700
 # 2) BRITE ko03000 (Transcription factors): https://www.genome.jp/kegg-bin/get_htext?ko03000.keg
 
-tf_go <- filter(go, go_id == "GO:0003700") %>% 
-  select(gene_id) %>% 
+tf_go <- filter(go, go_id == "GO:0003700") %>%
+  select(gene_id) %>%
   distinct() # 688 genes
 
-tf_brite <- filter(keggbrite, kegg_brite_id == "ko03000") %>% 
-  select(gene_id) %>% 
+tf_brite <- filter(keggbrite, kegg_brite_id == "ko03000") %>%
+  select(gene_id) %>%
   distinct() # 365 genes
 
 # STATS:
@@ -36,8 +39,8 @@ tf_brite <- filter(keggbrite, kegg_brite_id == "ko03000") %>%
 # union = 737 genes
 
 # Take union of the unique genes and extract those rows from emapper output
-tf <- genes %>% 
-  filter((gene_id %in% tf_go$gene_id) | (gene_id %in% tf_brite$gene_id)) %>% 
+tf <- genes %>%
+  filter((gene_id %in% tf_go$gene_id) | (gene_id %in% tf_brite$gene_id)) %>%
   select(-display_name)
 
 write_tsv(tf, here(resdir, "geneset_tf.tsv"))
@@ -46,10 +49,10 @@ write_tsv(tf, here(resdir, "geneset_tf.tsv"))
 # GO:0160041 - [MF] neuropeptide activity
 # GO:0005184 -[MF] neuropeptide hormone activity
 
-np_go <- go %>% 
-  filter(go_id == "GO:0005184") %>% 
+np_go <- go %>%
+  filter(go_id == "GO:0005184") %>%
   select(gene_id) %>%
-  distinct() 
+  distinct()
 
 np <- genes %>%
   filter(gene_id %in% np_go$gene_id) %>%
@@ -60,8 +63,8 @@ write_tsv(np, here(resdir, "geneset_neuropeptides.tsv"))
 # All hormones ================================================================
 # GO:0005179 [MF] hormone activity
 
-hormones_go <- go %>% 
-  filter(go_id == "GO:0005179") %>% 
+hormones_go <- go %>%
+  filter(go_id == "GO:0005179") %>%
   select(gene_id) %>%
   distinct()
 
@@ -74,8 +77,8 @@ write_tsv(hormones, here(resdir, "geneset_hormones.tsv"))
 # GPCRs =======================================================================
 # GO:0004930 - [MF] G protein-coupled receptor activity
 
-gpcr_go <- go %>% 
-  filter(go_id == "GO:0004930") %>% 
+gpcr_go <- go %>%
+  filter(go_id == "GO:0004930") %>%
   select(gene_id) %>%
   distinct()
 

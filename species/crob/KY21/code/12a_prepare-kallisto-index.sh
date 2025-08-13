@@ -11,7 +11,7 @@
 module load Python 
 module load kallisto
 
-cd /home/arc78/endoderm/species/crob/genome/KY21
+cd /home/arc78/endoderm/species/crob/KY21
 
 mkdir -p results/kallisto
 

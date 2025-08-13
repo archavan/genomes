@@ -9,7 +9,7 @@
 
 
 
-cd /home/arc78/scratch60/endoderm/species/crob/genome/KH13/data/ghost-db
+cd /home/arc78/scratch60/endoderm/species/crob/KH13/data/ghost-db
 
 unzip JoinedScaffold.zip
 mv JoinedScaffold JoinedScaffold.fasta

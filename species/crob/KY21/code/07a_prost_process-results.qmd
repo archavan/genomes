@@ -26,7 +26,7 @@ library(tidyverse)
 library(here)
 library(glue)
 
-genomedir <- here("species/crob/genome/KY21")
+genomedir <- here("species/crob/KY21")
 resdir <- here(genomedir, "results/prost/processed")
 fs::dir_create(resdir)
 
