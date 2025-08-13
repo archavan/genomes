@@ -1,0 +1,44 @@
+---
+title: "Run eggnog-mapper"
+author: "Arun Chavan"
+output:
+  html_document: 
+    toc: yes
+    toc_float: yes
+    number_sections: yes
+    highlight: haddock
+    code_download: true
+---
+
+Started: 2022-06-20  
+Last edited: `r format(Sys.time())`
+
+# Background
+I ran eggnog-mapper on Ciona proteome for functional annotation. I decided to run the the proteome file from the ghost database where all proteins start with methionine. 
+
+# Run
+I ran it using the web tool at http://eggnog-mapper.embl.de
+
+MM_z0xvzkr2
+
+# Job info
+
+1. job id: MM_z0xvzkr2
+2. date: 2022-06-17
+3. file: `KH.KHGene.2013.Met.protein_valid-chars.fasta`
+4. sequences: 53,467
+5. total length: 21,088,997 proteins
+6. taxonomic scope: auto
+7. Orth restrictions: all
+8. GO evidence: non-electronic
+9. Min. hit e-value: 0.001
+10. Min. hit bit-score: 60
+11. Min. % of query cov.: 20
+12. Min. % of subject cov.: 20
+13. Min. % of identity: 40
+
+## Job command line:
+```
+emapper.py --cpu 20 --mp_start_method forkserver --data_dir /dev/shm/ -o out --output_dir /emapper_web_jobs/emapper_jobs/user_data/MM_z0xvzkr2 --temp_dir /emapper_web_jobs/emapper_jobs/user_data/MM_z0xvzkr2 --override -m diamond --dmnd_ignore_warnings -i /emapper_web_jobs/emapper_jobs/user_data/MM_z0xvzkr2/queries.fasta --evalue 0.001 --score 60 --pident 40 --query_cover 20 --subject_cover 20 --itype proteins --tax_scope auto --target_orthologs all --go_evidence non-electronic --pfam_realign none --report_orthologs --decorate_gff yes --excel > /emapper_web_jobs/emapper_jobs/user_data/MM_z0xvzkr2/emapper.out 2> /emapper_web_jobs/emapper_jobs/user_data/MM_z0xvzkr2/emapper.err 
+```
+

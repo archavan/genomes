@@ -1,0 +1,428 @@
+---
+title: "Process PROST results for _Ciona_ genes"
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+editor_options: 
+  chunk_output_type: inline
+---
+
+Started: 2024-01-19  
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>")
+
+library(GO.db)
+library(AnnotationDbi)
+library(goseq)
+library(tidyverse)
+library(here)
+library(glue)
+
+genomedir <- here("species/crob/genome/refseq_KH")
+resdir <- here(genomedir, "results/prost/processed")
+fs::dir_create(resdir)
+
+source(here("species/crob/10x/run-02/refseq_KH/code/utilities_goseq.R"))
+```
+
+# Data
+
+```{r}
+#| message: false
+#| warning: false
+
+# prost input 
+input <- read_tsv(here(genomedir, "results/prost/genes_coding_all.tsv"))
+
+# emapper GO annotation for comparison
+emap_go <- read_tsv(here(genomedir, "results/emapper/processed/emapper_go.tsv"))
+
+# prost output
+hits <- read_tsv(
+  here(genomedir, 
+       "results/prost/output/GCF_000224145.3_KH_protein.prost.sp_hits.tsv.gz"), 
+  col_names = c("fasta_id",	"uniprot_id",	"protein_name",	"protein_type",	
+                "organism",	"prost_distance",	"e_value")
+)
+
+go <- read_tsv(
+  here(genomedir, 
+       "results/prost/output/GCF_000224145.3_KH_protein.prost.go.tsv.gz"),
+  col_names = c("fasta_id",	"go_id",	"protein_type",	"go_freq",	
+                "uniprot_ID",	"stat",	"p_value")
+)
+
+# genomic data
+gid_pid <- read_tsv(here(genomedir, "results/genes/gid-pid_mapping.tsv"))
+glen <- read_tsv(here(genomedir, "results/genes/gene-length-median.tsv")) # for goseq
+plen <- read_tsv(here(genomedir, "results/genes/protein-lengths.tsv"))
+```
+
+# Process GO output
+
+## Add gene ids
+
+```{r}
+#| message: false
+
+# split protein id into a new column from the fasta_id
+go <- go %>% 
+  mutate(protein_id = gsub("(^.+?) .*$", "\\1", fasta_id)) %>% 
+  relocate(protein_id)
+
+# add gene_id 
+go <- left_join(go, select(gid_pid, gene_id, protein_id), by = "protein_id") %>% 
+  relocate(gene_id)
+
+go_gene_level <- go %>% 
+  select(gene_id, go_id) %>% 
+  distinct()
+```
+
+## compare the GO annotation from PROST with that from emapper. 
+
+```{r}
+input <- input %>% 
+  mutate(go_emapper = gene_id %in% emap_go$gene_id,
+         go_prost = gene_id %in% go_gene_level$gene_id)
+
+input %>% 
+  dplyr::select(gene_id, go_emapper, go_prost) %>% 
+  distinct() %>% 
+  {
+    table(.$go_emapper, .$go_prost, dnn = c("emapper GO annotation", "PROST GO annotation"))
+  }
+```
+
+There are 5077 genes for which emapper did not find GO annotation but PROST did. 
+
+```{r}
+go_by_source <- bind_rows(
+  prost = select(go_gene_level, gene_id, go_id),
+  emapper = select(emap_go, gene_id, go_id),
+  .id = "source"
+) %>% 
+  distinct()
+
+go_by_source <- go_by_source %>% 
+  group_by(gene_id, source) %>% 
+  summarise(go_ids = list(go_id)) %>% 
+  ungroup() %>% 
+  pivot_wider(names_from = "source", values_from = "go_ids")
+```
+
+```{r}
+calc_jaccard_similarity <- function(x, y) {
+  if (is.null(x) | is.null(y)) return(NA_real_)
+  intersect_xy <- intersect(x, y)
+  union_xy <- union(x, y)
+  jaccard_similarity <- length(intersect_xy) / length(union_xy)
+  return(jaccard_similarity)
+}
+```
+
+```{r}
+go_by_source %>% 
+  mutate(jac_sim = map2_dbl(emapper, prost, calc_jaccard_similarity)) %>% 
+  ggplot(aes(jac_sim)) +
+  geom_histogram(color = "white") +
+  labs(x = "Jaccard similarity between emapper and PROST GO annotation") +
+  theme_bw()
+```
+
+## Coalesce emapper and PROST GO annotation
+
+We will prefer emapper GO annotation when it exists, and use PROST GO annotation when emapper annotation doesn't exist. 
+
+```{r}
+# coalesce
+
+go_by_source$go <- vector("list", nrow(go_by_source))
+go_by_source$source <- vector("character", nrow(go_by_source))
+
+for (i in seq_len(nrow(go_by_source))) {
+  if (!is.null(go_by_source$emapper[[i]])) {
+    go_by_source$go[[i]] <- go_by_source$emapper[[i]]
+    go_by_source$source[[i]] <- "emapper"
+  } else if (!is.null(go_by_source$prost[[i]])) {
+    go_by_source$go[[i]] <- go_by_source$prost[[i]]
+    go_by_source$source[[i]] <- "prost"
+  } else NULL
+}
+
+go_coalesced <- go_by_source %>% 
+  select(gene_id, go, source) %>% 
+  unnest_longer(go) %>% 
+  rename(go_id = go)
+```
+
+```{r}
+# add go term
+
+get_go_terms <- function(goids) {
+  x <- AnnotationDbi::select(GO.db, 
+                             goids, 
+                             columns = c("ONTOLOGY", "TERM"), 
+                             keytype = "GOID") 
+  x <- filter(x, !is.na(TERM))
+  x$go_term <- paste0("[", x$ONTOLOGY, "] ", x$TERM)
+  names(x)[names(x) == "GOID"] <- "go_id"
+  return(x[, c("go_id", "go_term")])
+}
+
+go_terms <- get_go_terms(unique(go_coalesced$go_id))
+
+go_coalesced <- left_join(go_coalesced, go_terms) %>% 
+  relocate(source, .after = go_term) %>% 
+  filter(!is.na(go_term)) # obsolete go ids
+```
+
+
+## Are genes annotated by PROST but not by emapper enriched for anything?
+
+There are many genes which PROST is able to annotate with GO but emapper is not. Are there certain types of genes that are particularly difficult to find orthologs for with traditional orthology mapping with emapper but PROST can still find them? From my cursory look at some of the PROST annotations of otherwise uncharacterized genes, it seemed like it was able to annotated some neuropeptide-like genes, which are known to be difficult otherwise. 
+
+```{r}
+prost_only_annotated <- unique(go_coalesced$gene_id[which(go_coalesced$source == "prost")])
+
+prost_only_go <- run_goseq(.target = prost_only_annotated, 
+                           .bg = unique(go_coalesced$gene_id), 
+                           .db = go_coalesced, 
+                           .cat_id_col = "go_id", 
+                           .cat_name_col = "go_term", 
+                           .gene_id_col = "gene_id", 
+                           .gene_lengths = deframe(glen))
+
+prost_only_go <- filter(prost_only_go, p_adj < 0.05)
+
+prost_only_go %>% 
+  filter(ontology == "MF", enrichment > 2) %>% 
+  select(go_id, enrichment, p_adj, go_term) %>%  
+  slice_head(n = 50) %>% 
+  knitr::kable()
+
+prost_only_go %>% 
+  filter(ontology == "BP", enrichment > 2) %>% 
+  select(go_id, enrichment, p_adj, go_term) %>%  
+  slice_head(n = 50) %>% 
+  knitr::kable()
+
+prost_only_go %>% 
+  filter(ontology == "CC", enrichment > 2) %>% 
+  select(go_id, enrichment, p_adj, go_term) %>%  
+  slice_head(n = 50) %>% 
+  knitr::kable()
+```
+
+## Is there a difference in the distribution of sizes of proteins that are annotated by PROST by not by emapper?
+
+We will look at all proteins that are only annotated by PROST versus those that are annotated also by emapper. 
+
+The distributions don't look that different on the surface, but note that for shorter proteins prost only bars are higher than emapper only + emapper and prost bars, suggesting shorter proteins may be more readily annotated by PROST than by emapper. 
+
+```{r}
+plen %>% 
+  left_join(select(go_by_source, gene_id, source), by = "gene_id") %>% 
+  filter(!is.na(source)) %>% 
+  mutate(source = ifelse(source == "prost", "prost only", "emapper only + emapper and prost")) %>% 
+  ggplot(aes(length, fill = source)) +
+  geom_histogram(color = "white", position = position_dodge()) +
+  scale_x_log10() +
+  theme_bw() +
+  theme(legend.position = "inside",
+        legend.position.inside = c(0.75, 0.8))
+```
+
+
+## write files: GO
+
+```{r}
+write_tsv(go_gene_level, here(resdir, "go.tsv.gz"))
+write_tsv(go_coalesced, here(genomedir, "results/genes/go_coalesced.tsv.gz"))
+
+input %>% 
+  filter(!go_emapper & !go_prost)  %>% 
+  write_tsv(here(resdir, "proteins-without-go-annotation.tsv"))
+```
+
+# Process hits output
+
+## Add gene ids
+
+```{r}
+# split protein id into a new column from the fasta_id
+hits <- hits %>% 
+  mutate(protein_id = gsub("(^.+?) .*$", "\\1", fasta_id)) %>% 
+  relocate(protein_id)
+
+# add gene_id 
+hits <- left_join(hits, select(gid_pid, gene_id, protein_id), by = "protein_id") %>% 
+  relocate(gene_id)
+
+hits <- select(hits, -fasta_id)
+```
+
+## Remove crob hits
+
+Many genes have hits with the _Ciona_ genes in uniprot — not as many as we had for Branchiostoma however for amphioxus genes. They have low evalues and low distances, of course, but they are not useful for annotating genes. We want to see which genes in well annotated species our genes are similar to. So we will remove the hits that are with _Ciona_. 
+
+```{r}
+hits <- hits %>% 
+  filter(!str_detect(organism, "Ciona"))
+```
+
+
+## Explore the output
+
+### How many proteins did PROST find orthologs for and for how many it did not?
+
+```{r}
+input <- input %>% 
+  mutate(prost_orth = protein_id %in% hits$protein_id)
+
+# add another column for whether the gene was characterized before PROST
+input <- input %>% 
+  mutate(unchar = description == "uncharacterized")
+
+table(input$unchar, 
+      input$prost_orth, 
+      dnn = c("uncharacterized?", "prost ortholog found?"))
+```
+
+### Distribution of prost distances.
+
+```{r}
+ggplot(hits, aes(prost_distance)) +
+  geom_histogram(boundary = 0.5, color = "white") +
+  theme_bw()
+```
+
+
+
+### There is clear relationship between prost distance and e value.
+
+```{r}
+ggplot(hits, aes(prost_distance, -log10(e_value))) +
+  geom_hex() +
+  scale_fill_viridis_c() +
+  theme_bw() +
+  theme(aspect.ratio = 1)
+```
+
+### How many hits do proteins typically have?
+
+```{r}
+hits %>% 
+  count(protein_id) %>% 
+  pull(n) %>% 
+  summary()
+
+hits %>% 
+  count(protein_id) %>% 
+  ggplot(aes(n)) +
+  geom_histogram(binwidth = 100, boundary = 0.5, color = "white") +
+  theme_bw()
+```
+
+### Which species are most common in the protein hits?
+
+```{r}
+hits %>% 
+  count(organism) %>% 
+  arrange(-n) %>% 
+  head() %>% 
+  knitr::kable()
+```
+
+
+## Get the best hits for all proteins
+
+Since evalue and distance are quite well correlated, we could use either. 
+
+```{r}
+best_hits <- hits %>% 
+  group_by(protein_id) %>% 
+  arrange(e_value, .by_group = TRUE) %>% # so that ties are broken with lower e_val
+  slice_min(prost_distance, with_ties = FALSE) %>% 
+  ungroup() 
+```
+
+
+## Get species-specific "orthologs"
+
+```{r}
+get_species_orthologs <- function(species) {
+  hits %>% 
+    filter(organism == species) %>% 
+    group_by(protein_id) %>% 
+    arrange(e_value) %>% 
+    slice_min(prost_distance, with_ties = FALSE) %>% 
+    ungroup()
+}
+
+hsap_orthologs <- get_species_orthologs("Homo sapiens")
+mmus_orthologs <- get_species_orthologs("Mus musculus")
+```
+
+## summarizing to gene level
+
+Not sure how to best to summarize these results to the gene level, but below are some stats. 
+
+There are 1932 genes that have more than one protein_ids associated with them but all protein ids have the same prost hit. These are easy to summarize to gene level. 
+
+There are 1520 genes that have more than one protein ids associated with them and they each have a different prost hit. This subset is the most difficult to summarize to gene level. 
+
+```{r}
+best_hits %>% 
+  nest(.by = gene_id) %>% 
+  mutate(n_proteins = map_int(data, nrow)) %>% 
+  mutate(n_orthids = map_int(data,
+                             function(x) {
+                               x %>% 
+                                 pull(uniprot_id) %>% 
+                                 unique() %>% 
+                                 length()
+                             })) %>% 
+  mutate(n_proteins_discrete = ifelse(n_proteins == 1, "1", ">1"),
+         n_orthids_discrete = ifelse(n_orthids == 1, "1", ">1")) %>% 
+  count(n_proteins_discrete, n_orthids_discrete)
+```
+
+### Use longest protein for each gene
+
+The easiest way to summarize the hits to gene level that I can think of right now is to use the longest protein for each genes. One of the other options is, for each gene, use the protein for which we have the best hit.
+
+```{r}
+longest_prot <- plen %>% 
+  group_by(gene_id) %>% 
+  slice_max(length, n = 1, with_ties = FALSE) %>% 
+  ungroup()
+
+best_hits_gene_level <- best_hits %>% 
+  filter(protein_id %in% longest_prot$protein_id)
+```
+
+## Write files: hits
+
+```{r}
+write_tsv(best_hits, here(resdir, "best-hits.tsv"))
+write_tsv(best_hits_gene_level, here(resdir, "best-hits_gene-level.tsv"))
+
+input %>% 
+  filter(!prost_orth & unchar) %>% 
+  write_tsv(here(resdir, "unchar-proteins-without-prost-hits.tsv"))
+```
+
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```

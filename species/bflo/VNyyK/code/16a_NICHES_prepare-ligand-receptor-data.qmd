@@ -1,0 +1,199 @@
+---
+title: "Prepare ligand-receptor data for NICHES"
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+---
+
+Started: 2025-03-13  
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>")
+
+library(tidyverse)
+library(here)
+```
+
+```{r}
+bfgenomedir <- here("species/bflo/genome/VNyyK")
+mmgenomedir <- here("species/mmus/genome/interaction")
+orthdir <- here("orthofinder/results/2025-03-06")
+
+resdir <- here(bfgenomedir, "results/interaction")
+fs::dir_create(resdir)
+```
+
+# Data
+
+## Ligand receptor data
+
+```{r}
+#| message: false
+#| warning: false
+
+omnipath_lr <- read_tsv(here(mmgenomedir, "results/ligrecextra_mmus.tsv"))
+omnipath_lr
+```
+
+## Genomic data
+
+```{r}
+#| message: false
+#| warning: false
+
+mmgenes <- read_tsv(here(orthdir, "id-name-mapping/mmus.tsv")) %>% 
+  select(gene_id, symbol) %>% 
+  distinct()
+
+orth <- read_tsv(here(orthdir, "pairwise-orthologs/mmus_vs_bflo.tsv")) %>% 
+  left_join(mmgenes, by = c("mmus" = "gene_id"))
+```
+
+# We need to use HOGs instead of one:one orthologs
+
+If we keep only one-to-one orthologs, we are left with only 47 source-target pairs. 
+
+```{r}
+omnipath_lr %>% 
+  filter(source_genesymbol %in% orth$symbol[orth$type == "one.to.one"] &
+           target_genesymbol %in% orth$symbol[orth$type == "one.to.one"]) %>% 
+  print(n = Inf)
+```
+
+If we use all types of orthologs (by using HOGs instead of individual genes), we keep many more source target pairs.
+
+```{r}
+omnipath_lr %>% 
+  filter(source_genesymbol %in% orth$symbol &
+           target_genesymbol %in% orth$symbol)
+```
+
+# Define display names for HOGs
+
+We will use mouse symbols as displays names for each HOG. 
+
+```{r}
+hogs <- orth %>% 
+  group_by(hog) %>% 
+  summarise(mmus = list(unique(mmus)),
+            bflo = list(unique(bflo)),
+            symbols = list(sort(unique(symbol)))) %>% 
+  ungroup() %>% 
+  mutate(n_symbols = map_int(symbols, length)) %>% 
+  arrange(desc(n_symbols))
+
+hogs %>% 
+  filter(n_symbols > 1)
+```
+
+```{r}
+hogs %>% 
+  filter(n_symbols > 1) %>% 
+  pull(symbols) %>% 
+  head()
+```
+
+```{r}
+hogs$hog_name <- vector("character", nrow(hogs))
+
+for (i in seq_len(nrow(hogs))) {
+  hogs$hog_name[i] <- paste(
+    hogs$hog[i],
+    paste0("m", length(hogs$mmus[[i]])),
+    paste0("b", length(hogs$bflo[[i]])),
+    # use first and last symbol as examples
+    paste(unique(c(head(hogs$symbols[[i]], 1),
+                   tail(hogs$symbols[[i]], 1))), collapse = "."),
+    sep = "."
+  )
+}
+
+
+hogs %>% 
+  slice(c(1:10, 11:20)) %>% 
+  print(n = 20)
+```
+
+```{r}
+hogs %>% 
+  mutate(mmus = map_chr(mmus, paste, collapse = ";"),
+         bflo = map_chr(bflo, paste, collapse = ";"),
+         symbols = map_chr(symbols, paste, collapse = ";")) %>% 
+  select(hog, hog_name, symbols, mmus, bflo) %>% 
+  write_tsv(here(bfgenomedir, "results/orthofinder/HOGs_mmus-vs-bflo.tsv"))
+```
+
+# Prepapre ligand-receptor data using HOGs
+
+```{r}
+orth_lr <- orth %>% 
+  filter(symbol %in% omnipath_lr$source_genesymbol | 
+           symbol %in% omnipath_lr$target_genesymbol) %>% 
+  select(hog) %>% 
+  distinct() %>% 
+  left_join(hogs, by = "hog")
+```
+
+```{r}
+hog_symbol_mapping <- orth %>% 
+  select(hog, symbol) %>% 
+  distinct() %>% 
+  filter(!is.na(symbol))
+```
+
+```{r}
+lr <- omnipath_lr %>% 
+  filter(source_genesymbol %in% mmgenes$symbol &
+           target_genesymbol %in% mmgenes$symbol) %>% 
+  rowid_to_column("mechanism") %>% 
+  pivot_longer(cols = -mechanism, 
+               names_to = c("direction", NA), 
+               names_sep = "_",
+               values_to = "symbol") %>% 
+  left_join(mmgenes, by = "symbol") %>% 
+  left_join(orth %>% 
+              select(mmus, hog) %>% 
+              distinct(),
+            by = c("gene_id" = "mmus")) %>% 
+  left_join(hogs %>% 
+              select(hog, hog_name) %>% 
+              distinct(),
+            by = "hog") %>% 
+  pivot_wider(id_cols = mechanism, 
+              names_sep = "__", 
+              names_from = direction,
+              values_from = c(symbol, gene_id, hog, hog_name)) %>% 
+  select(-mechanism) %>% 
+  filter(!is.na(hog__source) & !is.na(hog__target))
+```
+
+```{r}
+apply(lr, 2, function(x) any(is.na(x)))
+```
+
+
+```{r}
+lr_hogs <- lr %>% 
+  select(hog_name__source, hog_name__target) %>% 
+  distinct() 
+
+lr_hogs
+```
+
+```{r}
+write_tsv(lr_hogs, here(resdir, "omnipath_lr_mmus-to-bflo_hogs.tsv"))
+write_tsv(lr, here(resdir, "omnipath_lr_mmus-to-bflo_symbols.tsv"))
+```
+
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```

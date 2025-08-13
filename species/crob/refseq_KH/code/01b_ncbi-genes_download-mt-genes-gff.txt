@@ -1,0 +1,12 @@
+Arun R. Chavan
+2022-06-24
+
+In the GTF file, some entries are missing `gene_id` attribute. All entries for 
+which this attribute is missing are mitochondrial genes (but this is not true
+for all mitochondrial genes). These genes do in fact have an NCBI Gene ID 
+associated with them if we look them up by their symbol in the NCBI Genes 
+databse. As a complete reference for these genes, I downloaded the information
+about these genes as a .gff file from the page for NC_017929.1, i.e. the 
+mitochondrial genome for GCF_000224145.3_KH.
+
+Link: https://www.ncbi.nlm.nih.gov/nuccore/NC_017929.1

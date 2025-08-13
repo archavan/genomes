@@ -1,0 +1,460 @@
+---
+title: Generate a list of candidate genes
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+editor_options: 
+  chunk_output_type: inline
+---
+
+Started: 2024-11-18  
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>")
+
+library(Biostrings)
+library(tidyverse)
+library(here)
+
+khdir <- here("species/crob/genome/refseq_KH")
+genomedir <- here("species/crob/genome/KY21")
+```
+
+# Data
+
+```{r}
+#| message: false
+#| warning: false
+
+genes_ky <- read_tsv(here(genomedir, "results/genes/gene-display-names.tsv"))
+genes_kh <- read_tsv(here(khdir,     "results/genes/gene-display-names.tsv"))
+
+prot_ky <- readAAStringSet(here(genomedir, "results/fasta/KY21_proteins_met_with-mito.fasta.gz"))
+prot_kh <- readAAStringSet(here(khdir, "data/refseq/GCF_000224145.3_KH_protein.faa.gz"))
+
+pids_ky <- read_tsv(here(genomedir, "results/genes/gid-pid_mapping.tsv"))
+pids_kh <- read_tsv(here(khdir, "results/genes/gid-pid_mapping.tsv"))
+```
+
+
+```{r}
+accepted_categories <- c("transcription factor",
+                         "digestive",
+                         "marker")
+
+accepted_groups <- c("brush border membrane enzyme",
+                     "transporter",
+                     "pinocytosis",
+                     "phagocytosis",
+                     "endocytosis",
+                     "digestive enzyme",
+                     "lumen protection",
+                     "gut",
+                     "parahox",
+                     "hox",
+                     "exocrine")
+
+add_entries <- function(
+    category = NA_character_,
+    group = NA_character_,
+    name_free = NA_character_, 
+    gene_id = NA_character_, 
+    symbol_hsap = NA_character_, 
+    symbol_mmus = NA_character_, 
+    gene_id_kh = NA_character_, 
+    source = NA_character_, 
+    notes = NA_character_
+) {
+  
+  if (!all(is.na(category))) {
+    stopifnot(all(category %in% accepted_categories))
+  }
+  
+  if (!all(is.na(group))) {
+    stopifnot(all(group %in% accepted_groups))
+  }
+  
+  new_entries <- tibble(
+    category = category,
+    group = group,
+    name_free = name_free,
+    gene_id = gene_id,
+    symbol_hsap = symbol_hsap,
+    symbol_mmus = symbol_mmus,
+    gene_id_kh = gene_id_kh,
+    source = source,
+    notes = notes
+  )
+
+  bind_rows(cand, new_entries)
+}
+```
+
+
+```{r}
+# receptacle for data
+
+cand <- tibble(
+  category = vector("character"),
+  group = vector("character"),
+  name_free = vector("character"),
+  gene_id     = vector("character"),
+  symbol_hsap = vector("character"),
+  symbol_mmus = vector("character"),
+  gene_id_kh  = vector("character"),
+  source      = vector("character"),
+  notes       = vector("character")
+)
+```
+
+
+# Sources
+
+- Iguchi 2023a: Iguchi, R., Nakayama, S., Sasakura, Y., Sekiguchi, T., & Ogasawara, M. (2023). Repetitive and zonal expression profiles of absorption-related genes in the gastrointestinal tract of ascidian Ciona intestinalis type A. *Cell and Tissue Research*. https://doi.org/10.1007/s00441-023-03828-9
+- Iguchi 2023b: Iguchi, R., Usui, K., Nakayama, S., Sasakura, Y., Sekiguchi, T., & Ogasawara, M. (2023). Multi-regional expression of pancreas-related digestive enzyme genes in the intestinal chamber of the ascidian Ciona intestinalis type A. *Cell and Tissue Research*, 394(3), 423–430. https://doi.org/10.1007/s00441-023-03839-6
+
+# Digestive genes
+
+```{r}
+cand <- add_entries(category = "digestive",
+                    group = "brush border membrane enzyme", 
+                    name_free = "Lactase", 
+                    gene_id = c("KY21.Chr2.1492", 
+                                "KY21.Chr4.585",
+                                "KY21.Chr11.1103"), 
+                    source = "Iguchi 2023a")
+
+
+cand <- add_entries(category = "digestive",
+                    group = "brush border membrane enzyme", 
+                    name_free = "Maltase", 
+                    gene_id = c("KY21.Chr5.870", 
+                                "KY21.Chr7.622"), 
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "brush border membrane enzyme", 
+                    name_free = "APA (Aminopeptidase A)", 
+                    gene_id = "KY21.Chr12.696", 
+                    source = "Iguchi 2023a") 
+
+cand <- add_entries(category = "digestive",
+                    group = "brush border membrane enzyme", 
+                    name_free = "APN (Aminopeptidase N)", 
+                    gene_id = c("KY21.Chr8.253",
+                                "KY21.Chr11.1215",
+                                "KY21.Chr13.350"), 
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "transporter",
+                    name_free = "SGLT1 (SLC5A1)",
+                    gene_id = c("KY21.Chr7.756",
+                                "KY21.Chr10.1043"),
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "transporter",
+                    name_free = "GLUT5 (SLC2A5)",
+                    gene_id = c("KY21.Chr7.760",
+                                "KY21.Chr7.811"),
+                    source = "Iguchi 2023a")
+                    
+cand <- add_entries(category = "digestive",
+                    group = "transporter",
+                    name_free = "PEPT1 (SLC15A1)",
+                    gene_id = c("KY21.Chr5.1075",
+                                "KY21.Chr13.376",
+                                "KY21.Chr13.377"),
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "transporter",
+                    name_free = "B0AT1 (SLC6A19)",
+                    gene_id = c("KY21.Chr3.979",
+                                "KY21.Chr3.980"),
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "pinocytosis",
+                    name_free = "cell surface receptor",
+                    gene_id = c("KY21.Chr9.1166",
+                                "KY21.Chr1.2269",
+                                "KY21.Chr10.702"),
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "phagocytosis",
+                    name_free = "MRC1",
+                    gene_id = c("KY21.Chr1.2138",
+                                "KY21.Chr9.463",
+                                "KY21.Chr13.395"),
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "endocytosis",
+                    name_free = "cell surface adapter",
+                    gene_id = c("KY21.Chr5.37"),
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "endocytosis",
+                    name_free = "late endosome protein",
+                    gene_id = c("KY21.Chr1.1176"),
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "endocytosis",
+                    name_free = "LAMP",
+                    gene_id = c("KY21.Chr1.892",
+                                "KY21.Chr1.893"),
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "endocytosis",
+                    name_free = "lysosomal protease",
+                    gene_id = c("KY21.Chr3.1432",
+                                "KY21.Chr12.609",
+                                "KY21.Chr12.613",
+                                "KY21.Chr12.614",
+                                "KY21.Chr3.262",
+                                "KY21.Chr5.51",
+                                "KY21.Chr1.1142",
+                                "KY21.Chr12.96"),
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "digestive enzyme",
+                    name_free = "alpha-amylase",
+                    gene_id = "KY21.Chr5.113",
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    group = "digestive enzyme",
+                    name_free = "pancreatic lipase",
+                    gene_id = c("KY21.Chr5.456",
+                                "KY21.Chr7.358",
+                                "KY21.Chr8.782"),
+                    source = "Iguchi 2023b")
+
+cand <- add_entries(category = "digestive",
+                    group = "digestive enzyme",
+                    name_free = "phospholipase A2",
+                    gene_id = c("KY21.Chr3.734",
+                                "KY21.Chr3.1410",
+                                "KY21.Chr10.248",
+                                "KY21.Chr14.43"),
+                    source = "Iguchi 2023b")
+
+cand <- add_entries(category = "digestive",
+                    group = "digestive enzyme",
+                    name_free = "trypsin",
+                    gene_id = c("KY21.Chr4.1140",
+                                "KY21.Chr11.107",
+                                "KY21.Chr11.108"),
+                    source = "Iguchi 2023b")
+
+cand <- add_entries(category = "digestive",
+                    group = "digestive enzyme",
+                    name_free = "chymotrypsin",
+                    gene_id = c("KY21.Chr1.1471",
+                                "KY21.Chr1.1488",
+                                "KY21.Chr6.469",
+                                "KY21.Chr9.851",
+                                "KY21.Chr10.54",
+                                "KY21.Chr10.55",
+                                "KY21.Chr10.56",
+                                "KY21.Chr10.57",
+                                "KY21.Chr10.58",
+                                "KY21.Chr11.224",
+                                "KY21.Chr14.114"),
+                    source = "Iguchi 2023b")
+
+cand <- add_entries(category = "digestive",
+                    group = "digestive enzyme",
+                    name_free = "carboxypeptidase",
+                    gene_id = c("KY21.Chr1.1270",
+                                "KY21.Chr1.2194",
+                                "KY21.Chr7.288",
+                                "KY21.Chr8.707",
+                                "KY21.Chr8.1316",
+                                "KY21.Chr12.114"),
+                    source = "Iguchi 2023b")
+
+cand <- add_entries(category = "digestive",
+                    group = "lumen protection",
+                    gene_id = c("KY21.Chr2.1407",
+                                "KY21.Chr4.839"),
+                    source = "Iguchi 2023a")
+
+cand <- add_entries(category = "digestive",
+                    name_free = "Cathepsin D",
+                    gene_id = c("KY21.Chr1.583",
+                                "KY21.Chr6.135",
+                                "KY21.Chr6.136"),
+                    source = "Iguchi 2023b")
+
+
+cand
+```
+
+# Transcription factors
+
+```{r}
+cand <- add_entries(category = "transcription factor",
+                    group = "gut",
+                    name_free = "Ptf1a",
+                    gene_id = "KY21.Chr3.511",
+                    source = "Iguchi 2023b")
+
+cand <- add_entries(category = "marker",
+                    group = "exocrine",
+                    name_free = "Ptf1a",
+                    gene_id = "KY21.Chr3.511",
+                    source = "Iguchi 2023b")
+
+cand <- add_entries(category = "transcription factor",
+                    group = "gut",
+                    name_free = "Nr5a2",
+                    gene_id = c("KY21.Chr6.232"),
+                    source = "Iguchi 2023b")
+```
+
+## ParaHox genes
+
+```{r}
+cand <- add_entries(category = "transcription factor",
+                    group = c("gut", "parahox"),
+                    name_free = "Pdx",
+                    gene_id = c("KY21.Chr14.616"),
+                    source = "Iguchi 2023b")
+
+cand <- add_entries(category = "transcription factor",
+                    group = c("gut", "parahox"),
+                    name_free = "Cdx",
+                    gene_id = c("KY21.Chr14.584"),
+                    source = "Iguchi 2023b")
+
+cand <- add_entries(category = "transcription factor",
+                    group = "parahox",
+                    name_free = "Gsx",
+                    gene_id = genes_ky$gene_id[which(genes_ky$symbol == "[g] Gsx")])
+```
+
+# Write file
+
+```{r}
+cand <- left_join(cand, select(genes_ky, -display_name), by = "gene_id")
+
+write_tsv(cand, here(genomedir, "results/genes/candidate-genes.tsv"))
+```
+
+
+```{r}
+knitr::knit_exit()
+```
+
+
+## Hox genes
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(symbol, regex("hox", TRUE)))
+```
+
+
+# FABP genes
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("fabp", TRUE)) |
+           str_detect(display_name, regex("fatty acid binding", TRUE)))
+```
+
+# Adipocyte-related genes
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("cd36", TRUE)) |
+           str_detect(display_name, regex("Lipe", TRUE)) |
+           str_detect(display_name, regex("Pnpla2", TRUE)) |
+           str_detect(display_name, regex("Plin", TRUE)))
+```
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("SLC27", TRUE)))
+```
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(symbol, regex("MUC", TRUE)))
+```
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("TPH1", TRUE)) |
+           str_detect(display_name, regex("SCG5", TRUE)) |
+           str_detect(display_name, regex("PCSK", TRUE)) |
+           str_detect(display_name, regex("NEUROD|NGN", TRUE)) |
+           str_detect(display_name, regex("MNX1", TRUE)) |
+           str_detect(display_name, regex("PDX1", TRUE)) |
+           str_detect(display_name, regex("CPE", TRUE)) |
+           str_detect(display_name, regex("insulin-like \\d", TRUE)))
+```
+
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("insulin", TRUE)))
+```
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("GATA", TRUE)))
+```
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("cytochrome P450 family", TRUE)))
+```
+
+# Markers 
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("actg", TRUE)))
+```
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("tph1|neurod1", TRUE)))
+```
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("mki67|ube2c|top2a", TRUE)))
+```
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("fabp2|ceacam1|epcam", TRUE)))
+```
+
+```{r}
+genes_ky %>% 
+  filter(str_detect(display_name, regex("muc2|spdef|wfdc2", TRUE)))
+```
+
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```

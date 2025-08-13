@@ -1,0 +1,15 @@
+# Arun Chavan
+# started: 2024-11-05
+
+# I ran eggnon-mapper using the interactive web tool at
+# http://eggnog-mapper.embl.de. Below are the details of the run.
+
+# job id: MM_cueibxwo
+# file: KY21_proteins_met_with-mito.fasta.gz
+
+# sequence: 55,518
+
+# job cmd line
+
+emapper.py --cpu 20 --mp_start_method forkserver --data_dir /dev/shm/ -o out --output_dir /emapper_web_jobs/emapper_jobs/user_data/MM_cueibxwo --temp_dir /emapper_web_jobs/emapper_jobs/user_data/MM_cueibxwo --override -m diamond --dmnd_ignore_warnings -i /emapper_web_jobs/emapper_jobs/user_data/MM_cueibxwo/queries.fasta --evalue 0.001 --score 60 --pident 40 --query_cover 20 --subject_cover 20 --itype proteins --tax_scope auto --target_orthologs all --go_evidence non-electronic --pfam_realign none --report_orthologs --decorate_gff yes --excel > /emapper_web_jobs/emapper_jobs/user_data/MM_cueibxwo/emapper.out 2> /emapper_web_jobs/emapper_jobs/user_data/MM_cueibxwo/emapper.err
+

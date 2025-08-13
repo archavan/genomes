@@ -1,0 +1,95 @@
+---
+title: "Prepare amphioxus transcriptome for `kallisto`"
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+---
+
+Started: 2023-11-03  
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>", error = TRUE)
+
+library(here)
+library(tidyverse)
+library(bioseq)
+
+basedir <- here("species/bflo/genome/VNyyK")
+```
+
+# Data
+
+```{r}
+fasta_to_tibble <- function(x) {
+  x %>% 
+    enframe(value = "sequence") %>% 
+    mutate(tid = str_replace(name, "(.+?) (.*)", "\\1")) %>% 
+    mutate(details = str_replace(name, "(.+?) (.*)", "\\2")) %>% 
+    relocate(tid, details) %>% 
+    select(-name)
+}
+```
+
+```{r}
+#| warning: false
+#| message: false
+
+rfa <- read_fasta(here(basedir, "data/refseq/GCF_000003815.2_Bfl_VNyyK_rna.fna.gz")) %>% 
+  fasta_to_tibble()
+ids <- read_tsv(here(basedir, "results/genes/gid-tid_mapping.tsv"))
+gtf <- read_tsv(here(basedir, "results/gtf/gtf_fixed_parsed.tsv"), 
+                col_types = cols(
+                  .default = col_character(),
+                  start = col_double(),
+                  end = col_double(),
+                  width = col_double(),
+                  exon_number = col_double()
+                ))
+```
+
+# Check for consistency between GTF and RNA fasta file
+
+- There are fewer transcripts in the RNA fasta file from RefSeq than in the GTF
+
+
+```{r}
+length(unique(rfa$tid))
+length(unique(gtf$transcript_id))
+length(unique(ids$transcript_id))
+```
+
+- But all the transcripts missing from the fasta are tRNA transcripts
+
+```{r}
+gtf %>% 
+  filter(!transcript_id %in% rfa$tid &
+           !is.na(transcript_id) &
+           gbkey %in% c("mRNA", "ncRNA", "tRNA", "rRNA")) %>% 
+  select(seqnames, source, type, gene_id, transcript_id, gbkey, symbol) %>% 
+  distinct() %>% 
+  pull(gbkey) %>% 
+  unique()
+```
+
+- There are three transcripts that are in the fasta file but not in the GTF file
+- I looked up all three transcripts on NCBI and they are all from pseudogenes
+
+```{r}
+rfa$tid[!rfa$tid %in% gtf$transcript_id]
+```
+
+# Conclusion
+
+This means tha the RNA fasta from RefSeq is almost entirely consistent with the fixed GTF file. We can simply use that fasta file to generate an index for `kallisto`. 
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```

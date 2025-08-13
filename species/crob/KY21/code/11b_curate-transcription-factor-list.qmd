@@ -1,0 +1,99 @@
+---
+title: Curate transcription factor gene list
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+editor_options: 
+  chunk_output_type: console
+  markdown:
+    wrap: 72
+    canonical: true
+---
+
+Started: 2024-12-16\
+Last edited: `r format(Sys.time())`
+
+# Setup
+
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>")
+
+library(tidyverse)
+library(here)
+
+genomedir <- here("species/crob/genome/KY21")
+resdir <- here(genomedir, "results/genes")
+```
+
+# Data
+
+```{r}
+#| message: false
+#| warning: false
+
+# tf genes ====================================================================
+tf_ghost <- read_tsv(here(resdir, "geneset_tf_ghost-curated.tsv"))
+tf_go <- read_tsv(here(resdir, "geneset_tf.tsv")) # this is the first list we made based on go annotation combined from emapper and prost, and KEGG annotation
+
+# human transcription factor list from Lambert et al 2018 =====================
+tf_hs_lambert <- read_csv("https://humantfs.ccbr.utoronto.ca/download/v_1.01/DatabaseExtract_v_1.01.csv") %>% 
+  janitor::clean_names() %>% 
+  filter(is_tf == "Yes")
+
+genes <- read_tsv(here(resdir, "gene-display-names.tsv")) %>% 
+  select(-display_name)
+
+ghost <- read_tsv(here(genomedir, "results/ghost/gene-info_ghostdb_parsed.tsv"))
+prost <- read_tsv(here(genomedir, "results/prost/processed/best-hits_gene-level_with-gene-names.tsv"))
+```
+
+# Homologs of human transcription factors
+
+```{r}
+tf_cr_lambert_homologs <- ghost %>% 
+  filter(hsap_homolog_symbol %in% tf_hs_lambert$hgnc_symbol)
+
+tf_cr_lambert_homologs
+```
+
+# Curate the list
+
+## Intersection of all sets
+
+```{r}
+tf_intersect <- list(select(tf_cr_lambert_homologs, gene_id),
+                     select(tf_go, gene_id),
+                     select(tf_ghost, gene_id)) %>% 
+  reduce(inner_join, by = "gene_id") %>% 
+  left_join(genes, by = "gene_id") %>% 
+  distinct() 
+```
+
+## Union of all sets
+
+```{r}
+tf_union <- list(select(tf_cr_lambert_homologs, gene_id),
+                 select(tf_go, gene_id),
+                 select(tf_ghost, gene_id)) %>% 
+  reduce(full_join, by = "gene_id") %>% 
+  left_join(genes, by = "gene_id") %>% 
+  distinct() 
+```
+
+# Write files
+
+```{r}
+write_tsv(tf_intersect, here(resdir, "geneset_tf_intersect.tsv"))
+write_tsv(tf_union, here(resdir, "geneset_tf_union.tsv"))
+```
+
+# Session Info
+
+```{r session_info, eval=TRUE}
+sessionInfo()
+```

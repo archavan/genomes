@@ -1,0 +1,272 @@
+---
+title: Process prost results for amphioxus genes
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+editor_options: 
+  chunk_output_type: inline
+---
+
+Started: 2024-01-17  
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>", error = TRUE)
+
+library(GO.db)
+library(tidyverse)
+library(here)
+library(glue)
+
+genomedir <- here("species/bflo/genome/VNyyK")
+resdir <- here(genomedir, "results/prost/processed")
+fs::dir_create(resdir)
+```
+
+# Data
+
+```{r}
+#| message: false
+#| warning: false
+
+# prost input 
+input <- read_tsv(here(genomedir, "results/prost/genes_coding_all.tsv"))
+
+# emapper GO annotation for comparison
+emap_go <- read_tsv(here(genomedir, "results/emapper/processed/emapper_go.tsv.gz"))
+
+# prost output
+hits <- read_tsv(
+  here(genomedir, 
+       "results/prost/output/GCF_000003815.2_Bfl_VNyyK_protein.prost.sp_hits.tsv.gz"), 
+  col_names = c("fasta_id",	"uniprot_id",	"protein_name",	"protein_type",	
+                "organism",	"prost_distance",	"e_value")
+)
+
+go <- read_tsv(
+  here(genomedir, 
+       "results/prost/output/GCF_000003815.2_Bfl_VNyyK_protein.prost.go.tsv.gz"),
+  col_names = c("fasta_id",	"go_id",	"protein_type",	"go_freq",	
+                "uniprot_ID",	"stat",	"p_value")
+)
+
+# genomic data
+gid_pid <- read_tsv(here(genomedir, "results/genes/gid-pid_mapping.tsv"))
+```
+
+# Process hits output
+
+## Add gene ids
+
+```{r}
+# split protein id into a new column from the fasta_id
+hits <- hits %>% 
+  mutate(protein_id = gsub("(^.+?) .*$", "\\1", fasta_id)) %>% 
+  relocate(protein_id)
+
+# add gene_id 
+hits <- left_join(hits, select(gid_pid, gene_id, protein_id), by = "protein_id") %>% 
+  relocate(gene_id)
+```
+
+## Remove bflo hits
+
+Many genes have hits with the _Branchiostoma floridae_ and _B. lanceolatum_ genes in uniprot. They have low evalues and low distances, of course, but they are not useful for annotating genes. We want to see which genes in well annotated species our genes are similar to. So we will remove the hits that are with _Branchiostoma_. 
+
+```{r}
+hits <- hits %>% 
+  filter(!str_detect(organism, "Branchiostoma"))
+```
+
+
+## Explore the output
+
+### How many proteins did PROST find orthologs for and for how many it did not?
+
+```{r}
+input <- input %>% 
+  mutate(prost_orth = protein_id %in% hits$protein_id)
+
+# add another column for whether the gene was characterized before PROST
+input <- input %>% 
+  mutate(unchar = description == "uncharacterized")
+
+table(input$unchar, 
+      input$prost_orth, 
+      dnn = c("uncharacterized?", "prost ortholog found?"))
+```
+
+We still have 2915 genes that were "uncharacterized" before running PROST for which PROST hasn't found a hit either. 
+
+### Distribution of prost distances.
+
+```{r}
+ggplot(hits, aes(prost_distance)) +
+  geom_histogram(boundary = 0.5) +
+  theme_bw()
+```
+
+
+
+### There is clear relationship between prost distance and e value.
+
+```{r}
+ggplot(hits, aes(prost_distance, -log10(e_value))) +
+  geom_hex() +
+  scale_fill_viridis_c() +
+  theme_bw()
+```
+
+### How many hits do proteins typically have?
+
+```{r}
+hits %>% 
+  count(protein_id) %>% 
+  ggplot(aes(n)) +
+  geom_histogram(binwidth = 100, boundary = 0.5) +
+  theme_bw()
+```
+
+### Which species are most common in the protein hits?
+
+```{r}
+hits %>% 
+  count(organism) %>% 
+  arrange(-n) %>% 
+  head()
+```
+
+## Get the best hits for all proteins
+
+Since evalue and distance are quite well correlated, we could use either. 
+
+```{r}
+best_hits <- hits %>% 
+  group_by(protein_id) %>% 
+  arrange(e_value, .by_group = TRUE) %>% # so that ties are broken with lower e_val
+  slice_min(prost_distance, with_ties = FALSE) %>% 
+  ungroup() 
+```
+
+
+## Get species-specific "orthologs"
+
+```{r}
+get_species_orthologs <- function(species) {
+  hits %>% 
+  filter(organism == species) %>% 
+  group_by(protein_id) %>% 
+  arrange(e_value) %>% 
+  slice_min(prost_distance, with_ties = FALSE) %>% 
+  ungroup()
+}
+
+hsap_orthologs <- get_species_orthologs("Homo sapiens")
+mmus_orthologs <- get_species_orthologs("Mus musculus")
+```
+
+## summarizing to gene level
+
+Not sure how to best to summarize these results to the gene level, but below are some stats. 
+
+There are 3236 genes that have more than one protein_ids associated with them but all protein ids have the same prost hit. These are easy to summarize to gene level. 
+
+There are 2334 genes that have more than one protein ids associated with them and they also have more than one prost hits. This subset is the most difficult to summarize to gene level. 
+
+```{r}
+best_hits %>% 
+  nest(.by = gene_id) %>% 
+  mutate(n_proteins = map_int(data, nrow)) %>% 
+  mutate(n_orthids = map_int(data,
+                             function(x) {
+                               x %>% 
+                                 pull(uniprot_id) %>% 
+                                 unique() %>% 
+                                 length()
+                             })) %>% 
+  mutate(n_proteins_discrete = ifelse(n_proteins == 1, "1", ">1"),
+         n_orthids_discrete = ifelse(n_orthids == 1, "1", ">1")) %>% 
+  count(n_proteins_discrete, n_orthids_discrete)
+```
+
+# Process GO output
+
+## Add gene ids
+
+```{r}
+# split protein id into a new column from the fasta_id
+go <- go %>% 
+  mutate(protein_id = gsub("(^.+?) .*$", "\\1", fasta_id)) %>% 
+  relocate(protein_id)
+
+# add gene_id 
+go <- left_join(go, select(gid_pid, gene_id, protein_id), by = "protein_id") %>% 
+  relocate(gene_id)
+```
+
+```{r}
+go_gene_level <- go %>% 
+  select(gene_id, go_id) %>% 
+  distinct()
+
+# We get the GO terms associated with GO ids using {GO.db}. 
+##First create a dataframe with GOID, TERM, and ONTOLOGY mapping
+godb <- AnnotationDbi::select(GO.db, 
+                              keys = unique(go_gene_level$go_id), 
+                              columns = c("ONTOLOGY", "TERM"), 
+                              keytype = "GOID")
+godb <- godb %>% 
+  dplyr::filter(!is.na(TERM)) %>% # emapper also returns some obsolete GO IDs for which GO.db returns NA for term
+  dplyr::mutate(TERM = glue("[{ONTOLOGY}] {TERM}")) %>% 
+  dplyr::rename(go_term = TERM) %>% 
+  dplyr::select(-ONTOLOGY)
+
+  
+# join with emap.go
+go_gene_level <- left_join(go_gene_level, godb, by = c("go_id" = "GOID")) %>% 
+  dplyr::filter(!is.na(go_term)) # get rid of rows with obsolete go_ids
+```
+
+Now let's compare the GO annotation from PROST with that from emapper. 
+
+```{r}
+input <- input %>% 
+  mutate(go_emapper = gene_id %in% emap_go$gene_id,
+         go_prost = gene_id %in% go_gene_level$gene_id)
+
+input %>% 
+  dplyr::select(gene_id, go_emapper, go_prost) %>% 
+  distinct() %>% 
+  {
+    table(.$go_emapper, .$go_prost, dnn = c("emapper GO annotation", "PROST GO annotation"))
+  }
+```
+
+There are 12397 genes for which emapper did not find GO annotation but PROST did. 
+
+# Write files
+
+```{r}
+write_tsv(best_hits, here(resdir, "best-hits.tsv"))
+write_tsv(go_gene_level, here(resdir, "go.tsv.gz"))
+
+input %>% 
+  filter(!prost_orth & unchar) %>% 
+  write_tsv(here(resdir, "unchar-proteins-without-prost-hits.tsv"))
+
+input %>% 
+  filter(!go_emapper & !go_prost)  %>% 
+  write_tsv(here(resdir, "proteins-without-go-annotation.tsv"))
+```
+
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```

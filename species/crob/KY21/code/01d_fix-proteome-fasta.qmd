@@ -1,0 +1,148 @@
+---
+title: Fix proteome fasta file
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+---
+
+Started: 2024-11-01  
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>")
+
+library(rtracklayer)
+library(GenomicRanges)
+library(Biostrings)
+library(tidyverse)
+library(here)
+
+genomedir <- here("species/crob/genome/KY21")
+```
+
+# Data
+```{r}
+protfa <- readAAStringSet(here(genomedir, "data/ghost-db/HT.KY21Gene.protein.2.fasta.gz"))
+
+read_gxf_as_tibble <- function(.file) {
+  rtracklayer::import(.file) %>% 
+    GenomicRanges::as.data.frame() %>% 
+    as_tibble()
+} 
+
+gtf <- read_gxf_as_tibble(here(genomedir, "results/gtf/ky21_fixed.gtf.gz"))
+ens_pfa <- readAAStringSet("https://ftp.ensembl.org/pub/release-113/fasta/ciona_intestinalis/pep/Ciona_intestinalis.KH.pep.all.fa.gz")
+```
+
+## Remove proteins missing from the GTF
+There are ~300 proteins that are present in the proteome fasta from ghostdb but are missing from the GTF. For consistency, we will remove them from the fasta file. 
+
+```{r}
+gtf_pids <- unique(gtf$protein_id[which(!is.na(gtf$protein_id))])
+
+names(protfa)[!names(protfa) %in% gtf_pids]
+```
+
+```{r}
+protfa <- protfa[names(protfa) %in% gtf_pids]
+```
+
+```{r}
+stopifnot(all(names(protfa) %in% gtf_pids))
+stopifnot(all(gtf_pids[!grepl("ENSCINP", gtf_pids)] %in% names(protfa)))
+```
+
+## Strip non-methionine AA at the beginning
+
+The protein FASTA from GHOSTdb is translation of the longest ORF, so it doesn't always start with methionine. We need to strip the amino acids before the first M in all protein sequences. 
+
+> This file contains translated sequences of the longest ORFs; They do not always begin with Methionine; Remove amino acids prior to the first Methionine if you need.
+
+```{r}
+strip_to_first_met <- function(x) {
+  gsub("([^M]*?)(M.*)", "\\2", x)
+}
+
+protfa_met <- protfa
+
+pb <- txtProgressBar(min = 1, max = length(protfa_met), style = 3)
+for (i in seq_along(protfa_met)) {
+  protfa_met[[i]] <- strip_to_first_met(protfa_met[[i]])
+  setTxtProgressBar(pb, i)
+}
+close(pb)
+```
+
+# Tests
+
+## Are all sequences now shorter (or the same length) than before?
+
+```{r}
+plot(width(protfa), width(protfa_met))
+```
+
+
+```{r}
+hist(width(protfa) - width(protfa_met))
+summary(width(protfa) - width(protfa_met))
+```
+
+## Do all sequences now start with methionine?
+
+There are 987 sequences that don't start with an MET, because they don't have a methionine in the sequence at all. 
+
+```{r}
+protfa_met[!grepl("^M", protfa_met)]
+```
+
+We will still keep them around. 
+
+# Append mitochondrial proteins
+
+```{r}
+mt_protein_ids <- gtf %>% 
+  filter(seqnames == "MT") %>% 
+  filter(!is.na(protein_id)) %>% 
+  pull(protein_id) %>%
+  unique()
+
+strip_fasta_description <- function(x) {
+  str_replace(x, "(.+?)\\s.*", "\\1")
+}
+
+remove_id_version <- function(x) {
+  str_replace(x, "(ENSCINP\\d+)\\.\\d+", "\\1")
+}
+
+names(ens_pfa) <- names(ens_pfa) %>% 
+  strip_fasta_description() %>% 
+  remove_id_version()
+
+mt_pfa <- ens_pfa[mt_protein_ids]
+
+protfa_met_with_mt <- c(mt_pfa, protfa_met)
+```
+
+
+# Write files
+
+```{r}
+writeXStringSet(protfa_met_with_mt, 
+                here(genomedir, 
+                     "results/fasta/KY21_proteins_met_with-mito.fasta.gz"), 
+                format = "fasta", 
+                compress = "gzip")
+```
+
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```
+

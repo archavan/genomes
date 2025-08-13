@@ -1,0 +1,16 @@
+# Arun Chavan
+# started: 2023-06-06
+
+# I ran eggnon-mapper using the interactive web tool at
+# http://eggnog-mapper.embl.de. Below are the details of the run.
+
+# job id: MM_th09m0fi
+# file: GCF_000003815.2_Bfl_VNyyK_protein.faa
+
+# sequence: 43041 
+# total length: 28299119
+
+# job cmd line
+
+emapper.py --cpu 20 --mp_start_method forkserver --data_dir /dev/shm/ -o out --output_dir /emapper_web_jobs/emapper_jobs/user_data/MM_th09m0fi --temp_dir /emapper_web_jobs/emapper_jobs/user_data/MM_th09m0fi --override -m diamond --dmnd_ignore_warnings -i /emapper_web_jobs/emapper_jobs/user_data/MM_th09m0fi/queries.fasta --evalue 0.001 --score 60 --pident 40 --query_cover 20 --subject_cover 20 --itype proteins --tax_scope auto --target_orthologs all --go_evidence non-electronic --pfam_realign none --report_orthologs --decorate_gff yes --excel > /emapper_web_jobs/emapper_jobs/user_data/MM_th09m0fi/emapper.out 2> /emapper_web_jobs/emapper_jobs/user_data/MM_th09m0fi/emapper.err
+

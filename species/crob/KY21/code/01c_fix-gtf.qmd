@@ -1,0 +1,199 @@
+---
+title: Fix the GTF file and prepare it for `cellranger`
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+---
+
+Started: 2024-08-29  
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>")
+
+library(Biostrings)
+library(rtracklayer)
+library(here)
+library(tidyverse)
+
+genomedir <- here("species/crob/genome/KY21")
+khdir <- here("species/crob/genome/refseq_KH")
+```
+
+# Data
+
+```{r}
+read_gxf_as_tibble <- function(.file) {
+  rtracklayer::import(.file) %>% 
+    GenomicRanges::as.data.frame() %>% 
+    as_tibble()
+} 
+```
+
+
+```{r}
+genomefa <- readDNAStringSet(here(genomedir, "data/ghost-db/HT.Ref.fasta.gz"))
+txfa <- readDNAStringSet(here(genomedir, "data/ghost-db/HT.KY21Gene.2.fasta.gz"))
+protfa <- readAAStringSet(here(genomedir, "data/ghost-db/HT.KY21Gene.protein.2.fasta.gz"))
+gtf <- read_gxf_as_tibble(here(genomedir, "results/gtf/HT.KY21Gene.2_agat.gtf.gz"))
+
+# use MT rows from Ensembl GTF instead of NCBI
+gtf_ens <- read_gxf_as_tibble("https://ftp.ensembl.org/pub/release-113/gtf/ciona_intestinalis/Ciona_intestinalis.KH.113.chr.gtf.gz")
+mt_gtf <- filter(gtf_ens, seqnames == "MT")
+
+# MT fasta from ensembl
+mt_fa <- readDNAStringSet("https://ftp.ensembl.org/pub/release-113/fasta/ciona_intestinalis/dna/Ciona_intestinalis.KH.dna.chromosome.MT.fa.gz")
+```
+
+# Ensure that seqnames match between genome fasta and GTF
+
+```{r}
+all(unique(gtf$seqnames) %in% names(genomefa))
+all(names(genomefa) %in% unique(gtf$seqnames))
+
+genomefa[which(!names(genomefa) %in% unique(gtf$seqnames))]
+```
+
+There are two contigs that are present in the fasta file, but there are no annotations for it in the gtf file. But more importantly, all seqnames in the gtf file are present in the genome fasta file. 
+
+# Fix id prefixes
+
+The gene ids and transcript ids in the GTF file have a "KY21:" prefix but the transcript and protein ids in the fasta files don't. For consistency, we remove the prefix from the GTF file ids. The gene and transcript ids themselves already contain "KY21." as a part of the id, so the prefix is redundant anyway. 
+
+```{r}
+head(distinct(select(gtf, gene_id, transcript_id)))
+head(names(txfa))
+head(names(protfa))
+```
+
+```{r}
+all(grepl("KY21:", gtf$gene_id))
+all(grepl("KY21:", gtf$transcript_id[!is.na(gtf$transcript_id)]))
+```
+
+```{r}
+gtf$gene_id <- gsub("KY21:", "", gtf$gene_id)
+gtf$transcript_id <- gsub("KY21:", "", gtf$transcript_id)
+```
+
+# Ensure that all transcript ids and protein ids match between fasta and gtf
+
+The transcripts fasta file and proteins fasta file have identical names, so we can check the gtf only against one of the two fasta files. 
+
+```{r}
+identical(names(txfa), names(protfa))
+```
+
+
+```{r}
+length(unique(gtf$transcript_id[!is.na(gtf$transcript_id)]))
+length(txfa)
+
+all(gtf$transcript_id[!is.na(gtf$transcript_id)] %in% names(txfa))
+all(names(txfa) %in% gtf$transcript_id[!is.na(gtf$transcript_id)])
+
+txfa[which(!names(txfa) %in% unique(gtf$transcript_id))] 
+```
+
+There are 304 transcript ids that are in the transcripts fasta file but are not in the gtf file.
+
+# add a protein id column
+
+Since protein id and transcript id are identical, we will use transcript id as protein id. For MT genes, we will have protein ids separate from transcript ids that we will pull from Ensembl. 
+
+```{r}
+gtf$transcript_id[!is.na(gtf$transcript_id) & !gtf$transcript_id %in% names(protfa)]
+
+gtf$protein_id <- gtf$transcript_id
+```
+
+
+# Is there an exon entry for each transcript?
+```{r}
+n_exons <- gtf %>% 
+  filter(!is.na(transcript_id)) %>% 
+  group_by(transcript_id) %>% 
+  count(type) %>% 
+  ungroup() %>% 
+  pivot_wider(id_cols = transcript_id, names_from = "type", values_from = "n") %>% 
+  arrange(exon)
+  
+head(n_exons)
+tail(n_exons)
+```
+
+All transcripts have at least one exon entry associated with them. The largest number exons for a transcript is 373. 
+
+# Add mitochondrial genome to fasta
+
+We will grab the mitochondrial fasta sequence from refseq KH genome fasta file. 
+
+```{r}
+mtchr <- "MT"
+
+names(mt_fa) <- str_extract(names(mt_fa), mtchr) # remove name description
+```
+
+Append MT fasta to genome fasta
+```{r}
+genomefa_with_mt <- c(genomefa, mt_fa)
+```
+
+
+# Add mitochondrial entries to GTF
+
+Append to the genomic gtf
+
+```{r}
+gtf_with_mt <- bind_rows(gtf, mt_gtf)
+```
+
+# Generate simplified files for `cellranger`
+
+For `cellranger`, the `transcript_id` and `gene_id` attributes are required to be present in the `gtf` (https://www.10xgenomics.com/support/software/cell-ranger/latest/analysis/inputs/cr-3p-references#adding-one-or-more-genes-to-your-reference-304f27). We will create a simplified gtf file with just those two attributes and nothing else, for the sake of simplicity and to avoid any problems with cellranger mkref. 
+
+```{r}
+gtf_minimal <- gtf_with_mt %>% 
+  select(seqnames, start, end, strand, source, type, score, phase, gene_id, transcript_id) %>% 
+  distinct()
+```
+
+
+# Write fixed files
+
+```{r}
+fs::dir_create(here(genomedir, "results/fasta"))
+writeXStringSet(genomefa_with_mt, 
+                here(genomedir, "results/fasta/genome_with_mito.fasta.gz"), 
+                format = "fasta", 
+                compress = "gzip")
+
+```
+
+```{r}
+gtf_with_mt %>% 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE) %>% 
+  rtracklayer::export(here(genomedir, "results/gtf/ky21_fixed.gtf"))
+
+R.utils::gzip(here(genomedir, "results/gtf/ky21_fixed.gtf"))
+```
+
+```{r}
+gtf_minimal %>% 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE) %>% 
+  rtracklayer::export(here(genomedir, "results/gtf/ky21_fixed_minimal.gtf"))
+
+R.utils::gzip(here(genomedir, "results/gtf/ky21_fixed_minimal.gtf"))
+```
+
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```

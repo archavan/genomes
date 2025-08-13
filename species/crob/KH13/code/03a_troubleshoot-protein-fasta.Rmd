@@ -1,0 +1,199 @@
+---
+title: "Troubleshoot Ciona protein fasta files"
+author: "Arun Chavan"
+output:
+  html_document: 
+    toc: yes
+    toc_float: yes
+    number_sections: yes
+    highlight: haddock
+    code_download: true
+---
+
+Started: 2022-06-16  
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE}
+# knitr options
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>", error = TRUE)
+
+# packages 
+library(here)
+library(tidyverse)
+library(bioseq)
+
+# here setup
+basedir <- here("species/crob/genome/KH13")
+```
+
+# Background
+
+Goals:
+
+1. Ghost database (KH13) has two protein fasta files; one for the longest ORF where all proteins don't start with methionine, and one where amino acids before the first methionine have been removed so all proteins start with a methionine. We try to figure out whether to use the former or the latter with eggnog-mapper. 
+2. The KH13 protein fasta files have invalid characters. How do we deal with them?
+
+# Longest ORF vs starting with methionine
+
+We can look at, as reference, whether amphioxus protein fasta files from NCBI have proteins that start with methionine. 
+
+```{r}
+bf_proteins <- read_fasta(here("species/bflo/genome/refseq__GCF_000003815.2_Bfl_VNyyK/GCF_000003815.2_Bfl_VNyyK/GCF_000003815.2_Bfl_VNyyK_protein.faa"), type = "AA") %>% 
+  as_tibble.bioseq_aa()
+```
+
+Distribution of first amino acids for amphioxus
+```{r}
+bf_proteins %>% 
+  mutate(first_aa = str_extract(sequence, "^.")) %>% 
+  count(first_aa) %>% 
+  arrange(-n)
+```
+
+We can see that 42,919 of 43,041 amphioxus proteins in the fasta file start with a methionine. 
+
+## Solution
+We will use the file for Ciona where the proteins start with a methionine. 
+
+# Invalid characters in the fasta file
+
+I tried running eggnogmapper using the `KH.KHGene.2013.Longest.protein.fasta` and `KH.KHGene.2013.Met.protein.fasta` files, but both jobs failed. The error was:
+
+```
+Error running diamond: Error: Error reading input stream at line 354: Invalid character (+) in sequence
+```
+
+This was for the Met fasta; the line number for the first file was different. But essentially, **there are non-standard characters in the amino acid fasta**, specifically, at least `+` character in some places. 
+
+Here, we try to figure out if we can replace the non-standard characters with something that won't result in an error with eggnog-mapper. 
+
+## Examine the fasta file read with `{bioseq}`
+
+```{r}
+longest <- read_fasta(here(basedir, "data/ghost-db/KH.KHGene.2013.Longest.protein.fasta"), type = "AA") %>% 
+  as_tibble.bioseq_aa()
+
+met <- read_fasta(here(basedir, "data/ghost-db/KH.KHGene.2013.Met.protein.fasta"), type = "AA") %>% 
+  as_tibble.bioseq_aa()
+```
+
+We can see here that `bioseq::read_fasta()` also complains about the non-standard characters in the fasta file. 
+
+### Aside about N and X
+
+The warning message says that these characters have been replaced with "N". N is supposed to be aspargine. N is supposed to mean "any character" in nucleotide sequences but not in protein sequences; for protein sequences the "any character" placeholder is "X" (https://en.wikipedia.org/wiki/FASTA_format).
+
+```
+Warning message:
+Non-standard IUPAC symbols detected for AA: 1357 characters were converted to N.
+```
+
+If we look at the code for `bioseq::new_aa()` (https://github.com/fkeck/bioseq/blob/f8adcc1895dfbda5b5170fda413786ecc9458743/R/def_aa.R#L9-L16) (`read_fasta()` uses `aa()` which in turn uses `new_aa()`), we can see that invalid characters are in fact replaced by X (as they should be) and not by N. 
+
+```
+new_aa <- function(x = character()) {
+  vec_assert(x, character())
+  x <- validate_seq(x,
+                    alphabet = dic_aa()$alphabet,
+                    invalid_replacement = "X",
+                    type = "AA")
+  new_vctr(x, class = "bioseq_aa")
+}
+```
+
+It's only the warning message where N is printed regardless of the type "DNA" or "AA", as we can see in the code for `validate_seq()` (https://github.com/fkeck/bioseq/blob/f8adcc1895dfbda5b5170fda413786ecc9458743/R/checks_validation.R#L27-L47). I should point this out to the author of `{bioseq}`. 
+```
+validate_seq <- function(x, alphabet, invalid_replacement, type = "DNA") {
+  stopifnot(is.character(x))
+  x_names <- names(x)
+  x <- gsub("([abcdefghijklmnopqrstuvwxyz])","\\U\\1", x, perl = TRUE)
+  x <- stringr::str_replace_all(x, pattern = "\\.", replacement = "-")
+  x <- stringr::str_replace_all(x, pattern = "[:blank:]|\n", replacement = "")
+  rgx_nonvalid <- paste0("[^", paste(alphabet, collapse = ""), "]")
+  n_nonvalid <- sum(stringr::str_count(x, pattern = rgx_nonvalid),
+                    na.rm = TRUE)
+  if(n_nonvalid > 0) {
+    x <- stringr::str_replace_all(x, pattern = rgx_nonvalid,
+                                  replacement = invalid_replacement)
+    warning("Non-standard IUPAC symbols detected for ",
+            type,": ", n_nonvalid,
+            " characters were converted to N.", call. = FALSE)
+  }
+  if(!is.null(x_names)){
+    names(x) <- x_names
+  }
+  return(x)
+}
+```
+## Solution for non-standard characters
+
+I think, we can simply read in the fasta files with bioseq, let bioseq replace the non-standard characters with `X`, write them to fasta files, and use those files for eggnog-mapper. 
+
+## Sanity check 
+
+Even though we already have a solution, I want to make sure independently that we are in fact replacing the right characters. For this, we will read the fasta files with `read_lines()` and compare them with the `bioseq`-read versions. 
+
+```{r}
+lines_to_fasta <- function(x) {
+  x %>% 
+    split(cumsum(grepl("^>", .))) %>% # split by sequence name 
+    set_names(map_chr(., ~ .x[1])) %>%  # use first line as seq name
+    map(~ tail(.x, -1)) %>% # remove the first line (seq name)
+    map(~ paste0(.x, collapse = "")) %>% # multiline seq to single line seq
+    enframe(name = "name", value = "seq") %>% # list to data frame
+    mutate(seq = unlist(seq)) %>% 
+    mutate(name = str_remove(name, "^>")) # remove > from seq names
+}
+```
+
+
+```{r}
+longest2 <- read_lines(here(basedir, "data/ghost-db/KH.KHGene.2013.Longest.protein.fasta")) %>% 
+  lines_to_fasta()
+
+met2 <- read_lines(here(basedir, "data/ghost-db/KH.KHGene.2013.Met.protein.fasta")) %>% 
+  lines_to_fasta()
+```
+
+```{r}
+met2 %>% 
+  filter(str_detect(seq, "[^A-z]")) %>% 
+  mutate(len = nchar(seq)) %>% 
+  arrange(len) %>% 
+  print(n = 20)
+```
+
+We see that the `+` character appears mostly at the end of the sequence for some 1135 proteins. Below we see that the same proteins have an `X` at the end in the file read by `bioseq`, suggesting that `bioseq` has correctly replaced the non-standard characters. 
+
+```{r}
+met %>% 
+  filter(label %in% (met2 %>% 
+                       filter(str_detect(seq, "[^A-z]")) %>% 
+                       pull(name))) %>% 
+  mutate(len = nchar(sequence)) %>% 
+  arrange(len) %>% 
+  print(n = 20)
+```
+
+## Write the fixed the fasta file
+
+NOTE: There are over a thousand 0-length proteins which cause problems with `write_fasta`. We have to get rid of them before writing the fasta file.
+
+```{r}
+fixed_fasta <- read_fasta(here(basedir,
+                               "data/ghost-db/KH.KHGene.2013.Met.protein.fasta"), 
+                          type = "AA")
+
+fixed_fasta <- fixed_fasta[str_length(fixed_fasta) != 0]
+
+write_fasta(
+  fixed_fasta, 
+  here(basedir, "results/fasta/KH.KHGene.2013.Met.protein_valid-chars.fasta")
+)
+```
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```

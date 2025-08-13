@@ -1,0 +1,359 @@
+---
+title: Extract gene information from GTF
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+---
+
+Started: 2024-10-29  
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>")
+
+library(rtracklayer)
+library(GenomicRanges)
+library(Biostrings)
+library(tidyverse)
+library(here)
+
+genomedir <- here("species/crob/genome/KY21")
+
+resdir <- here(genomedir, "results/genes")
+fs::dir_create(here(resdir))
+```
+
+
+# Data
+
+```{r}
+read_gxf_as_tibble <- function(.file) {
+  rtracklayer::import(.file) %>% 
+    GenomicRanges::as.data.frame() %>% 
+    as_tibble()
+} 
+
+gtf <- read_gxf_as_tibble(here(genomedir, "results/gtf/ky21_fixed.gtf.gz"))
+
+txfa <- readDNAStringSet(here(genomedir, "results/fasta/KY21_transcripts_with-mito.fasta.gz"))
+protfa <- readAAStringSet(here(genomedir, "results/fasta/KY21_proteins_met_with-mito.fasta.gz"))
+```
+
+# gene id and protein id/transcript id mapping
+
+In KY21 transcriptome and proteome fasta files, the transcript ids and protein ids are identical, except for the mitochondrial genes, which are from Ensembl. 
+
+```{r}
+identical(names(txfa[!grepl("ENSCIN", names(txfa))]), 
+          names(protfa[!grepl("ENSCIN", names(protfa))]))
+```
+
+There are 18827 genes in the gtf file, of which 18788 are from KY21 and 39 are from NCBI (mitochondrial)
+```{r}
+(ngenes <- length(unique(gtf$gene_id)))
+(ngenes_ky <- length(unique(gtf$gene_id[grepl("KY21", gtf$gene_id)])))
+(ngenes_mito <- length(unique(gtf$gene_id[grepl("ENSCIN", gtf$gene_id)])))
+```
+
+
+```{r}
+gid_tid <- gtf %>% 
+  select(gene_id, transcript_id) %>% 
+  filter(!is.na(transcript_id)) %>% 
+  distinct()
+
+stopifnot(length(unique(gid_tid$gene_id)) == ngenes)
+
+write_tsv(gid_tid, here(resdir, "gid-tid_mapping.tsv"))
+
+gid_pid <- gtf %>% 
+  select(gene_id, protein_id) %>% 
+  filter(!is.na(protein_id)) %>% 
+  distinct()
+
+write_tsv(gid_pid, here(resdir, "gid-pid_mapping.tsv"))
+```
+
+
+# Extract genesets
+## Mitochondrial genes 
+
+```{r}
+mt_chr <- "MT" 
+
+mt_genes <- gtf %>% 
+  filter(seqnames == mt_chr) %>% 
+  filter(type == "gene") %>% 
+  select(seqnames, gene_id) %>% 
+  distinct()
+
+write_tsv(mt_genes, here(resdir, "geneset_mitochondrial.tsv"))
+```
+
+
+# Extract gene names and other info 
+
+Gene names and other annotations are all in the "Note" column. We need to extract them properly from there.
+
+There are at most 3 pieces of informartion in that column, separated by ";".
+
+```{r}
+gtf %>% 
+  mutate(info = str_split(Note, ";")) %>% 
+  mutate(ninfo = map_int(info, length)) %>% 
+  arrange(desc(ninfo)) %>% 
+  select(gene_id, ninfo) %>% 
+  head()
+```
+
+
+1. ORF
+  - ORF:[10..675/1029]
+2. Gene symbol and gene name in parenthesis
+  - " Fgf11/12/13/14 (fibroblast growth factor 11/12/13/14)"
+  - always starts with empty space
+  - some are in {}, e.g. "{pem4 // Ci-XF212}", "{HMG20}"
+3. Human homolog
+  - Human Homolog:[FGF13 (HGNC:3670, fibroblast growth factor 13)]
+
+But, these pieces are not always in order, i.e. if the second piece is missing, we don't have "piece1;;piece3" but we just have "piece1;piece3", so we can't just `unnest_wider()`. And there are some genes that have an `NA` in `Note` column. 
+
+## Use annotations for the longest transcript
+
+If the gene name and human ortholog info for all transcripts of the same gene is identical then we can operate at the gene level, otherwise we need to operate at the transcript level. The ORF info will be different for each but we don't need that. 
+
+```{r}
+gtf %>% 
+  select(gene_id, transcript_id, Note) %>% 
+  filter(!is.na(Note)) %>% 
+  mutate(info = str_split(Note, ";")) %>% 
+  unnest_longer(info) %>%
+  select(-Note) %>% 
+  mutate(info_type = case_when(
+    str_detect(info, "^ORF:") ~ "orf",
+    str_detect(info, "^Human Homolog:") ~ "hsap_homolog",
+    .default = "gene_name"
+  )) %>% 
+  filter(info_type != "orf") %>% 
+  group_by(gene_id, transcript_id) %>% 
+  summarise(info = paste0(info, collapse = ";")) %>%
+  ungroup() %>% 
+  group_by(gene_id) %>% 
+  summarise(info = list(info)) %>% 
+  ungroup() %>% 
+  mutate(info_unique = map(info, unique)) %>% 
+  mutate(n_info = map_int(info_unique, length)) %>% 
+  filter(n_info > 1)
+```
+
+For about 600 genes, different transcripts of the same gene have different functional annotation, so we need to operate at the transcript level. To operate at the gene level, We will use the annotation for the longest transcript. 
+
+```{r}
+tx_info <- gtf %>% 
+  select(gene_id, transcript_id, Note) %>% 
+  filter(!is.na(Note)) %>% 
+  distinct() %>% 
+  mutate(info = str_split(Note, ";")) %>% 
+  unnest_longer(info) %>%
+  select(-Note) %>% 
+  mutate(info_type = case_when(
+    str_detect(info, "^ORF:") ~ "orf",
+    str_detect(info, "^Human Homolog:") ~ "hsap_homolog",
+    str_detect(info, "^\\s+") ~ "gene_name",
+    .default = NA_character_
+  )) %>% 
+  mutate(info = str_trim(info)) %>%
+  # \"Ascl.b (achaete-scute family bHLH transcription factor.b)\" some have " that needs removed
+  mutate(info = str_replace(info, "^\"(.+)\"$", "\\1")) %>%
+  distinct() %>% 
+  pivot_wider(names_from = info_type, values_from = info) %>% 
+  select(-orf)
+
+stopifnot(length(unique(tx_info$gene_id)) == ngenes_ky)
+
+txlen <- GenomicRanges::as.data.frame(txfa@ranges) %>% 
+  as_tibble() %>% 
+  select(transcript_id = names, width) %>% 
+  distinct()
+
+gene_info <- tx_info %>% 
+  left_join(txlen, by = "transcript_id") %>%
+  group_by(gene_id) %>%
+  slice_max(order_by = width, n = 1, with_ties = FALSE) %>% 
+  ungroup() %>% 
+  select(gene_id, gene_name, hsap_homolog) %>% 
+  distinct()
+
+stopifnot(length(unique(gene_info$gene_id)) == ngenes_ky)
+```
+
+
+## Parse gene names
+
+```{r}
+gnames <- select(gene_info, gene_id, gene_name) %>% 
+  filter(!is.na(gene_name))
+```
+
+
+### Parse gene symbols
+
+```{r}
+gnames <- gnames %>% 
+  mutate(symbol = NA_character_) %>% 
+  mutate(symbol = case_when(
+    # symbol (description)
+    str_detect(gene_name, 
+               "^([^\\{]+?)\\s+\\(.+\\)$") ~ str_extract(gene_name, 
+                                                         "^([^\\{]+?)\\s+\\(.+\\)$",
+                                                         group = 1),
+    # symbol
+    str_detect(gene_name, 
+               "^[^\\s\\{]+?$") ~ str_extract(gene_name, 
+                                              "^([^\\s\\{]+?)$",
+                                              group = 1),
+    # {symbol}
+    str_detect(gene_name,
+               "^\\{([^\\s]+)\\}$") ~ str_extract(gene_name,
+                                                  "^\\{([^\\s]+)\\}$",
+                                                  group = 1),
+    # {Zinc finger (NFX1) // Ci-ZF252}
+    str_detect(gene_name,
+               "^\\{Zinc Finger.+\\/\\/\\s+Ci-ZF\\d+\\}") ~ str_extract(
+                 gene_name,
+                 "^\\{Zinc Finger .+\\/\\/\\s+(Ci-ZF\\d+)\\}",
+                 group = 1
+               ),
+    # {metastasis associated protein // Ci-ZF250}
+    # {nuclear transcription factor Y,b // Ci-ZF272}
+    # {at least two words // Ci-ZF123}
+    str_detect(gene_name,
+               "^\\{(?:[A-Za-z]+[\\s,]+){2,}\\/\\/\\s+(Ci-ZF[0-9]+)\\}") ~ str_extract(
+                 gene_name,
+                 "^\\{(?:[A-Za-z]+[\\s,]+){2,}\\/\\/\\s+(Ci-ZF[0-9]+)\\}",
+                 group = 1
+               ),
+    # {Neuralized-a // Ci-ZF525}
+    # {PIAS // Ci-ZF273}
+    str_detect(gene_name,
+               "^\\{([^\\s]+)\\s*\\/\\/\\s*(Ci.+)\\}") ~ str_extract(
+                 gene_name,
+                 "^\\{([^\\s]+)\\s*\\/\\/\\s*(Ci.+)\\}",
+                 group = 1
+               ),
+    gene_name == "Foxp (forkhead box p) // Ci-ZF255" ~ "Foxp"
+  )) 
+
+```
+
+
+### Parse gene descriptions
+
+```{r}
+gnames <- gnames %>% 
+  mutate(description = NA_character_) %>% 
+  mutate(description = case_when(
+    !is.na(symbol) ~ str_remove(gene_name, symbol),
+    .default = NA_character_
+  )) %>%
+  mutate(description = str_trim(description)) %>%
+  mutate(description = str_replace(description, "^\\{(.*)\\}$", "\\1")) %>% 
+  mutate(description = str_replace(description, "^\\((.+)\\)$", "\\1")) %>%
+  mutate(description = ifelse(description == "", NA_character_, description)) %>% 
+  mutate(description = str_remove(description, "\\/\\/")) %>% 
+  mutate(description = str_trim(description))
+```
+
+### Remove "tun" suffixes
+
+Some gene symbols has "tun" suffixes for tunicate. For example, Wnttun3 for Tunicate Wnt3, which is confusing. So we remove those. 
+
+```{r}
+gnames %>% 
+  filter(str_detect(symbol, "tun")) %>% 
+  print(n = Inf)
+```
+
+```{r}
+gnames <- gnames %>% 
+  mutate(symbol = str_remove(symbol, "tun"))
+```
+
+## Parse human homologs
+
+```{r}
+hlogs <- gene_info %>% 
+  select(gene_id, hsap_homolog) %>% 
+  filter(!is.na(hsap_homolog))
+
+head(hlogs)
+```
+
+
+The human homolog info is in the format "Human Homolog:[FGF13 (HGNC:3670, fibroblast growth factor 13)]". We need to extract the gene symbol and gene description and HGNC. 
+
+All rows have only a single human homolog listed based on the fact that there is only one set of `[ortholog info]` in the string. 
+
+```{r}
+hlogs %>% 
+  filter(str_detect(hsap_homolog, "(?:\\[[^\\[]+\\]){2,}"))
+```
+
+```{r}
+homolog_capture_groups <- "^Human Homolog\\:\\[(.+?)\\s+\\(HGNC\\:([0-9]+),\\s+(.+?)\\)\\]$"
+
+
+hlogs <- hlogs %>% 
+  mutate(hsap_homolog_symbol = str_extract(hsap_homolog,
+                                           homolog_capture_groups,
+                                           group = 1),
+         hsap_homolog_hgnc = str_extract(hsap_homolog,
+                                         homolog_capture_groups,
+                                         group = 2),
+         hsap_homolog_description = str_extract(hsap_homolog,
+                                                homolog_capture_groups,
+                                                group = 3))
+```
+
+
+# Put everything together
+
+```{r}
+all_gene_ids <-  gtf %>% 
+  select(gene_id) %>% 
+  distinct()
+
+genes_parsed <- reduce(list(all_gene_ids, gnames, hlogs), 
+                       full_join, 
+                       by = "gene_id") %>% 
+  arrange(gene_id) %>% 
+  select(-gene_name, -hsap_homolog)
+
+stopifnot(length(unique(genes_parsed$gene_id)) == ngenes)
+```
+
+
+# Write files
+
+```{r}
+fs::dir_create(here(genomedir, "results/ghost"))
+
+write_tsv(genes_parsed, 
+          here(genomedir, "results/ghost/gene-info_ghostdb_parsed.tsv"))
+write_tsv(gene_info, 
+          here(genomedir, "results/ghost/gene-info_ghostdb.tsv"))
+write_tsv(tx_info,
+          here(genomedir, "results/ghost/transcript-info_ghostdb.tsv"))
+```
+
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```

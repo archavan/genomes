@@ -1,0 +1,254 @@
+---
+title: "Fix and filter GTF"
+author: "Arun Chavan"
+output:
+  html_document: 
+    toc: yes
+    toc_float: yes
+    number_sections: yes
+    highlight: haddock
+    code_download: true
+---
+
+Started: 2023-06-06  
+Last edited: `r format(Sys.time())`
+
+# Background
+Here we read in the GTF file, parse it (which happens automatically when we import using `{rtracklayer}`), fix several gene id issues, and filter out pseudogenes.
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>",error = TRUE)
+
+library(rtracklayer)
+library(tidyverse)
+library(here)
+
+genomedir <- here("species/bflo/genome/VNyyK/")
+```
+
+```{r}
+# Mitochondrial genome sequence name: https://www.ncbi.nlm.nih.gov/nuccore/NC_000834.1
+mt_chr <- "NC_000834.1" 
+```
+
+# Read data
+```{r, message=FALSE}
+# read and parse GTF
+gtf <- rtracklayer::import(
+  here(genomedir, "data/refseq/GCF_000003815.2_Bfl_VNyyK_genomic.gtf.gz")
+) %>% 
+  GenomicRanges::as.data.frame() %>% 
+  as_tibble()
+
+# ncbi genes table
+ncbi <- read_tsv(here(genomedir, "results/genes/ncbi-genes-table.tsv"))
+
+# mitochondrial genes gff
+mt <- import(here(genomedir, "data/ncbi-genes/mt-genes_NC_000834.1.gff3")) %>% 
+  GenomicRanges::as.data.frame() %>% 
+  as_tibble()
+```
+
+# Fix gene ids
+## `gene_id` attribute doesn't actually have gene ids
+There is a problem with the refseq gtf file in terms of how some attributes are coded. The `gene_id` attribute in fact is what should be the `symbol` attribute (or the `gene` attribute). Also, there are over a thousand genes for which the `gene_id` attribute actually doesn't have the gene ids (which, for NCBI gene ids, are generally numeric). What we expect to be the `gene_id`s are in fact under `db_xref`, which stores the gene ids in the `database:numeric_id` format. See the example below.  
+
+```{r}
+gtf %>% 
+  filter(!str_detect(gene_id, "LOC")) %>% 
+  filter(type == "gene") %>% 
+  select(seqnames, source, type, gene_id, db_xref, gene) %>% 
+  print(width = Inf, n = 20)
+```
+
+This often causes problems downstream with non-unique gene ids, when making comparisons with KEGG genome database (which uses the NCBI gene ids -- the actual gene ids), etc.
+
+## The genes that need no fixing
+The entries for which the gene id starts with "LOC" are in fact ncbi gene ids. The problematic ones are the ones where gene_id attribute doesn't start with "LOC"
+
+```{r}
+gtf %>% 
+  filter(!str_detect(gene_id, "^LOC"))
+```
+
+Among the problematic rows, we can see if the `db_xref` attribute holds useful information that can be used to fix the ids. 
+
+```{r}
+gtf %>% 
+  filter(!str_detect(gene_id, "^LOC")) %>% 
+  separate(db_xref, into = c("db", "id"), sep = ":", remove = FALSE) %>% 
+  count(db)
+```
+
+## Fix gene ids for mitochondrial genes
+
+There are two problems with the mitochondrial genes. 
+
+1. What's stored as their gene ids are in fact their gene symbols, as we already noted above.
+2. We can't simply use `db_xref` information to fix the gene ids since the `db_xref` entries for many of them are `NA`
+
+There are also several genes, all mitochondrial that are missing a gene id. These genes also don't have a gene name. For them, the gene name appears to be in the `product` column, and several of the product names are duplicates, and therefore cannot be used to match the data. 
+
+```{r}
+filter(gtf, gene_id == "") %>% 
+  select(where(function(x) !all(is.na(x)))) %>% 
+  print(n = Inf)
+```
+
+To get around these problems, we will use the MT gff3 file we downloaded. We will match the entries between the gff file and gtf file by the seqname, start, end, and strand. 
+
+```{r}
+# gene ids are in a list in Dbxref along with other attributes, so we have to
+# extract them
+mt <- mt %>% 
+  mutate(gene_id = map_chr(Dbxref, 
+                           function(x) {
+                             ifelse(any(str_detect(x, "^GeneID:")),
+                                    x[str_detect(x, "^GeneID:")],
+                                    NA_character_)
+                           })) %>% 
+  filter(!is.na(gene_id))
+```
+
+```{r}
+# before we join the data, we need to match the types between the gff and the
+# gtf and ensure that factors have the same levels
+mt_to_join <- mt %>% 
+  select(seqnames, start, end, strand, mt_gene_id = gene_id) %>% 
+  distinct() %>% 
+  mutate(seqnames = fct(as.character(seqnames), levels = levels(gtf$seqnames)),
+         strand = fct(as.character(strand), levels = levels(gtf$strand)))
+
+gtf <- left_join(gtf, mt_to_join, by = c("seqnames", "start", "end", "strand")) %>% 
+  mutate(gene_id = ifelse(is.na(mt_gene_id), gene_id, mt_gene_id)) %>% 
+  select(-mt_gene_id) 
+```
+
+We still have some mitochondrial entries that don't have the right gene ids
+```{r}
+gtf %>% 
+  filter(seqnames == mt_chr) %>% 
+  filter(!str_detect(gene_id, "^GeneID")) %>% 
+  print(n = Inf)
+```
+
+For these genes we can get the gene ids again from the GFF. 
+
+```{r}
+mt_genes <- filter(mt, type == "gene") %>% 
+  select(seqnames, start, end, strand, gene_id, gene) %>% 
+  filter(!is.na(gene)) %>% 
+  distinct()
+
+gtf <- gtf %>% 
+  mutate(gene_id = ifelse(seqnames == mt_chr & !str_detect(gene_id, "^GeneID"),
+                          mt_genes$gene_id[match(gene, mt_genes$gene)],
+                          gene_id))
+```
+
+Now we have filled in gene ids for all mitochondrial genes
+```{r}
+gtf %>% 
+  filter(seqnames == mt_chr,
+         !str_detect(gene_id, "^GeneID"))
+```
+
+
+## Replace symbols with NCBI gene ids from `db_xref`
+
+For the rows that match the following conditions:
+
+1. The gene ids don't start with "LOC"
+2. The gene ids don't start with "GeneID" (the mitochondrial genes for which we just fixed the gene ids, they start with "GeneID")
+3. NCBI gene id is available from the `db_xref` attribute (i.e. the `db_xref` attribute starts with "GeneID", and not say, "miRBase")
+
+We will replace the `gene_id` column with the NCBI gene ids from the `db_xref` column.  
+
+```{r}
+gtf <- gtf %>% 
+  mutate(gene_id = if_else((!str_detect(gene_id, "^LOC") &
+                              !str_detect(gene_id, "^GeneID") &
+                              str_detect(db_xref, "^GeneID")),
+                           db_xref,
+                           gene_id))
+```
+
+## non GeneID db_xref entries
+
+We have some entries where db_xref is not an NCBI id
+
+```{r}
+gtf %>% 
+  filter(!str_detect(db_xref, "^GeneID")) %>% 
+  select(seqnames, start, end, source, gene_id, db_xref)
+```
+
+But all of them entries do have an NCBI gene id in the gene_id column, so this doesn't need any fixing. 
+
+## Make gene id prefixes consistent
+We have fixed all gene ids now.
+```{r}
+gtf %>% 
+  filter(!str_detect(gene_id, "^LOC"),
+         !str_detect(gene_id, "^GeneID"))
+
+gtf %>% 
+  filter(is.na(gene_id)) 
+```
+
+We want to replace the "LOC" and "GeneID" prefixes with the prefix "ncbi" for consistency. 
+
+```{r}
+gtf <- gtf %>% 
+  mutate(gene_id = str_replace(gene_id, "^LOC", "ncbi:")) %>% 
+  mutate(gene_id = str_replace(gene_id, "^GeneID", "ncbi"))
+```
+
+
+# Filter out pseudogene entries
+The cellranger documentation recommends filtering out entries from GTF that belong to certain gene_biotype attributes such "pseudogene". (https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/advanced/references). The `cellranger mkgtf` tool can do this but out gtf file contains `gene_biotypes` such as `miRNA` which `mkgtf` doesn't accept. So, we will filter the gtf here, and use that filtered gtf with `cellranger mkref`.
+
+Our gtf file has the following gene_biotypes
+
+```{r}
+unique(gtf$gene_biotype)
+```
+      
+We will keep all except "pseudogene" and "transcribed_pseudogene"
+
+```{r}
+# gene ids with gene_biotype values to be excluded
+exclude_ids <- gtf %>% 
+  filter(gene_biotype %in% c("pseudogene", "transcribed_pseudogene")) %>% 
+  pull(gene_id) %>% 
+  unique()
+
+# filter out all entries associated with gene ids to be excluded
+gtf <- gtf %>% 
+  filter(!(gene_id %in% exclude_ids))
+```
+
+# Rename columns
+Rename `gene` to `symbol`
+```{r}
+gtf <- rename(gtf, symbol = gene)
+```
+
+# Write files
+## Corrected gtf
+```{r}
+gtf %>% 
+  makeGRangesFromDataFrame(keep.extra.columns = TRUE) %>% 
+  rtracklayer::export(here(genomedir, "results/gtf/gtf_fixed.gtf"))
+```
+
+## Parsed gtf to tsv
+```{r}
+write_tsv(gtf, here(genomedir, "results/gtf/gtf_fixed_parsed.tsv"))
+```
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```

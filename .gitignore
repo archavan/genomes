@@ -54,6 +54,7 @@ rsconnect/
 **/docs
 
 *.html
+*.pdf
 
 # log files
 *.log

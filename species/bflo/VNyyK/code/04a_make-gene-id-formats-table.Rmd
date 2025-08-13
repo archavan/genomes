@@ -1,0 +1,114 @@
+---
+title: "Make a table mapping the various forms of gene ids"
+author: "Arun Chavan"
+output:
+  html_document: 
+    toc: yes
+    toc_float: yes
+    number_sections: yes
+    highlight: haddock
+    code_download: true
+---
+
+Started: 2023-06-06  
+Last edited: `r format(Sys.time())`
+
+# Background
+
+The gene ids are present in a couple of different forms. We want to make a table mapping all id forms to each other. The ids are in the following forms.
+
+1. In the gtf, in the db_xref attribute, we have gene_ids in the form `GeneID:1234567`, `mirBase:1234567`, etc.
+2. In the gene info table I donwloaded from NCBI Gene database, the ids are in the form `1234567`
+3. In KEGG Genome database, they are in the form `bfo:1234567`
+
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>", error = TRUE)
+
+library(tidyverse)
+library(here)
+
+genomedir <- here("species/bflo/genome/VNyyK/")
+```
+
+# Data
+## Full data
+```{r, message=FALSE}
+gtf <- read_tsv(here(genomedir, "results/gtf/gtf_fixed_parsed.tsv"), 
+                col_types = cols(
+                  .default = col_character(),
+                  start = col_double(),
+                  end = col_double(),
+                  width = col_double(),
+                  exon_number = col_double()
+                ))
+
+ncbi <- read_tsv(here(genomedir, "results/genes/ncbi-genes-table.tsv"))
+```
+
+## Get rid of unnecessary columns and rows
+```{r}
+gtf_ids <- gtf %>% 
+  select(gene_id, symbol) %>% 
+  distinct()
+
+ncbi_ids <- ncbi %>% 
+  select(ncbi_gene_id, symbol) %>% 
+  distinct()
+```
+
+# Process GTF gene ids
+All gene ids come from NCBI Gene database
+```{r}
+gtf_ids %>% 
+  separate(gene_id, into = c("db", "id"), sep = ":") %>% 
+  count(db)
+```
+
+```{r}
+gtf_ids <- gtf_ids %>% 
+  separate(gene_id, into = c("db", "ncbi_gene_id"), sep = ":", remove = FALSE)
+
+```
+
+# Missing genes from GTF and NCBI gene table
+
+Some gene ids from the GTF file are missing in the NCBI gene table and vice versa. We need to figure out why this happens and what these genes are. 
+
+## Missing from GTF but present in NCBI gene table
+
+```{r}
+all(ncbi_ids$ncbi_gene_id %in% gtf_ids$ncbi_gene_id)
+```
+
+```{r}
+ncbi %>% 
+  filter(!(ncbi_gene_id %in% gtf_ids$ncbi_gene_id)) %>% 
+  arrange(symbol) %>% 
+  print(n = Inf)
+```
+
+There are 150 gene ids that are present in the NCBI gene table but are absent from the GTF file. These are all pseudogenes or tRNA genes, suggesting that we need not worry about these. 
+
+## Missing from NCBI gene table but present in GTF
+```{r}
+gtf_ids %>% 
+  filter(!(ncbi_gene_id %in% ncbi_ids$ncbi_gene_id))
+```
+
+None, so nothing to worry about. 
+
+# Conclusion
+We will only save the gene ids from the GTF file because this is the filtered list exclusing pseudogenes. 
+
+# write gene ids to file
+```{r}
+write_tsv(gtf_ids, here(genomedir, "results/genes/gene-ids.tsv"))
+```
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```
+
