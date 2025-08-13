@@ -32,11 +32,10 @@ fa_longest <- fa[longest$protein_id]
 names(fa_longest) <- ids$gene_id[match(names(fa_longest), ids$protein_id)]
 
 # write =======================================================================
-fs::dir_create(here(genomedir, "results/orthofinder"))
 write.fasta(
   fa_longest,
   names(fa_longest),
-  here(genomedir, "results/orthofinder/longest-proteins.fa")
+  here(genomedir, "results/genes/longest-proteins.fa")
 )
 
 # end =========================================================================
