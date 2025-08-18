@@ -1,0 +1,256 @@
+---
+title: Process prost results for _Styela clava_
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+---
+
+Started: 2025-08-14  
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>", error = TRUE)
+
+library(Biostrings)
+library(GO.db)
+library(tidyverse)
+library(here)
+library(glue)
+
+genomedir <- here("species/scla/refseq_v1")
+resdir <- here(genomedir, "results/prost/processed")
+fs::dir_create(resdir)
+```
+
+# Data
+
+```{r}
+#| message: false
+#| warning: false
+
+# genomic data
+ids <- read_tsv(here(genomedir, "results/genes/gid-pid_mapping.tsv"))
+plen <- read_tsv(here(genomedir, "results/genes/protein-lengths.tsv"))
+longest_proteins <- plen |> 
+  group_by(gene_id) |> 
+  slice_max(length, n = 1, with_ties = FALSE) |> 
+  ungroup()
+
+# emapper GO annotation for comparison
+emap_go <- read_tsv(here(
+  genomedir,
+  "results/emapper/processed/emapper_go.tsv.gz"
+))
+
+# prost output
+hits <- read_tsv(
+  here(
+    genomedir,
+    "results/prost/out/00.GCF_013122585.1_ASM1312258v2.prost.sp_hits.tsv.gz"
+  ),
+  col_names = c(
+    "fasta_id",
+    "uniprot_id",
+    "protein_name",
+    "protein_type",
+    "organism",
+    "prost_distance",
+    "e_value"
+  )
+)
+
+go <- read_tsv(
+  here(
+    genomedir,
+    "results/prost/out/00.GCF_013122585.1_ASM1312258v2.prost.go.tsv.gz"
+  ),
+  col_names = c(
+    "fasta_id",
+    "go_id",
+    "protein_type",
+    "go_freq",
+    "uniprot_ID",
+    "stat",
+    "p_value"
+  )
+)
+```
+
+# Process hits output
+
+## Add gene ids
+
+```{r}
+# split protein id into a new column from the fasta_id
+hits <- hits |>
+  mutate(protein_id = gsub("(^.+?) .*$", "\\1", fasta_id)) |>
+  relocate(protein_id)
+
+# add gene_id
+hits <- left_join(
+  hits,
+  select(ids, gene_id, protein_id),
+  by = "protein_id"
+) |>
+  relocate(gene_id)
+```
+
+## Remove scla hits
+
+Ordinarily we would remove self hits, but there are only ~200 self hits and they are listed as "uncharacterized" in the input file, so we will keep them.
+
+```{r}
+hits |>
+  filter(str_detect(organism, "Styela clava"))
+```
+
+
+## Only keep the longest protein for each gene
+
+```{r}
+hits_longest <- hits |>
+  filter(protein_id %in% longest_proteins$protein_id)
+```
+
+## Explore the output
+
+### How many proteins did PROST find orthologs for and for how many it did not?
+
+```{r}
+longest_proteins |> 
+  mutate(prost_orth = protein_id %in% hits_longest$protein_id) |>
+  count(prost_orth)
+```
+
+There are 3240 proteins for which PROST did not find an ortholog. 
+
+### Distribution of prost distances.
+
+```{r}
+ggplot(hits_longest, aes(prost_distance)) +
+  geom_histogram(boundary = 0.5) +
+  theme_bw()
+```
+
+
+### There is clear relationship between prost distance and e value.
+
+```{r}
+ggplot(hits_longest, aes(prost_distance, -log10(e_value))) +
+  geom_hex() +
+  scale_fill_viridis_c() +
+  theme_bw()
+```
+
+### How many hits do proteins typically have?
+
+```{r}
+hits_longest |>
+  count(protein_id) |>
+  ggplot(aes(n)) +
+  geom_histogram(binwidth = 100, boundary = 0.5) +
+  theme_bw()
+```
+
+### Which species are most common in the protein hits?
+
+```{r}
+hits_longest |>
+  count(organism) |>
+  arrange(-n) |>
+  head()
+```
+
+## Get the best hits for all proteins
+
+Since evalue and distance are quite well correlated, we could use either. 
+
+```{r}
+best_hits <- hits_longest |>
+  group_by(protein_id) |>
+  arrange(e_value, .by_group = TRUE) |> # so that ties are broken with lower e_val
+  slice_min(prost_distance, with_ties = FALSE) |>
+  ungroup()
+```
+
+
+## Get species-specific "orthologs"
+
+```{r}
+get_species_orthologs <- function(species) {
+  hits_longest |>
+    filter(organism == species) |>
+    group_by(protein_id) |>
+    arrange(e_value) |>
+    slice_min(prost_distance, with_ties = FALSE) |>
+    ungroup()
+}
+
+hsap_orthologs <- get_species_orthologs("Homo sapiens")
+mmus_orthologs <- get_species_orthologs("Mus musculus")
+```
+
+
+# Process GO output
+
+## Add gene ids
+
+```{r}
+# split protein id into a new column from the fasta_id
+go <- go |>
+  mutate(protein_id = gsub("(^.+?) .*$", "\\1", fasta_id)) |>
+  relocate(protein_id)
+
+# add gene_id
+go <- left_join(go, select(ids, gene_id, protein_id), by = "protein_id") |>
+  relocate(gene_id)
+
+# summarize to gene level by keeping only the longest protein
+go_longest <- go |> 
+  filter(protein_id %in% longest_proteins$protein_id)
+```
+
+```{r}
+go_gene_level <- go_longest |>
+  select(gene_id, go_id) |>
+  distinct()
+
+# We get the GO terms associated with GO ids using {GO.db}.
+##First create a dataframe with GOID, TERM, and ONTOLOGY mapping
+godb <- AnnotationDbi::select(
+  GO.db,
+  keys = unique(go_gene_level$go_id),
+  columns = c("ONTOLOGY", "TERM"),
+  keytype = "GOID"
+)
+godb <- godb |>
+  dplyr::filter(!is.na(TERM)) |> # emapper also returns some obsolete GO IDs for which GO.db returns NA for term
+  dplyr::mutate(TERM = glue("[{ONTOLOGY}] {TERM}")) |>
+  dplyr::rename(go_term = TERM) |>
+  dplyr::select(-ONTOLOGY)
+
+
+# join with emap.go
+go_gene_level <- left_join(go_gene_level, godb, by = c("go_id" = "GOID")) |>
+  dplyr::filter(!is.na(go_term)) # get rid of rows with obsolete go_ids
+```
+
+ 
+# Write files
+
+```{r}
+write_tsv(best_hits, here(resdir, "best-hits.tsv"))
+write_tsv(go_gene_level, here(resdir, "go.tsv.gz"))
+```
+
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```
