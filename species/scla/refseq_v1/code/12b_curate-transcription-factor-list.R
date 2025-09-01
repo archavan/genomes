@@ -7,7 +7,7 @@ library(here)
 
 genomedir <- here("species/scla/refseq_v1")
 resdir <- here(genomedir, "results/genes")
-orthdir <- here("orthofinder/2025-08-13")
+orthdir <- here("orthofinder/2025-08-29")
 
 # data ========================================================================
 # tf genes
