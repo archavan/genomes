@@ -229,4 +229,18 @@ pdf(file = here(resdir, "Hal_HOGs-crob-scla.pdf"), 11, 5)
 plot_gene_tree("Hal", node_for_hog = get_mrca_node_id("crob", "scla"))
 dev.off()
 
+
+## ===
+pdf(file = here(resdir, "Hnf4a_HOGs-mmus-bflo.pdf"), 11, 10)
+plot_gene_tree("Hnf4a", node_for_hog = get_mrca_node_id("mmus", "bflo"))
+dev.off()
+
+pdf(file = here(resdir, "Hnf4a_HOGs-mmus-pmar.pdf"), 11, 10)
+plot_gene_tree("Hnf4a", node_for_hog = get_mrca_node_id("mmus", "pmar"))
+dev.off()
+
+pdf(file = here(resdir, "Hnf4a_HOGs-crob-scla.pdf"), 11, 10)
+plot_gene_tree("Hnf4a", node_for_hog = get_mrca_node_id("crob", "scla"))
+dev.off()
+
 # end =========================================================================
