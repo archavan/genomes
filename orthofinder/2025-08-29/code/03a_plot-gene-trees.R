@@ -243,4 +243,16 @@ pdf(file = here(resdir, "Hnf4a_HOGs-crob-scla.pdf"), 11, 10)
 plot_gene_tree("Hnf4a", node_for_hog = get_mrca_node_id("crob", "scla"))
 dev.off()
 
+pdf(file = here(resdir, "Cyp3a11.pdf"), 11, 20)
+plot_gene_tree("Cyp3a11", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
+dev.off()
+
+pdf(file = here(resdir, "Cyp4a10.pdf"), 11, 8)
+plot_gene_tree("Cyp4a10", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
+dev.off()
+
+pdf(file = here(resdir, "Slc2a1.pdf"), 11, 20)
+plot_gene_tree("Slc2a1", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
+dev.off()
+
 # end =========================================================================
