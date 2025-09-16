@@ -1,0 +1,28 @@
+module.1	module.2	module.3	module.4	genes	comments
+regulation	endocrine			Neurog3; Pdx1; Cpe; Pcsk1; Pcsk2; Pcsk1n; Scg5; Tph1	
+digestion	acidic.digestion			Atp4a; Atp4b; Aqp4	
+digestion	extracellular.digestion	emulsification	bile.acid.synthesis	Cyp7a1; Cyp7b1; Cyp8b1; Cyp27a1; Nr1h4	
+digestion	extracellular.digestion	luminal.hydrolysis		Ptf1a; Amy1; Amy2a1; Amy2a2; Amy2a3; Amy2a4; Amy2a5; Cpa1; Cpa2; Ctrb1; Cela1; Cela2a; Pnlip; Prss1; Prss2; Pgc	
+digestion	extracellular.digestion	brush.border.hydrolysis		Anpep; Enpep; Mgam; Sis; Lct	
+digestion	intracellular.digestion	pinocytosis		Lrp2; Cubn; Amn	
+digestion	intracellular.digestion	endocytosis		Msr1; Dab2; Rab7	
+digestion	intracellular.digestion	lysosomal.digestion		Acp2; Lamp1; Lamp2; Lamp3; Lamp5; Ctsc; Ctsd; Ctsl; Ctsh; Ctsb; Ctsf	
+digestion	absorption	carbohydrate.uptake		Slc2a1; Slc2a5; Slc5a1	
+digestion	absorption	amino.acid.uptake		Slc15a1; Slc6a19; Slc6a15; Slc6a14; Slc7a9	
+digestion	absorption	lipid.uptake		Cd36; Apoa4; Fatp4; Npc1l1	
+digestion	absorption	micronutrient.uptake		Scarb1; Abcg1; Abcg5; Slc46a1; Slc11a2	
+digestion	metabolism	carbohydrate.metabolism		Gck; Hk1; Hk2; Hk3	
+digestion	metabolism	amino.acid.metabolism	urea.cycle	Arg1; Otc; Cps1; Bhmt	
+digestion	metabolism	amino.acid.metabolism	amino.acid.synthesis	Glul; Gls	
+digestion	metabolism	lipid.metabolism		Dgat1; Dgat2; Cpt1a; Cpt1b; Ppara; Pparg; Fasn; Scd1; Hmgcs2; Hmgcr; Sqle	
+digestion	metabolism	lipid.metabolism	intracellular.transport	Fabp1; Fabp2; Fabp3; Fabp4; Fabp5; Fabp6; Fabp7; Fabp9; Fabp12; Npc1	
+digestion	metabolism	lipid.metabolism	reesterification	Mogat1; Mogat2; Dgat1; Dgat2; Acat1; Acat2	
+digestion	metabolism	lipid.metabolism	fatty.acid.oxidation	Cpt1a; Hadha; Ppara	
+digestion	metabolism	lipid.metabolism	cholesterol.efflux	Abca1; Abca2; Abca3; Abca5; Abca7; Abcg1; Abcg4; Abcg5; Abcg8	
+digestion	storage	lipid.droplets		Plin1; Plin2; Plin3; Plin4; Plin5; Dgat1; Dgat2; Pnpla2; Lipe	
+digestion	storage	glycogen		Gyg1; Gys1; Gys2	
+digestion	detoxification			Cyp3a11; Cyp2j6; Nr1i2; Nr1i3; Ahr	
+defense	tissue.barrier				
+defense	mucus.barrier			Muc5ac; Muc2; Spdef	
+defense	antimicrobial.activity			Reg3g; Lyz1; Lyz2; Lyz3; Lyg1; Lyg2; Defa5	
+maintenance	renewal	stem.cell		Pcna; Mki67; Lgr5; Top2a	
