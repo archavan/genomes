@@ -35,11 +35,6 @@ ids <- tibble(headers = names(fq)) |>
       headers,
       "(^ENSMUST.+?) .*",
       "\\1"
-    ),
-    description = ifelse(
-      str_detect(headers, "description:"),
-      str_replace(headers, ".* description:(.+)\\s\\[Source.*", "\\1"),
-      ""
     )
   ) |>
   select(-headers)
