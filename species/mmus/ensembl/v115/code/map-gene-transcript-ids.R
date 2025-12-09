@@ -14,19 +14,39 @@ library(ape)
 genomedir <- here("species/mmus/ensembl/v115")
 
 # data ========================================================================
-fq <- read.FASTA("https://ftp.ensembl.org/pub/release-115/fasta/mus_musculus/cdna/Mus_musculus.GRCm39.cdna.all.fa.gz")
+fq <- read.FASTA(
+  "https://ftp.ensembl.org/pub/release-115/fasta/mus_musculus/cdna/Mus_musculus.GRCm39.cdna.all.fa.gz"
+)
 
 # extract info
-ids <- tibble(headers = names(fq)) %>% 
+ids <- tibble(headers = names(fq)) %>%
   mutate(
-    ensembl_gene_id = str_replace(headers, ".* gene:(ENSMUSG[^\\s\\.]+).*", "\\1"),
-    external_gene_name = ifelse(str_detect(headers, "gene_symbol"),
-                                str_replace(headers, ".* gene_symbol:([^\\s]+).*", "\\1"),
-                                ""),
-    ensembl_transcript_id_version = str_replace(headers, "(^ENSMUST.+?) .*", "\\1")
-  ) %>% 
+    ensembl_gene_id = str_replace(
+      headers,
+      ".* gene:(ENSMUSG[^\\s\\.]+).*",
+      "\\1"
+    ),
+    external_gene_name = ifelse(
+      str_detect(headers, "gene_symbol"),
+      str_replace(headers, ".* gene_symbol:([^\\s]+).*", "\\1"),
+      ""
+    ),
+    ensembl_transcript_id_version = str_replace(
+      headers,
+      "(^ENSMUST.+?) .*",
+      "\\1"
+    ),
+    description = str_replace(
+      headers,
+      ".* description:(.+)\\s\\[Source.*",
+      "\\1"
+    )
+  ) %>%
   select(-headers)
 
-write_csv(ids, here(genomedir, "results/mmus_gene-id_gene-name_transcript-id.csv"))
+write_csv(
+  ids,
+  here(genomedir, "results/mmus_gene-id_gene-name_transcript-id.csv")
+)
 
 # end =========================================================================
