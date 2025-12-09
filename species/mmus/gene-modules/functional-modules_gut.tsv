@@ -7,7 +7,7 @@ digestion	extracellular.digestion	brush.border.hydrolysis		Anpep; Enpep; Mgam; S
 digestion	intracellular.digestion	pinocytosis		Lrp2; Cubn; Amn	
 digestion	intracellular.digestion	endocytosis		Msr1; Dab2; Rab7	
 digestion	intracellular.digestion	lysosomal.digestion		Acp2; Lamp1; Lamp2; Lamp3; Lamp5; Ctsc; Ctsd; Ctsl; Ctsh; Ctsb; Ctsf	
-digestion	absorption	carbohydrate.uptake		Slc2a1; Slc2a5; Slc5a1	
+digestion	absorption	carbohydrate.uptake		Slc2a1; Slc2a2; Slc2a5; Slc5a1	
 digestion	absorption	amino.acid.uptake		Slc15a1; Slc6a19; Slc6a15; Slc6a14; Slc7a9	
 digestion	absorption	lipid.uptake		Cd36; Apoa4; Fatp4; Npc1l1	
 digestion	absorption	micronutrient.uptake		Scarb1; Abcg1; Abcg5; Slc46a1; Slc11a2	
