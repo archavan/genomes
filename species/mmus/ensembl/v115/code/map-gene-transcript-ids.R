@@ -19,7 +19,7 @@ fq <- read.FASTA(
 )
 
 # extract info
-ids <- tibble(headers = names(fq)) %>%
+ids <- tibble(headers = names(fq)) |>
   mutate(
     ensembl_gene_id = str_replace(
       headers,
@@ -36,12 +36,12 @@ ids <- tibble(headers = names(fq)) %>%
       "(^ENSMUST.+?) .*",
       "\\1"
     ),
-    description = str_replace(
-      headers,
-      ".* description:(.+)\\s\\[Source.*",
-      "\\1"
+    description = ifelse(
+      str_detect(headers, "description:"),
+      str_replace(headers, ".* description:(.+)\\s\\[Source.*", "\\1"),
+      ""
     )
-  ) %>%
+  ) |>
   select(-headers)
 
 write_csv(
