@@ -9,7 +9,7 @@ digestion	intracellular.digestion	endocytosis		Msr1; Dab2; Rab7
 digestion	intracellular.digestion	lysosomal.digestion		Acp2; Lamp1; Lamp2; Lamp3; Lamp5; Ctsc; Ctsd; Ctsl; Ctsh; Ctsb; Ctsf	
 digestion	absorption	carbohydrate.uptake		Slc2a1; Slc2a2; Slc2a5; Slc5a1	
 digestion	absorption	amino.acid.uptake		Slc15a1; Slc6a19; Slc6a15; Slc6a14; Slc7a9	
-digestion	absorption	lipid.uptake		Cd36; Apoa4; Fatp4; Npc1l1	
+digestion	absorption	lipid.uptake		Cd36; Apoa4; Slc27a4; Npc1l1	
 digestion	absorption	micronutrient.uptake		Scarb1; Abcg1; Abcg5; Slc46a1; Slc11a2	
 digestion	metabolism	carbohydrate.metabolism		Gck; Hk1; Hk2; Hk3	
 digestion	metabolism	amino.acid.metabolism	urea.cycle	Arg1; Otc; Cps1; Bhmt	
