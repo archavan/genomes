@@ -42,7 +42,14 @@ emap_symbol <- read_tsv(here(
 emap_desc <- read_tsv(here(
   genomedir,
   "results/emapper/processed/emapper_description.tsv"
-))
+)) |>
+  mutate(
+    description = case_when(
+      description == "-" ~ NA_character_,
+      .default = description
+    )
+  ) |>
+  filter(!is.na(description))
 
 prost <- read_tsv(here(
   genomedir,
