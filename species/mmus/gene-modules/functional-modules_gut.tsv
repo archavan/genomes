@@ -3,7 +3,8 @@ regulation	endocrine			Neurog3; Pdx1; Cpe; Pcsk1; Pcsk2; Pcsk1n; Scg5; Tph1
 digestion	acidic.digestion			Atp4a; Atp4b; Aqp4	
 digestion	extracellular.digestion	emulsification	bile.acid.synthesis	Cyp7a1; Cyp7b1; Cyp8b1; Cyp27a1; Nr1h4	
 digestion	extracellular.digestion	luminal.hydrolysis		Ptf1a; Amy1; Amy2a1; Amy2a2; Amy2a3; Amy2a4; Amy2a5; Cpa1; Cpa2; Ctrb1; Cela1; Cela2a; Pnlip; Prss1; Prss2; Pgc	
-digestion	extracellular.digestion	brush.border.hydrolysis		Anpep; Enpep; Mgam; Sis; Lct	
+digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Mgam; Sis; Lct	
+digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep; Enpep	
 digestion	intracellular.digestion	pinocytosis		Lrp2; Cubn; Amn	
 digestion	intracellular.digestion	endocytosis		Msr1; Dab2; Rab7	
 digestion	intracellular.digestion	lysosomal.digestion		Acp2; Lamp1; Lamp2; Lamp3; Lamp5; Ctsc; Ctsd; Ctsl; Ctsh; Ctsb; Ctsf	
