@@ -68,19 +68,19 @@ hog_labels <- pw |>
   select(hog, label, n_mmus, n_bflo, type, symbols)
 
 # disambiguate duplicate labels ================================================
-# Rare cases (e.g., multiple Gm+Rik pairs) can produce identical labels.
-# Append the HOG ID to disambiguate.
+# When no gene symbols are available, the label is just "mXbY" — append HOG ID.
+# Rare cases (e.g., multiple Gm+Rik pairs) can also produce identical labels.
+# Append the HOG ID to disambiguate those too.
 dup_labels <- hog_labels$label[duplicated(hog_labels$label)]
-if (length(dup_labels) > 0) {
-  hog_labels <- hog_labels |>
-    mutate(
-      label = if_else(
-        label %in% dup_labels,
-        paste0(label, ".", hog),
-        label
-      )
+
+hog_labels <- hog_labels |>
+  mutate(
+    label = if_else(
+      label %in% dup_labels | !str_detect(label, "_"),
+      paste0(label, "_", hog),
+      label
     )
-}
+  )
 
 # verify labels are unique ====================================================
 stopifnot(!any(duplicated(hog_labels$label)))
