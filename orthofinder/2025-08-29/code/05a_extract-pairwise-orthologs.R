@@ -109,12 +109,20 @@ rename_columns_to_species_abbr <- function(.orth, .sp1, .sp2) {
     rename(!!sym(.sp1) := sp1, !!sym(.sp2) := ortholog)
 }
 
+# orthofinder replaces "ncbi:" with "ncbi.", which need to change back
+fix_bflo_ids <- function(.orth) {
+  if ("bflo" %in% names(.orth)) {
+    .orth <- mutate(.orth, bflo = str_replace(bflo, "ncbi\\.", "ncbi:"))
+  }
+  return(.orth)
+}
+
 extract_and_clean_up_pairwise_orthologs <- function(.sp1, .sp2, .hog) {
   extract_pairwise_orthologs(.sp1, .sp2, .hog) |>
     verify_that_one2one_are_not_duplicated() |>
-    rename_columns_to_species_abbr(.sp1, .sp2)
+    rename_columns_to_species_abbr(.sp1, .sp2) |>
+    fix_bflo_ids()
 }
-
 
 # extract pairwise orthologs ==================================================
 df$orth <- vector("list", nrow(df))
