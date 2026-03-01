@@ -61,7 +61,7 @@ hog_labels <- pw |>
       n_sp1 = n_mmus,
       n_sp2 = n_crob,
       sp1_abb = "m",
-      sp2_abb = "b"
+      sp2_abb = "c"
     )
   ) |>
   ungroup() |>
