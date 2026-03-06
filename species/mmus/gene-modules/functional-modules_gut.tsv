@@ -1,30 +1,38 @@
-module.1	module.2	module.3	module.4	genes	comments
-regulation	endocrine			Neurog3; Pdx1; Cpe; Pcsk1; Pcsk2; Pcsk1n; Scg5; Tph1	
-digestion	acidic.digestion			Atp4a; Atp4b; Aqp4	
-digestion	extracellular.digestion	emulsification	bile.acid.synthesis	Cyp7a1; Cyp7b1; Cyp8b1; Cyp27a1; Nr1h4	
-digestion	extracellular.digestion	luminal.hydrolysis		Ptf1a; Amy1; Amy2a1; Amy2a2; Amy2a3; Amy2a4; Amy2a5; Cpa1; Cpa2; Ctrb1; Cela1; Cela2a; Pnlip; Prss1; Prss2; Pgc	
-digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Mgam; Sis; Lct	
-digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep; Enpep	
-digestion	intracellular.digestion	pinocytosis		Lrp2; Cubn; Amn	
-digestion	intracellular.digestion	endocytosis		Msr1; Dab2; Rab7	
-digestion	intracellular.digestion	lysosomal.digestion		Acp2; Lamp1; Lamp2; Lamp3; Lamp5; Ctsc; Ctsd; Ctsl; Ctsh; Ctsb; Ctsf	
-digestion	absorption	carbohydrate.uptake		Slc2a1; Slc2a2; Slc2a5; Slc5a1	
-digestion	absorption	amino.acid.uptake		Slc15a1; Slc6a19; Slc6a15; Slc6a14; Slc7a9	
-digestion	absorption	lipid.uptake		Cd36; Apoa4; Slc27a4; Npc1l1	
-digestion	absorption	micronutrient.uptake		Scarb1; Abcg1; Abcg5; Slc46a1; Slc11a2	
-digestion	metabolism	carbohydrate.metabolism		Gck; Hk1; Hk2; Hk3	
-digestion	metabolism	amino.acid.metabolism	urea.cycle	Arg1; Otc; Cps1; Bhmt	
-digestion	metabolism	amino.acid.metabolism	amino.acid.synthesis	Glul; Gls	
-digestion	metabolism	lipid.metabolism		Dgat1; Dgat2; Cpt1a; Cpt1b; Ppara; Pparg; Fasn; Scd1; Hmgcs2	
-digestion	metabolism	lipid.metabolism	intracellular.transport	Fabp1; Fabp2; Fabp3; Fabp4; Fabp5; Fabp6; Fabp7; Fabp9; Fabp12; Npc1	
-digestion	metabolism	lipid.metabolism	reesterification	Mogat1; Mogat2; Dgat1; Dgat2; Acat1; Acat2	
-digestion	metabolism	lipid.metabolism	fatty.acid.oxidation	Cpt1a; Hadha; Ppara	
-digestion	metabolism	lipid.metabolism	cholesterol.synthesis	Hmgcr; Sqle	
-digestion	metabolism	lipid.metabolism	cholesterol.efflux	Abca1; Abca2; Abca3; Abca5; Abca7; Abcg1; Abcg4; Abcg5; Abcg8	
-digestion	storage	lipid.droplets		Plin1; Plin2; Plin3; Plin4; Plin5; Dgat1; Dgat2; Pnpla2; Lipe; Cidea	
-digestion	storage	glycogen		Gyg1; Gys1; Gys2	
-digestion	detoxification			Cyp3a11; Cyp2j6; Nr1i2; Nr1i3; Ahr; Cyp1a1; Cyp1a2; Ces1	
-defense	tissue.barrier				
-defense	mucus.barrier			Muc5ac; Muc2; Spdef	
-defense	antimicrobial.activity			Reg3g; Lyz1; Lyz2; Lyz3; Lyg1; Lyg2; Defa5	
-maintenance	renewal	stem.cell		Pcna; Mki67; Lgr5; Top2a	
+label	module.1	module.2	module.3	module.4	genes	comments
+gut01 [enteroendocrine]	regulation	endocrine			Neurog3; Pdx1; Cpe; Pcsk1; Pcsk2; Pcsk1n; Scg5; Tph1; Gcg; Cck; Gip; Sct; Pyy; Ghrl; Gast; Sst; Chga	enteroendocrine TFs (Neurog3, Pdx1), prohormone processing (Cpe, Pcsk1/2, Scg5), serotonin synthesis (Tph1), gut hormones, chromogranin A
+gut02 [gastric acid]	digestion	acidic.digestion			Atp4a; Atp4b; Aqp4	gastric H+/K+-ATPase subunits, water channel
+gut03 [fluid secretion]	digestion	secretion	fluid.electrolyte		Cftr; Slc26a3; Slc9a3; Aqp7; Aqp8	chloride channel, chloride-bicarbonate exchanger (DRA), sodium-hydrogen exchanger (NHE3), aquaporins
+gut04 [bile acid synthesis]	digestion	extracellular.digestion	emulsification	bile.acid.synthesis	Cyp7a1; Cyp7b1; Cyp8b1; Cyp27a1; Nr1h4	bile acid synthesis enzymes, FXR
+gut05 [luminal hydrolysis]	digestion	extracellular.digestion	luminal.hydrolysis		Ptf1a; Amy1; Amy2a1; Amy2a2; Amy2a3; Amy2a4; Amy2a5; Cpa1; Cpa2; Ctrb1; Cela1; Cela2a; Pnlip; Clps; Cel; Prss1; Prss2; Pgc	pancreatic TF, amylases, carboxypeptidases, chymotrypsin, elastase, lipase + colipase, carboxyl ester lipase, trypsins, pepsinogen
+gut06 [BB hydrolysis: carb]	digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Mgam; Sis; Lct	maltase-glucoamylase, sucrase-isomaltase, lactase
+gut07 [BB hydrolysis: peptide]	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep; Enpep; Dpp4; Mep1a; Mep1b	aminopeptidase N, glutamyl aminopeptidase, dipeptidyl peptidase 4, meprins
+gut08 [pinocytosis]	digestion	intracellular.digestion	pinocytosis		Lrp2; Cubn; Amn	megalin, cubilin-amnionless complex (B12/IF receptor-mediated uptake)
+gut09 [phagocytosis]	digestion	intracellular.digestion	phagocytosis		Mertk; Megf10; Gulp1; Elmo1; Dock1; Rac1; Actr2; Actr3	epithelial phagocytic receptor (MerTK), conserved engulfment pathway: CED-1 (Megf10), CED-6 (Gulp1), CED-12 (Elmo1), CED-5 (Dock1), CED-10 (Rac1), Arp2/3 catalytic subunits (actin nucleation)
+gut10 [endocytosis]	digestion	intracellular.digestion	endocytosis		Msr1; Dab2; Rab5a; Rab7	scavenger receptor, clathrin adaptor, early endosome (Rab5a) and late endosome (Rab7) GTPases
+gut11 [lysosomal digestion]	digestion	intracellular.digestion	lysosomal.digestion		Acp2; Lamp1; Lamp2; Lamp3; Lamp5; Ctsc; Ctsd; Ctsl; Ctsh; Ctsb; Ctsf	acid phosphatase, lysosomal membrane proteins, cathepsins
+gut12 [carb: apical uptake]	digestion	absorption	carbohydrate	apical.uptake	Slc5a1; Slc2a5	SGLT1 (Na+-coupled glucose/galactose), GLUT5 (facilitative fructose)
+gut13 [carb: basolateral export]	digestion	absorption	carbohydrate	basolateral.export	Slc2a2; Slc2a1	GLUT2 (glucose/galactose/fructose), GLUT1
+gut14 [AA: apical uptake]	digestion	absorption	amino.acid	apical.uptake	Slc15a1; Slc6a19; Slc6a15; Slc6a14; Slc7a9; Slc3a1; Slc1a1; Slc36a1	PepT1 (di/tripeptides), B0AT1/2 (neutral AAs), ATB0+ (broad), b0,+AT + rBAT (cystine/dibasic), EAAT3 (Glu/Asp), PAT1 (Pro/Gly/Ala)
+gut15 [AA: basolateral export]	digestion	absorption	amino.acid	basolateral.export	Slc7a7; Slc3a2; Slc7a8; Slc16a10	y+LAT1 + 4F2hc (cationic AAs), LAT2 (neutral AAs), TAT1 (aromatic AAs)
+gut16 [lipid: apical uptake]	digestion	absorption	lipid	apical.uptake	Cd36; Slc27a4; Npc1l1; Scarb1	CD36 (long-chain FA), FATP4, NPC1L1 (cholesterol), SR-BI (cholesterol/fat-soluble vitamins)
+gut17 [lipid: intracellular transport]	digestion	absorption	lipid	intracellular.transport	Fabp1; Fabp2; Fabp5; Fabp6; Npc1; Npc2	L-FABP, I-FABP, E-FABP, ileal bile acid BP, NPC1/2 (intracellular cholesterol trafficking)
+gut18 [lipid: reesterification]	digestion	absorption	lipid	reesterification	Mogat1; Mogat2; Dgat1; Dgat2; Acat1; Acat2; Lpcat3	monoacylglycerol pathway, triglyceride synthesis, cholesterol esterification, phospholipid remodeling
+gut19 [chylomicron assembly]	digestion	absorption	lipid	chylomicron.assembly	Mttp; Apob; Apoa1; Apoa4; Sar1b	microsomal TG transfer protein, apolipoproteins (B-48, A-I, A-IV), COPII vesicle GTPase (pre-chylomicron ER-to-Golgi transport)
+gut20 [lipid: temp storage]	digestion	absorption	lipid	storage	Plin2; Plin3; Cideb	enterocyte cytoplasmic lipid droplet coat proteins, LD fusion
+gut21 [lipid: basolateral export]	digestion	absorption	lipid	basolateral.export	Abca1	cholesterol/phospholipid efflux to nascent HDL (alternative to chylomicron pathway)
+gut22 [micronutrient uptake]	digestion	absorption	micronutrient	uptake	Slc46a1; Slc11a2; Slc40a1; Heph	PCFT (folate), DMT1 (apical iron uptake), ferroportin (basolateral iron export), hephaestin (ferroxidase)
+gut23 [carb metabolism]	digestion	metabolism	carbohydrate		Gck; Hk1; Hk2; Hk3	glucokinase, hexokinases
+gut24 [AA catabolism]	digestion	metabolism	amino.acid	catabolism	Gls; Arg2; Ass1	glutaminase (primary enterocyte fuel), arginase II and argininosuccinate synthase (arginine to citrulline conversion)
+gut25 [urea cycle]	digestion	metabolism	amino.acid	urea.cycle	Arg1; Otc; Cps1; Bhmt	urea cycle enzymes, betaine-homocysteine methyltransferase
+gut26 [AA synthesis]	digestion	metabolism	amino.acid	synthesis	Glul; Gls	glutamine synthetase, glutaminase
+gut27 [lipid metabolism]	digestion	metabolism	lipid		Dgat1; Dgat2; Cpt1a; Cpt1b; Ppara; Pparg; Fasn; Scd1; Hmgcs2	TG synthesis, FA oxidation entry, transcriptional regulators (PPARa/g), de novo lipogenesis (Fasn, Scd1), ketogenesis (Hmgcs2)
+gut28 [FA oxidation]	digestion	metabolism	lipid	fatty.acid.oxidation	Cpt1a; Hadha; Ppara	carnitine palmitoyltransferase 1a, mitochondrial trifunctional protein alpha, PPARalpha
+gut29 [cholesterol synthesis]	digestion	metabolism	lipid	cholesterol.synthesis	Hmgcr; Sqle	HMG-CoA reductase (rate-limiting), squalene epoxidase
+gut30 [cholesterol efflux]	digestion	metabolism	lipid	cholesterol.efflux	Abca1; Abca2; Abca3; Abca5; Abca7; Abcg1; Abcg4; Abcg5; Abcg8	ABC transporters for cholesterol/phospholipid efflux; Abcg5/8 are apical (sterol efflux to lumen)
+gut31 [lipid droplets]	digestion	storage	lipid.droplets		Plin1; Plin2; Plin3; Plin4; Plin5; Dgat1; Dgat2; Pnpla2; Lipe; Cidea	perilipins (LD coat), TG synthesis, adipose triglyceride lipase, hormone-sensitive lipase, LD fusion
+gut32 [glycogen]	digestion	storage	glycogen		Gyg1; Gys1; Gys2	glycogenin, glycogen synthases
+gut33 [detoxification]	digestion	detoxification			Cyp3a11; Cyp2j6; Nr1i2; Nr1i3; Ahr; Cyp1a1; Cyp1a2; Ces1; Gstm1; Gstp1; Abcb1a	phase I CYPs, carboxylesterase, nuclear receptors (PXR, CAR, AhR), phase II GSTs, phase III P-glycoprotein
+gut34 [tissue barrier]	defense	tissue.barrier			Tjp1; Ocln; Cldn2; Cldn3; Cldn4; Cldn7; Cldn15; Cdh1	tight junctions (ZO-1, occludin, claudins), adherens junction (E-cadherin)
+gut35 [mucus barrier]	defense	mucus.barrier			Muc5ac; Muc2; Spdef; Tff1; Tff2; Tff3	gel-forming mucins, goblet cell TF, trefoil factors (mucosal protection/repair)
+gut36 [antimicrobial]	defense	antimicrobial.activity			Reg3g; Lyz1; Lyz2; Lyz3; Lyg1; Lyg2; Defa5	regenerating islet-derived 3 gamma, lysozymes, lysozyme g, alpha-defensin
+gut37 [stem cells]	maintenance	renewal	stem.cell		Pcna; Mki67; Lgr5; Top2a; Olfm4	proliferation markers (Pcna, Mki67, Top2a), intestinal stem cell markers (Lgr5, Olfm4)
