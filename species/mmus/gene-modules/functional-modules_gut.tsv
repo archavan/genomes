@@ -21,7 +21,7 @@ gut19 [chylomicron assembly]	digestion	absorption	lipid	chylomicron.assembly	Mtt
 gut20 [lipid: temp storage]	digestion	absorption	lipid	storage	Plin2; Plin3; Cideb	enterocyte cytoplasmic lipid droplet coat proteins, LD fusion
 gut21 [lipid: basolateral export]	digestion	absorption	lipid	basolateral.export	Abca1	cholesterol/phospholipid efflux to nascent HDL (alternative to chylomicron pathway)
 gut22 [micronutrient uptake]	digestion	absorption	micronutrient	uptake	Slc46a1; Slc11a2; Slc40a1; Heph	PCFT (folate), DMT1 (apical iron uptake), ferroportin (basolateral iron export), hephaestin (ferroxidase)
-gut23 [carb metabolism]	digestion	metabolism	carbohydrate		Gck; Hk1; Hk2; Hk3	glucokinase, hexokinases
+gut23 [carb metabolism]	digestion	metabolism	carbohydrate		Gck; Hk1; Hk2; Hk3; Pck1; G6pc1; Pfkl; G6pd	glucokinase, hexokinases, PEPCK (gluconeogenesis), glucose-6-phosphatase (gluconeogenesis), phosphofructokinase (glycolysis), glucose-6-phosphate dehydrogenase (pentose phosphate pathway)
 gut24 [AA catabolism]	digestion	metabolism	amino.acid	catabolism	Gls; Arg2; Ass1	glutaminase (primary enterocyte fuel), arginase II and argininosuccinate synthase (arginine to citrulline conversion)
 gut25 [urea cycle]	digestion	metabolism	amino.acid	urea.cycle	Arg1; Otc; Cps1; Bhmt	urea cycle enzymes, betaine-homocysteine methyltransferase
 gut26 [AA synthesis]	digestion	metabolism	amino.acid	synthesis	Glul; Gls	glutamine synthetase, glutaminase
@@ -30,9 +30,9 @@ gut28 [FA oxidation]	digestion	metabolism	lipid	fatty.acid.oxidation	Cpt1a; Hadh
 gut29 [cholesterol synthesis]	digestion	metabolism	lipid	cholesterol.synthesis	Hmgcr; Sqle	HMG-CoA reductase (rate-limiting), squalene epoxidase
 gut30 [cholesterol efflux]	digestion	metabolism	lipid	cholesterol.efflux	Abca1; Abca2; Abca3; Abca5; Abca7; Abcg1; Abcg4; Abcg5; Abcg8	ABC transporters for cholesterol/phospholipid efflux; Abcg5/8 are apical (sterol efflux to lumen)
 gut31 [lipid droplets]	digestion	storage	lipid.droplets		Plin1; Plin2; Plin3; Plin4; Plin5; Dgat1; Dgat2; Pnpla2; Lipe; Cidea	perilipins (LD coat), TG synthesis, adipose triglyceride lipase, hormone-sensitive lipase, LD fusion
-gut32 [glycogen]	digestion	storage	glycogen		Gyg1; Gys1; Gys2	glycogenin, glycogen synthases
+gut32 [glycogen]	digestion	storage	glycogen		Gyg1; Gys1; Gys2; Pygl	glycogenin, glycogen synthases, glycogen phosphorylase (glycogenolysis)
 gut33 [detoxification]	digestion	detoxification			Cyp3a11; Cyp2j6; Nr1i2; Nr1i3; Ahr; Cyp1a1; Cyp1a2; Ces1; Gstm1; Gstp1; Abcb1a	phase I CYPs, carboxylesterase, nuclear receptors (PXR, CAR, AhR), phase II GSTs, phase III P-glycoprotein
 gut34 [tissue barrier]	defense	tissue.barrier			Tjp1; Ocln; Cldn2; Cldn3; Cldn4; Cldn7; Cldn15; Cdh1	tight junctions (ZO-1, occludin, claudins), adherens junction (E-cadherin)
 gut35 [mucus barrier]	defense	mucus.barrier			Muc5ac; Muc2; Spdef; Tff1; Tff2; Tff3	gel-forming mucins, goblet cell TF, trefoil factors (mucosal protection/repair)
-gut36 [antimicrobial]	defense	antimicrobial.activity			Reg3g; Lyz1; Lyz2; Lyz3; Lyg1; Lyg2; Defa5	regenerating islet-derived 3 gamma, lysozymes, lysozyme g, alpha-defensin
+gut36 [antimicrobial]	defense	antimicrobial.activity			Reg3g; Lyz1; Lyz2; Lyz3; Lyg1; Lyg2; Defa5; Itln1	regenerating islet-derived 3 gamma, lysozymes, lysozyme g, alpha-defensin, intelectin-1 (antimicrobial lectin, binds bacterial galactofuranose)
 gut37 [stem cells]	maintenance	renewal	stem.cell		Pcna; Mki67; Lgr5; Top2a; Olfm4	proliferation markers (Pcna, Mki67, Top2a), intestinal stem cell markers (Lgr5, Olfm4)
