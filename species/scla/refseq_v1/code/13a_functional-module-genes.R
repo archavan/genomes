@@ -28,6 +28,8 @@ orth <- left_join(
   by = c("scla" = "gene_id")
 )
 
+hog_labels <- read_tsv(here(orthdir, "results/hog-labels/mmus_vs_scla.tsv"))
+
 # data ========================================================================
 mm <- read_tsv(here("species/mmus/gene-modules/functional-modules_gut.tsv"))
 
@@ -62,27 +64,45 @@ get_match <- function(x) {
 }
 
 genes |>
-  filter(str_detect(display_name, regex("defa5", TRUE)))
+  filter(str_detect(
+    display_name,
+    regex("olfm", TRUE)
+  )) |>
+  print(n = Inf)
 
-get_match("hk3")
+get_match("ncbi.120346634")
 
 mm_missing <- mm_missing |>
   mutate(
     orths = case_when(
       genes == "Cpe" ~ get_match("carboxypeptidase e"),
       genes == "Pcsk1" ~ get_match("Pcsk1"),
+      genes == "Gcg" ~ get_match("ncbi.120346634"),
+      genes == "Pyy" ~ get_match("Pyy"),
+      genes == "Ghrl" ~ get_match("ghrl"),
+
       genes == "Aqp4" ~ get_match("Aquaporin-4"),
+      genes == "Dnah11" ~ get_match("dnah11"),
       genes == "Cela2a" ~ get_match(
         "chymotrypsin-like elastase family member 2A"
       ),
+      genes == "Rac1" ~ get_match("ras-related C3 botulinum toxin substrate 1"),
       genes == "Lamp5" ~ get_match("lamp5"),
       genes == "Slc7a9" ~ get_match("slc7a9"),
       genes == "Scarb1" ~ get_match("scarb1"),
       genes == "Fabp5" ~ get_match("fabp5"),
       genes == "Npc1" ~ get_match("npc1;"),
       genes == "Acat1" ~ get_match("acat1"),
+      genes == "Apoa1" ~ get_match("apoa1;"),
       genes == "Abca1" ~ get_match("abca1"),
+      genes == "G6pd" ~ get_match("G6pd"),
+      genes == "Gstp1" ~ get_match("Gstp1"),
+      genes == "Ocln" ~ get_match("Ocln"),
+      genes == "Muc5ac" ~ get_match(
+        "\\[ncbi\\.\\d+\\]; \\[n\\] mucin-5AC-like"
+      ),
       genes == "Muc2" ~ get_match("muc2;"),
+      genes == "Tff2" ~ get_match("Tff2"),
       genes == "Reg3g" ~ get_match("reg3g"),
       genes == "Lyz1" ~ get_match("lysozyme g-like"),
       genes == "Defa5" ~ get_match("Defa5"),
@@ -91,15 +111,21 @@ mm_missing <- mm_missing |>
   )
 
 # combine found and missing ===================================================
-mm_all <- bind_rows(mm_found, mm_missing)
-
-mm_all <- mm_all |>
-  unnest(orths, keep_empty = TRUE) |>
+mm_all <- bind_rows(mm_found, mm_missing) |>
+  unnest(cols = orths, keep_empty = TRUE) |>
+  left_join(
+    orth |> select(hog, scla) |> distinct(),
+    by = c("orths" = "scla")
+  ) |>
+  left_join(
+    select(hog_labels, hog, hog_label = label),
+    by = "hog"
+  ) |>
   left_join(
     select(genes, gene_id, display_name),
     by = c("orths" = "gene_id")
   ) |>
-  arrange(module.1, module.2, module.3, module.4) |>
+  arrange(label, module.1, module.2, module.3, module.4) |>
   rename(
     gene_mm = genes,
     ortholog = orths

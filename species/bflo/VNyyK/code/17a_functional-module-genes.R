@@ -30,6 +30,8 @@ orth <- left_join(
   by = c("bflo" = "gene_id")
 )
 
+hog_labels <- read_tsv(here(orthdir, "results/hog-labels/mmus_vs_bflo.tsv"))
+
 # data ========================================================================
 mm <- read_tsv(here("species/mmus/gene-modules/functional-modules_gut.tsv"))
 
@@ -64,18 +66,28 @@ get_match <- function(x) {
 }
 
 genes |>
-  filter(str_detect(display_name, regex("leucine-rich", TRUE))) |>
+  filter(str_detect(display_name, regex("fabp7", TRUE))) |>
   print(n = Inf)
 
-get_match("hk3")
+get_match("fabp7")
 
 mm_missing <- mm_missing |>
   mutate(
     orths = case_when(
       genes == "Pcsk1n" ~ get_match("Pcsk1n"),
-      genes == "Fabp3" ~ get_match("Fabp3"),
-      genes == "Fabp4" ~ get_match("Fabp4"),
+      genes == "Gcg" ~ get_match("glucagon"),
+      genes == "Cck" ~ get_match("Cholecystokinin$"),
+      genes == "Ghrl" ~ get_match("Ghrl"),
+      genes == "Gast" ~ get_match("Gastrin$"),
+      genes == "Ccno" ~ get_match("Ccno"),
       genes == "Fabp5" ~ get_match("Fabp5"),
+      genes == "Apoa1" ~ get_match("Apolipoprotein A-I$"),
+      genes == "G6pd" ~ get_match("G6pd"),
+      genes == "Ces1" ~ get_match("liver carboxylesterase 1"),
+      genes == "Defa5" ~ get_match("ncbi:118410785"),
+      genes == "Olfm4" ~ get_match("noelin-2-like"),
+      genes == "Fabp3" ~ get_match("fatty acid-binding protein, brain-like"),
+      genes == "Fabp4" ~ get_match("Fabp4"),
       genes == "Fabp7" ~ get_match("Fabp7"),
       genes == "Ces1" ~ get_match("carboxylesterase 1-like"),
       .default = orths
@@ -83,15 +95,22 @@ mm_missing <- mm_missing |>
   )
 
 # combine found and missing ===================================================
-mm_all <- bind_rows(mm_found, mm_missing)
 
-mm_all <- mm_all |>
-  unnest(orths, keep_empty = TRUE) |>
+mm_all <- bind_rows(mm_found, mm_missing) |>
+  unnest(cols = orths, keep_empty = TRUE) |>
+  left_join(
+    orth |> select(hog, bflo) |> distinct(),
+    by = c("orths" = "bflo")
+  ) |>
+  left_join(
+    select(hog_labels, hog, hog_label = label),
+    by = "hog"
+  ) |>
   left_join(
     select(genes, gene_id, display_name),
     by = c("orths" = "gene_id")
   ) |>
-  arrange(module.1, module.2, module.3, module.4) |>
+  arrange(label, module.1, module.2, module.3, module.4) |>
   rename(
     gene_mm = genes,
     ortholog = orths
