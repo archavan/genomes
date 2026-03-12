@@ -56,9 +56,9 @@ mm_missing <- mm |>
   filter(map_lgl(orths, is.null))
 
 # manual search for genes without an orthofinder ortholog =====================
-get_match <- function(x) {
+get_match <- function(x, .col = "display_name") {
   genes |>
-    filter(str_detect(display_name, regex(x, TRUE))) |>
+    filter(str_detect(.data[[.col]], regex(x, TRUE))) |>
     pull(gene_id) |>
     list()
 }
@@ -67,7 +67,11 @@ genes |>
   filter(str_detect(display_name, regex("olfm4", TRUE))) |>
   print(n = Inf)
 
-get_match("Reg3g")
+genes |>
+  filter(str_detect(symbol, regex("amy2", TRUE))) |>
+  print(n = Inf)
+
+get_match("ptf1a", .col = "symbol")
 
 mm_missing <- mm_missing |>
   mutate(
@@ -77,8 +81,8 @@ mm_missing <- mm_missing |>
       genes == "Cck" ~ get_match("cholecystokinin$"),
       genes == "Dnah11" ~ get_match("dnah11"),
       genes == "Cftr" ~ get_match("Cftr"),
-      genes == "Cyp27a1" ~ get_match("Cyp27a1"),
-      genes == "Ptf1a" ~ get_match("Ptf1a;"),
+      genes == "Cyp27a1" ~ get_match("Cyp27a1", .col = "symbol"),
+      genes == "Ptf1a" ~ get_match("Ptf1a", .col = "symbol"),
       genes == "Amy2a1" ~ get_match("Amy2"),
       genes == "Cpa2" ~ get_match("carboxypeptidase a2"),
       genes == "Pgc" ~ get_match("progastricsin"),
@@ -94,7 +98,7 @@ mm_missing <- mm_missing |>
       genes == "Ces1" ~ get_match("ces1;"),
       genes == "Ocln" ~ get_match("Ocln"),
       genes == "Muc5ac" ~ get_match("muc5ac"),
-      genes == "Muc2" ~ get_match("muc2"),
+      genes == "Muc2" ~ get_match("muc2;"),
       genes == "Lyz1" ~ get_match("lysozyme"),
       genes == "Olfm4" ~ get_match("Olfm4"),
       .default = orths

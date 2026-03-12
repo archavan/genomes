@@ -12,10 +12,20 @@ library(here)
 library(glue)
 
 genomedir <- here("species/crob/KY21")
+orthdir <- here("orthofinder/2025-08-29")
 
 ###############################################################################
 # data ========================================================================
 ###############################################################################
+
+## orthofinder ================================================================
+orth <- read_tsv(here(orthdir, "results/pairwise-orthologs/mmus_vs_crob.tsv"))
+hog_labels <- read_tsv(here(orthdir, "results/hog-labels/mmus_vs_crob.tsv"))
+
+orth <- orth |>
+  left_join(select(hog_labels, hog, label), by = "hog") |>
+  select(gene_id = crob, hog_label = label) |>
+  distinct()
 
 ## ghost ======================================================================
 ghost <- read_tsv(here(genomedir, "results/ghost/gene-info_ghostdb_parsed.tsv"))
@@ -62,7 +72,8 @@ prost <- prost %>%
 # generate gene display names =================================================
 ###############################################################################
 
-genes <- reduce(list(ghost, emap, prost), left_join, by = "gene_id")
+# NOTE: ghost must be first in list to include all genes
+genes <- reduce(list(ghost, orth, emap, prost), left_join, by = "gene_id")
 
 # add source information to columns ===========================================
 add_source_prefix <- function(x, prefix) {
@@ -103,7 +114,7 @@ display_names <- genes %>%
       prost_description
     )
   ) %>%
-  select(gene_id, symbol, description)
+  select(gene_id, hog_label, symbol, description)
 
 # do all genes have some symbol or description?
 display_names %>%
@@ -115,9 +126,23 @@ display_names <- display_names %>%
   )
 
 # merge symbol and description into a single name =============================
-display_names <- display_names %>%
+display_names <- display_names |>
   mutate(
-    display_name = paste0(
+    display_hog = ifelse(
+      is.na(hog_label),
+      NA,
+      paste0(
+        "[",
+        gene_id,
+        "]; ",
+        hog_label,
+        "; ",
+        ifelse(is.na(description), "", description)
+      )
+    )
+  ) |>
+  mutate(
+    display_non_hog = paste0(
       "[",
       gene_id,
       "]",
@@ -125,11 +150,13 @@ display_names <- display_names %>%
       ifelse(is.na(symbol), "", paste0(symbol, "; ")),
       ifelse(is.na(description), "", paste0(description))
     )
-  )
+  ) |>
+  mutate(display_name = coalesce(display_hog, display_non_hog))
 
 # write files =================================================================
 write_tsv(
-  display_names,
+  display_names |>
+    select(gene_id, hog_label, symbol, description, display_name),
   here(genomedir, "results/genes/gene-display-names.tsv")
 )
 
