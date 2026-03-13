@@ -56,9 +56,9 @@ mm_missing <- mm |>
   filter(map_lgl(orths, is.null))
 
 # manual search for genes without an orthofinder ortholog =====================
-get_match <- function(x) {
+get_match <- function(x, .col = "display_name") {
   genes |>
-    filter(str_detect(display_name, regex(x, TRUE))) |>
+    filter(str_detect(.data[[.col]], regex(x, TRUE))) |>
     pull(gene_id) |>
     list()
 }
@@ -66,7 +66,14 @@ get_match <- function(x) {
 genes |>
   filter(str_detect(
     display_name,
-    regex("olfm", TRUE)
+    regex("defa5", TRUE)
+  )) |>
+  print(n = Inf)
+
+genes |>
+  filter(str_detect(
+    symbol,
+    regex("gstp1", TRUE)
   )) |>
   print(n = Inf)
 
@@ -88,15 +95,15 @@ mm_missing <- mm_missing |>
       ),
       genes == "Rac1" ~ get_match("ras-related C3 botulinum toxin substrate 1"),
       genes == "Lamp5" ~ get_match("lamp5"),
-      genes == "Slc7a9" ~ get_match("slc7a9"),
-      genes == "Scarb1" ~ get_match("scarb1"),
+      genes == "Slc7a9" ~ get_match("slc7a9", .col = "symbol"),
+      genes == "Scarb1" ~ get_match("scarb1", .col = "symbol"),
       genes == "Fabp5" ~ get_match("fabp5"),
       genes == "Npc1" ~ get_match("npc1;"),
       genes == "Acat1" ~ get_match("acat1"),
       genes == "Apoa1" ~ get_match("apoa1;"),
       genes == "Abca1" ~ get_match("abca1"),
       genes == "G6pd" ~ get_match("G6pd"),
-      genes == "Gstp1" ~ get_match("Gstp1"),
+      genes == "Gstp1" ~ get_match("Gstp1", .col = "symbol"),
       genes == "Ocln" ~ get_match("Ocln"),
       genes == "Muc5ac" ~ get_match(
         "\\[ncbi\\.\\d+\\]; \\[n\\] mucin-5AC-like"
