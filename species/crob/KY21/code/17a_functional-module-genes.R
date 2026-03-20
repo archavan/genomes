@@ -80,7 +80,6 @@ mm_missing <- mm_missing |>
       genes == "Scg5" ~ get_match("Scg5"),
       genes == "Cck" ~ get_match("cholecystokinin$"),
       genes == "Dnah11" ~ get_match("dnah11"),
-      genes == "Cftr" ~ get_match("Cftr"),
       genes == "Cyp27a1" ~ get_match("Cyp27a1", .col = "symbol"),
       genes == "Ptf1a" ~ get_match("Ptf1a", .col = "symbol"),
       genes == "Amy2a1" ~ get_match("Amy2"),
