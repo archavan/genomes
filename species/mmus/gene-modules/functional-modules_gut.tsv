@@ -1,6 +1,6 @@
 id	label	module.1	module.2	module.3	module.4	genes	comments
 gut01	Endocrine	regulation	endocrine			Neurog3; Pdx1; Cpe; Pcsk1; Pcsk2; Pcsk1n; Scg5; Tph1; Gcg; Cck; Gip; Sct; Pyy; Ghrl; Gast; Sst; Chga	enteroendocrine TFs (Neurog3, Pdx1), prohormone processing (Cpe, Pcsk1/2, Scg5), serotonin synthesis (Tph1), gut hormones, chromogranin A
-gut02	Acid digestion	digestion	acidic.digestion			Atp4a; Atp4b; Aqp4	gastric H+/K+-ATPase subunits, water channel
+gut02	Acidic digestion	digestion	acidic.digestion			Atp4a; Atp4b; Aqp4	gastric H+/K+-ATPase subunits, water channel
 gut03	Ciliary motility	digestion	motility	ciliary		Foxj1; Rfx3; Mcidas; Ccno; Dnah5; Dnah11; Dnai1; Rsph4a; Ift88; Cep41; Lztfl1	motile cilia TFs (Foxj1, Rfx3), multiciliogenesis (Mcidas, Ccno), axonemal dynein (Dnah5, Dnah11, Dnai1), radial spoke (Rsph4a), intraflagellar transport (Ift88), centriolar/ciliary trafficking (Cep41, Lztfl1)
 gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp7a1; Cyp7b1; Cyp8b1; Cyp27a1; Nr1h4	bile acid synthesis enzymes, FXR
 gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis		Ptf1a; Amy1; Amy2a1; Amy2a2; Amy2a3; Amy2a4; Amy2a5; Cpa1; Cpa2; Ctrb1; Cela1; Cela2a; Pnlip; Clps; Cel; Prss1; Prss2; Pgc	pancreatic TF, amylases, carboxypeptidases, chymotrypsin, elastase, lipase + colipase, carboxyl ester lipase, trypsins, pepsinogen
@@ -15,7 +15,7 @@ gut13	Export: carb	digestion	absorption	carbohydrate	basolateral.export	Slc2a2; 
 gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc15a1; Slc6a19; Slc6a15; Slc6a14; Slc7a9; Slc3a1; Slc36a1	PepT1 (di/tripeptides), B0AT1/2 (neutral AAs), ATB0+ (broad), b0,+AT + rBAT (cystine/dibasic), EAAT3 (Glu/Asp), PAT1 (Pro/Gly/Ala)
 gut15	Export: AA	digestion	absorption	amino.acid	basolateral.export	Slc7a7; Slc3a2; Slc7a8; Slc16a10	y+LAT1 + 4F2hc (cationic AAs), LAT2 (neutral AAs), TAT1 (aromatic AAs)
 gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Cd36; Slc27a4; Npc1l1; Scarb1	CD36 (long-chain FA), FATP4, NPC1L1 (cholesterol), SR-BI (cholesterol/fat-soluble vitamins)
-gut17	Transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp1; Fabp2; Fabp5; Fabp6; Npc1; Npc2	L-FABP, I-FABP, E-FABP, ileal bile acid BP, NPC1/2 (intracellular cholesterol trafficking)
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp1; Fabp2; Fabp5; Fabp6; Npc1; Npc2	L-FABP, I-FABP, E-FABP, ileal bile acid BP, NPC1/2 (intracellular cholesterol trafficking)
 gut18	Reesterification	digestion	absorption	lipid	reesterification	Mogat1; Mogat2; Dgat1; Dgat2; Acat1; Acat2; Lpcat3	monoacylglycerol pathway, triglyceride synthesis, cholesterol esterification, phospholipid remodeling
 gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Mttp; Apob; Apoa1; Apoa4; Sar1b	microsomal TG transfer protein, apolipoproteins (B-48, A-I, A-IV), COPII vesicle GTPase (pre-chylomicron ER-to-Golgi transport)
 gut20	Export: lipid	digestion	absorption	lipid	basolateral.export	Abca1	cholesterol/phospholipid efflux to nascent HDL (alternative to chylomicron pathway)
