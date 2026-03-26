@@ -19,11 +19,22 @@ library(here)
 library(glue)
 
 genomedir <- here("species/bflo/VNyyK/")
+orthdir <- here("orthofinder/2025-08-29")
 
 ###############################################################################
 # data ========================================================================
 ###############################################################################
 
+## orthofinder ================================================================
+orth <- read_tsv(here(orthdir, "results/pairwise-orthologs/mmus_vs_bflo.tsv"))
+hog_labels <- read_tsv(here(orthdir, "results/hog-labels/mmus_vs_bflo.tsv"))
+
+orth <- orth |>
+  left_join(select(hog_labels, hog, label), by = "hog") |>
+  select(gene_id = bflo, hog_label = label) |>
+  distinct()
+
+## ncbi =======================================================================
 gene_ids <- read_tsv(here(genomedir, "results/genes/gene-ids.tsv"))
 
 ncbi <- read_tsv(
@@ -32,7 +43,19 @@ ncbi <- read_tsv(
 ) |>
   mutate(ncbi_gene_id = paste0("ncbi:", ncbi_gene_id))
 
+ncbi <- ncbi |>
+  mutate(
+    gene_type = case_when(
+      gene_type == "PROTEIN_CODING" ~ "protein_coding",
+      gene_type == "PSEUDO" ~ "pseudo",
+      .default = gene_type
+    )
+  )
+
+## kegg =======================================================================
 kegg <- read_tsv(here(genomedir, "results/kegg/kegg-genes.tsv"))
+
+## emapper ====================================================================
 
 emap_symbol <- read_tsv(here(
   genomedir,
@@ -51,28 +74,18 @@ emap_desc <- read_tsv(here(
   ) |>
   filter(!is.na(description))
 
+## prost ======================================================================
+
 prost <- read_tsv(here(
   genomedir,
   "results/prost/processed/best-hits_with-gene-names.tsv"
 ))
 
-ncbi <- ncbi |>
-  mutate(
-    gene_type = case_when(
-      gene_type == "PROTEIN_CODING" ~ "protein_coding",
-      gene_type == "PSEUDO" ~ "pseudo",
-      .default = gene_type
-    )
-  )
+prost <- prost |>
+  select(gene_id, prost_symbol = gene_name, prost_description = protein_type) |>
+  distinct()
 
-# emap.ko <- read_tsv(here(
-#   genomedir,
-#   "results/emapper/processed/emapper_kegg_ko.tsv"
-# ))
-# emap.name <- read_tsv(here(
-#   genomedir,
-#   "results/emapper/processed/emapper_predicted-protein-name.tsv"
-# ))
+stopifnot(!any(duplicated(prost$gene_id)))
 
 ## clean up emapper symbols ===================================================
 emap_symbol_unique <- emap_symbol |>
@@ -192,19 +205,14 @@ emap <- full_join(emap_symbol_clean, emap_desc_clean, by = "gene_id") |>
 
 stopifnot(!any(duplicated(emap$gene_id)))
 
-## prost ======================================================================
-prost <- prost |>
-  select(gene_id, prost_symbol = gene_name, prost_description = protein_type) |>
-  distinct()
-
-stopifnot(!any(duplicated(prost$gene_id)))
-
 ###############################################################################
 # generate gene display names =================================================
 ###############################################################################
 add_source_prefix <- function(x, prefix) {
   ifelse(!is.na(x), glue("{prefix}{x}"), NA)
 }
+
+# NOTE: ncbi must be first in list to include all genes
 
 genes <- reduce(
   list(
@@ -215,6 +223,7 @@ genes <- reduce(
       ncbi_description = description,
       ncbi_gene_type = gene_type
     ),
+    orth,
     emap,
     prost
   ),
@@ -258,7 +267,7 @@ display_names <- genes |>
       emap_description
     )
   ) |>
-  select(gene_id, symbol, description, ncbi_gene_type)
+  select(gene_id, hog_label, symbol, description, ncbi_gene_type)
 
 # do all genes have some symbol or description?
 display_names |>
@@ -278,7 +287,21 @@ display_names <- select(display_names, -ncbi_gene_type)
 # merge symbol and description into a single name =============================
 display_names <- display_names |>
   mutate(
-    display_name = paste0(
+    display_hog = ifelse(
+      is.na(hog_label),
+      NA,
+      paste0(
+        "[",
+        gene_id,
+        "]; ",
+        hog_label,
+        "; ",
+        ifelse(is.na(description), "", description)
+      )
+    )
+  ) |>
+  mutate(
+    display_non_hog = paste0(
       "[",
       gene_id,
       "]",
@@ -286,13 +309,17 @@ display_names <- display_names |>
       ifelse(is.na(symbol), "", paste0(symbol, "; ")),
       ifelse(is.na(description), "", paste0(description))
     )
-  )
+  ) |>
+  mutate(display_name = coalesce(display_hog, display_non_hog))
 
-print(display_names, n = 500)
+
+slice_sample(display_names, n = 100) |>
+  pull(display_name)
 
 # write files =================================================================
 write_tsv(
-  display_names,
+  display_names |>
+    select(gene_id, hog_label, symbol, description, display_name),
   here(genomedir, "results/genes/gene-display-names.tsv")
 )
 
