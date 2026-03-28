@@ -52,6 +52,7 @@ rsconnect/
 **/data
 **/results
 **/docs
+**/scratch
 
 *.html
 *.pdf
