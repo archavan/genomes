@@ -19,6 +19,17 @@ library(Biostrings)
 library(R.utils)
 library(glue)
 library(here)
+library(conflicted)
+
+conflicts_prefer(
+  dplyr::filter,
+  dplyr::select,
+  dplyr::slice,
+  dplyr::rename,
+  dplyr::desc,
+  dplyr::collapse,
+  dplyr::count
+)
 
 source(here("hcr-probes/code/utils_probe-design.R"), local = TRUE)
 
@@ -201,14 +212,14 @@ select_transcript <- function(
 # step 2: design probes =======================================================
 ###############################################################################
 
-design_probe_candidates <- function(.sequence, .hairpin) {
+design_probe_candidates <- function(.sequence, .amplifier) {
   fl_probes <- make_fulllength_probes(.sequence)
 
   if (nrow(fl_probes) == 0) {
     stop("No valid probe candidates found for this transcript.")
   }
 
-  make_split_probes(fl_probes, .hairpin)
+  make_split_probes(fl_probes, .amplifier)
 }
 
 probes_to_fasta <- function(.split_probes) {
@@ -330,6 +341,9 @@ run_blast <- function(.query_fasta, .blast_db, .evalue = 100) {
 # step 4: MCH calculation and alignment display ===============================
 ###############################################################################
 
+# MCH (Max Continuous Homology): longest run of consecutive matching bases
+# between query and subject. Used to flag off-target probe hits — a high MCH
+# means the probe could cross-hybridize even if overall percent identity is low.
 calculate_mch <- function(.qseq, .sseq) {
   q_chars <- strsplit(.qseq, "")[[1]]
   s_chars <- strsplit(.sseq, "")[[1]]
@@ -350,140 +364,6 @@ calculate_mch_v <- function(.qseq, .sseq) {
   map2_int(.qseq, .sseq, calculate_mch)
 }
 
-format_alignment <- function(
-  .qseqid,
-  .sseqid,
-  .qseq,
-  .sseq,
-  .qstart,
-  .qend,
-  .sstart,
-  .send,
-  .pident,
-  .mch
-) {
-  q_chars <- strsplit(.qseq, "")[[1]]
-  s_chars <- strsplit(.sseq, "")[[1]]
-  midline <- map2_chr(q_chars, s_chars, \(q, s) {
-    if (toupper(q) == toupper(s)) "|" else " "
-  })
-
-  q_label <- sprintf("  Query  %-4d ", .qstart)
-  s_label <- sprintf("  Sbjct  %-4d ", .sstart)
-  m_pad <- strrep(" ", nchar(q_label))
-
-  n_match <- sum(toupper(q_chars) == toupper(s_chars))
-  identity_str <- glue("{n_match}/{length(q_chars)} ({round(.pident)}%)")
-
-  glue(
-    "{q_label}{.qseq}  {.qend}\n",
-    "{m_pad}{paste(midline, collapse = '')}\n",
-    "{s_label}{.sseq}  {.send}\n",
-    "  MCH: {.mch}   Identity: {identity_str}"
-  )
-}
-
-generate_alignment_report <- function(
-  .blast_annotated,
-  .split_probes,
-  .gene_id,
-  .mapping,
-  .mch_threshold
-) {
-  lines <- character()
-  lines <- c(
-    lines,
-    glue(
-      "BLAST Alignment Report for {.gene_id}\n",
-      "MCH threshold: {.mch_threshold}\n",
-      "{strrep('=', 70)}\n"
-    )
-  )
-
-  for (pid in sort(unique(.split_probes$pair_ID))) {
-    pair <- .split_probes |> filter(pair_ID == pid)
-    pair_start <- pair$start
-    pair_end <- pair$end
-
-    pair_annot <- .blast_annotated |>
-      filter(pair_ID == pid)
-
-    has_offtarget <- any(
-      pair_annot$off_target & pair_annot$mch >= .mch_threshold,
-      na.rm = TRUE
-    )
-    status <- if (has_offtarget) "FLAGGED" else "PASSED"
-
-    lines <- c(
-      lines,
-      glue(
-        "\n=== Probe pair {pid} (position {pair_start}-{pair_end}) -- {status} ===\n"
-      )
-    )
-
-    for (half in c(1, 2)) {
-      half_id <- if (half == 1) pair$odd_ID else pair$even_ID
-      half_hits <- .blast_annotated |>
-        filter(qseqid == half_id)
-
-      lines <- c(lines, glue("\n  Probe half {half} ({half_id}):\n"))
-
-      if (nrow(half_hits) == 0) {
-        lines <- c(lines, "    No BLAST hits.\n")
-        next
-      }
-
-      on_target_hits <- half_hits |> filter(!off_target)
-      off_target_hits <- half_hits |> filter(off_target)
-
-      if (nrow(on_target_hits) > 0) {
-        tids <- paste(unique(on_target_hits$sseqid), collapse = ", ")
-        lines <- c(lines, glue("    On-target hits: {tids}\n"))
-      }
-
-      if (nrow(off_target_hits) > 0) {
-        for (j in seq_len(nrow(off_target_hits))) {
-          hit <- off_target_hits[j, ]
-          flag <- if (hit$mch >= .mch_threshold) " *** FLAGGED ***" else ""
-          hit_gene <- .mapping |>
-            filter(transcript_id == hit$sseqid) |>
-            pull(gene_id) |>
-            unique() |>
-            paste(collapse = ", ")
-          if (length(hit_gene) == 0 || hit_gene == "") {
-            hit_gene <- "unknown"
-          }
-
-          lines <- c(
-            lines,
-            glue(
-              "\n    Off-target: {hit$sseqid} (gene: {hit_gene}){flag}\n"
-            )
-          )
-
-          aln <- format_alignment(
-            hit$qseqid,
-            hit$sseqid,
-            hit$qseq,
-            hit$sseq,
-            hit$qstart,
-            hit$qend,
-            hit$sstart,
-            hit$send,
-            hit$pident,
-            hit$mch
-          )
-          lines <- c(lines, glue("{aln}\n"))
-        }
-      } else {
-        lines <- c(lines, "    No off-target hits.\n")
-      }
-    }
-  }
-
-  paste(lines, collapse = "\n")
-}
-
 ###############################################################################
 # step 5: annotate and filter =================================================
 ###############################################################################
@@ -498,12 +378,18 @@ annotate_blast_results <- function(
     filter(gene_id == .env$.gene_id) |>
     pull(transcript_id)
 
+  # build transcript-to-gene lookup
+  tid_to_gene <- .mapping |>
+    distinct(transcript_id, gene_id) |>
+    dplyr::rename(hit_gene = gene_id)
+
   .blast_results |>
     mutate(sseqid = str_replace(sseqid, "\\s.*", "")) |>
+    left_join(tid_to_gene, by = c("sseqid" = "transcript_id")) |>
     mutate(
+      hit_gene = replace_na(hit_gene, "unknown"),
       mch = calculate_mch_v(qseq, sseq),
       on_target = sseqid %in% target_tids,
-      off_target = !on_target,
       pair_ID = as.integer(str_replace(qseqid, "\\.\\d+$", "")),
       half = as.integer(str_replace(qseqid, "^\\d+\\.", ""))
     )
@@ -523,14 +409,14 @@ filter_probes <- function(.blast_annotated, .split_probes, .mch_threshold) {
       half1_flagged = map_lgl(odd_ID, \(id) {
         any(
           .blast_annotated$qseqid == id &
-            .blast_annotated$off_target &
+            !.blast_annotated$on_target &
             .blast_annotated$mch >= .mch_threshold
         )
       }),
       half2_flagged = map_lgl(even_ID, \(id) {
         any(
           .blast_annotated$qseqid == id &
-            .blast_annotated$off_target &
+            !.blast_annotated$on_target &
             .blast_annotated$mch >= .mch_threshold
         )
       }),
@@ -547,7 +433,7 @@ filter_probes <- function(.blast_annotated, .split_probes, .mch_threshold) {
 #'
 #' @param .gene_id Character. Gene ID (e.g. "ncbi:118414000")
 #' @param .species Character. Species abbreviation ("bflo", "crob", "scla")
-#' @param .hairpin Character. HCR hairpin channel (e.g. "B1", "B2")
+#' @param .amplifier Character. HCR amplifier (e.g. "B1", "B2")
 #' @param .transcript_id Character or NULL. Manual transcript override
 #' @param .expression Data frame or NULL. Must have transcript_id + tpm columns
 #' @param .blast_db Character or NULL. Path to pre-built BLAST db
@@ -559,7 +445,7 @@ filter_probes <- function(.blast_annotated, .split_probes, .mch_threshold) {
 design_probes <- function(
   .gene_id,
   .species,
-  .hairpin = "B1",
+  .amplifier = "B1",
   .transcript_id = NULL,
   .expression = NULL,
   .blast_db = NULL,
@@ -599,7 +485,7 @@ design_probes <- function(
   # step 2: design probes -----------------------------------------------------
   message("Step 2: Designing probe candidates...")
 
-  split_probes <- design_probe_candidates(tx$sequence, .hairpin)
+  split_probes <- design_probe_candidates(tx$sequence, .amplifier)
   message(glue("  Generated {nrow(split_probes)} probe pairs"))
 
   write_tsv(split_probes, file.path(gene_dir, "03_probe-candidates.tsv"))
@@ -618,11 +504,10 @@ design_probes <- function(
   }
 
   blast_results <- run_blast(probe_fasta_path, .blast_db, .evalue = .evalue)
-  write_tsv(blast_results, file.path(gene_dir, "04_blast-results.tsv"))
   message(glue("  BLAST returned {nrow(blast_results)} hits"))
 
-  # step 4: annotate and generate alignment report -----------------------------
-  message("Step 4: Calculating MCH and generating alignment report...")
+  # step 4: annotate blast results ---------------------------------------------
+  message("Step 4: Annotating BLAST results...")
 
   blast_annotated <- annotate_blast_results(
     blast_results,
@@ -630,15 +515,7 @@ design_probes <- function(
     .species,
     mapping
   )
-
-  report <- generate_alignment_report(
-    blast_annotated,
-    split_probes,
-    .gene_id,
-    mapping,
-    .mch_threshold
-  )
-  writeLines(report, file.path(gene_dir, "04_blast-alignments.txt"))
+  write_tsv(blast_annotated, file.path(gene_dir, "04_blast-results.tsv"))
 
   # step 5: filter and output --------------------------------------------------
   message("Step 5: Filtering probes...")

@@ -169,8 +169,10 @@ make_split_probes <- function(.fl_probe_df, .probeset_choice) {
 
   full_join(probe_seqs, split_init_seqs_filtered, by = "probeset") |>
     separate(probe_seq, into = c("p1", "gap", "p2"), sep = c(25, -25)) |>
-    mutate(across(c("p1", "p2"), rev_comp_v, .names = "{.col}_rc")) |>
-    rename(probe_1_seq = p1_rc, probe_2_seq = p2_rc) |>
+    mutate(
+      probe_1_seq = rev_comp_v(p1),
+      probe_2_seq = rev_comp_v(p2)
+    ) |>
     mutate(
       odd_ID = paste(pair_ID, "1", sep = "."),
       even_ID = paste(pair_ID, "2", sep = ".")
