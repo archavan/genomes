@@ -45,7 +45,10 @@ get_species_config <- function(.species) {
         "GCF_000003815.2_Bfl_VNyyK_rna.fna.gz"
       ),
       mapping = here("species/bflo/VNyyK/results/genes/gid-tid_mapping.tsv"),
-      blastdb_dir = here("species/bflo/VNyyK/results/blastdb")
+      blastdb = here(
+        "species/bflo/VNyyK/results/blastdb",
+        "GCF_000003815.2_Bfl_VNyyK_rna", "db"
+      )
     ),
     crob = list(
       transcriptome = here(
@@ -53,7 +56,10 @@ get_species_config <- function(.species) {
         "KY21_transcripts_with-mito.fasta.gz"
       ),
       mapping = here("species/crob/KY21/results/genes/gid-tid_mapping.tsv"),
-      blastdb_dir = here("species/crob/KY21/results/blastdb")
+      blastdb = here(
+        "species/crob/KY21/results/blastdb",
+        "KY21_transcripts_with-mito", "db"
+      )
     ),
     scla = list(
       transcriptome = here(
@@ -63,7 +69,10 @@ get_species_config <- function(.species) {
       mapping = here(
         "species/scla/refseq_v1/results/genes/gid-tid_mapping.tsv"
       ),
-      blastdb_dir = here("species/scla/refseq_v1/results/blastdb")
+      blastdb = here(
+        "species/scla/refseq_v1/results/blastdb",
+        "GCF_013122585.1_ASM1312258v2_rna", "db"
+      )
     )
   )
 
@@ -252,47 +261,6 @@ probes_to_tidy <- function(.split_probes) {
 # step 3: BLAST ===============================================================
 ###############################################################################
 
-blast_db_path <- function(.config) {
-  db_name <- basename(.config$transcriptome) |>
-    str_remove("(\\.fasta|\\.fna|\\.fa)(\\.gz)?$")
-  here(.config$blastdb_dir, db_name, "db")
-}
-
-ensure_blast_db <- function(.config) {
-  db_path <- blast_db_path(.config)
-
-  if (file.exists(glue("{db_path}.ndb"))) {
-    message(glue("BLAST database already exists: {db_path}"))
-    return(db_path)
-  }
-
-  fs::dir_create(dirname(db_path))
-  fasta <- .config$transcriptome
-
-  message("Building BLAST database...")
-  if (grepl("\\.gz$", fasta)) {
-    db_title <- basename(fasta) |>
-      str_remove("(\\.fasta|\\.fna|\\.fa)(\\.gz)?$")
-    cmd <- glue(
-      "gunzip -c {shQuote(fasta)}",
-      " | makeblastdb -in - -dbtype nucl",
-      " -title {shQuote(db_title)} -out {shQuote(db_path)}"
-    )
-  } else {
-    cmd <- glue(
-      "makeblastdb -in {shQuote(fasta)} -dbtype nucl -out {shQuote(db_path)}"
-    )
-  }
-  result <- system(cmd, intern = TRUE)
-  if (!file.exists(glue("{db_path}.ndb"))) {
-    stop(glue(
-      "Failed to build BLAST database. Output:\n{paste(result, collapse = '\n')}"
-    ))
-  }
-  message(glue("BLAST database built: {db_path}"))
-  db_path
-}
-
 run_blast <- function(.query_fasta, .blast_db, .evalue = 100) {
   blast_fields <- c(
     "qseqid",
@@ -436,7 +404,6 @@ filter_probes <- function(.blast_annotated, .split_probes, .mch_threshold) {
 #' @param .amplifier Character. HCR amplifier (e.g. "B1", "B2")
 #' @param .transcript_id Character or NULL. Manual transcript override
 #' @param .expression Data frame or NULL. Must have transcript_id + tpm columns
-#' @param .blast_db Character or NULL. Path to pre-built BLAST db
 #' @param .evalue Numeric. BLAST e-value threshold. Deliberately permissive
 #'   (default 100) to catch weak cross-hybridization; MCH filtering handles
 #'   specificity downstream.
@@ -450,7 +417,6 @@ design_probes <- function(
   .amplifier = "B1",
   .transcript_id = NULL,
   .expression = NULL,
-  .blast_db = NULL,
   .evalue = 100,
   .mch_threshold = 18,
   .outdir = here("hcr-probes/results")
@@ -505,11 +471,7 @@ design_probes <- function(
   # step 3: BLAST -------------------------------------------------------------
   message("Step 3: Running BLAST specificity check...")
 
-  if (is.null(.blast_db)) {
-    .blast_db <- ensure_blast_db(config)
-  }
-
-  blast_results <- run_blast(probe_fasta_path, .blast_db, .evalue = .evalue)
+  blast_results <- run_blast(probe_fasta_path, config$blastdb, .evalue = .evalue)
   message(glue("  BLAST returned {nrow(blast_results)} hits"))
 
   # step 4: annotate blast results ---------------------------------------------
