@@ -235,13 +235,8 @@ select_transcript <- function(
 ###############################################################################
 
 design_probe_candidates <- function(.sequence, .amplifier) {
-  fl_probes <- make_fulllength_probes(.sequence)
-
-  if (nrow(fl_probes) == 0) {
-    stop("No valid probe candidates found for this transcript.")
-  }
-
-  make_split_probes(fl_probes, .amplifier)
+  make_fulllength_probes(.sequence) |>
+    make_split_probes(.amplifier)
 }
 
 probes_to_tidy <- function(.split_probes) {
