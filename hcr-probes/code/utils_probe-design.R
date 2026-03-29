@@ -24,83 +24,9 @@ library(Biostrings)
 # amplifier data ================================================================
 ###############################################################################
 
-split_init_seqs <- data.frame(
-  amplifier = c(
-    "B1",
-    "B2",
-    "B3",
-    "B4",
-    "B5",
-    "B7",
-    "B9",
-    "B10",
-    "B11",
-    "B13",
-    "B14",
-    "B15",
-    "B17"
-  ),
-  init_first_half = c(
-    "GAGGAGGGCAGCAAACGG",
-    "CCTCGTAAATCCTCATCA",
-    "GTCCCTGCCTCTATATCT",
-    "CCTCAACCTACCTCCAAC",
-    "CTCACTCCCAATCTCTAT",
-    "CTTCAACCTCCACCTACC",
-    "CACGTATCTACTCCACTC",
-    "CCTCAAGATACTCCTCTA",
-    "CGCTTAGATATCACTCCT",
-    "AGGTAACGCCTTCCTGCT",
-    "AATGTCAATAGCGAGCGA",
-    "CAGATTAACACACCACAA",
-    "CGATTGTTTGTTGTGGAC"
-  ),
-  init_second_half = c(
-    "GAAGAGTCTTCCTTTACG",
-    "ATCATCCAGTAAACCGCC",
-    "CCACTCAACTTTAACCCG",
-    "TCTCACCATATTCGCTTC",
-    "CTACCCTACAAATCCAAT",
-    "TCCAATCCCTACCCTCAC",
-    "TCAGCACACTCCCAACCC",
-    "CCTACTCGACTACCCTAG",
-    "ACGTCGACCACACTCATC",
-    "TTATGCTCAACATACAAC",
-    "CCCTATATTTCTGCACAG",
-    "GGTATCTCGAACACTCTC",
-    "GCATGCTAATCGGATGAG"
-  ),
-  first_spacer = c(
-    "aa",
-    "aa",
-    "tt",
-    "aa",
-    "aa",
-    "aa",
-    "ta",
-    "tt",
-    "at",
-    "ta",
-    "aa",
-    "tt",
-    "aa"
-  ),
-  second_spacer = c(
-    "ta",
-    "ta",
-    "tt",
-    "at",
-    "aa",
-    "at",
-    "at",
-    "at",
-    "ta",
-    "tt",
-    "at",
-    "aa",
-    "ta"
-  ),
-  stringsAsFactors = FALSE
+split_init_seqs <- read_tsv(
+  here("hcr-probes/data/hcr-v3-initiator-sequences.tsv"),
+  show_col_types = FALSE
 )
 
 ###############################################################################
