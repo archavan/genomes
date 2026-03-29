@@ -131,37 +131,24 @@ list_transcripts <- function(
 select_transcript <- function(
   .gene_id,
   .species,
+  .mapping,
+  .txome,
   .transcript_id = NULL,
-  .expression = NULL,
-  .mapping = NULL,
-  .txome = NULL
+  .expression = NULL
 ) {
-  if (is.null(.mapping) || is.null(.txome)) {
-    config <- get_species_config(.species)
+  if (is.null(.transcript_id) && is.null(.expression)) {
+    stop("Provide either .expression or .transcript_id.")
   }
-  if (is.null(.mapping)) {
-    .mapping <- read_tsv(config$mapping, show_col_types = FALSE)
-  }
-  if (is.null(.txome)) {
-    .txome <- readDNAStringSet(config$transcriptome)
-    names(.txome) <- str_replace(names(.txome), "\\s.*", "")
+  if (!.gene_id %in% .mapping$gene_id) {
+    stop(glue("Gene '{.gene_id}' not found in mapping for '{.species}'."))
   }
 
-  mapping <- .mapping
-  txome <- .txome
-
-  gene_txs <- mapping |>
+  gene_txs <- .mapping |>
     filter(gene_id == .env$.gene_id)
 
-  if (nrow(gene_txs) == 0) {
-    stop(glue(
-      "Gene '{.gene_id}' not found in mapping for species '{.species}'."
-    ))
-  }
-
   tx_lengths <- tibble(
-    transcript_id = names(txome),
-    length = width(txome)
+    transcript_id = names(.txome),
+    length = width(.txome)
   )
 
   selection <- gene_txs |>
@@ -170,18 +157,19 @@ select_transcript <- function(
   if (!is.null(.transcript_id)) {
     if (!.transcript_id %in% selection$transcript_id) {
       stop(glue(
-        "Transcript '{.transcript_id}' not found for gene '{.gene_id}'.\n",
-        "Available: {paste(selection$transcript_id, collapse = ', ')}"
+        "Transcript '{.transcript_id}' not found for gene '{.gene_id}'."
       ))
     }
+    chosen_tid <- .transcript_id
     selection <- selection |>
       mutate(
         tpm = NA_real_,
-        selected = transcript_id == .env$.transcript_id,
+        selected = transcript_id == chosen_tid,
         selected_by = "manual"
       )
-    chosen_tid <- .transcript_id
-  } else if (!is.null(.expression)) {
+  }
+
+  if (is.null(.transcript_id)) {
     stopifnot(all(c("transcript_id", "tpm") %in% names(.expression)))
     selection <- selection |>
       left_join(
@@ -193,28 +181,19 @@ select_transcript <- function(
       slice_max(order_by = tpm, n = 1, with_ties = FALSE) |>
       pull(transcript_id)
     if (length(chosen_tid) == 0) {
-      stop(glue(
-        "No expression data matched transcripts of gene '{.gene_id}'.\n",
-        "Available transcripts: {paste(selection$transcript_id, collapse = ', ')}"
-      ))
+      stop(glue("No expression data matched transcripts of '{.gene_id}'."))
     }
     selection <- selection |>
       mutate(
         selected = transcript_id == chosen_tid,
         selected_by = "tpm"
       )
-  } else {
-    stop(glue(
-      "Provide either an expression data frame or an explicit transcript_id."
-    ))
   }
-
-  chosen_seq <- txome[chosen_tid]
 
   list(
     selection_table = selection,
     transcript_id = chosen_tid,
-    sequence = chosen_seq
+    sequence = .txome[chosen_tid]
   )
 }
 
