@@ -71,7 +71,7 @@ get_non_overlapping <- function(.df) {
     }
   }
   rows <- nrow(results)
-  results$pair_ID <- seq_len(rows)
+  results$pair_id <- seq_len(rows)
   results
 }
 
@@ -103,25 +103,25 @@ make_split_probes <- function(.fl_probe_df, .amplifier_choice) {
   left_join(probe_seqs, split_init_seqs_filtered, by = "amplifier") |>
     separate(probe_seq, into = c("p1", "gap", "p2"), sep = c(25, -25)) |>
     mutate(
-      probe_1_seq = rev_comp_v(p1),
-      probe_2_seq = rev_comp_v(p2)
+      half1_seq = rev_comp_v(p1),
+      half2_seq = rev_comp_v(p2)
     ) |>
     mutate(
-      odd_ID = paste(pair_ID, "1", sep = "."),
-      even_ID = paste(pair_ID, "2", sep = ".")
+      half1_id = paste(pair_id, "1", sep = "."),
+      half2_id = paste(pair_id, "2", sep = ".")
     ) |>
     select(
       seqname,
       amplifier,
       start,
       end,
-      pair_ID,
-      odd_ID,
+      pair_id,
+      half1_id,
       init_first_half,
       first_spacer,
-      probe_1_seq,
-      even_ID,
-      probe_2_seq,
+      half1_seq,
+      half2_id,
+      half2_seq,
       second_spacer,
       init_second_half
     )
@@ -142,8 +142,8 @@ make_oPools_df <- function(
   .split_probe_df |>
     slice_head(n = .max_pairs) |>
     mutate(
-      seq_1 = glue("{init_first_half}{tolower(first_spacer)}{probe_1_seq}"),
-      seq_2 = glue("{probe_2_seq}{tolower(second_spacer)}{init_second_half}")
+      seq_1 = glue("{init_first_half}{tolower(first_spacer)}{half1_seq}"),
+      seq_2 = glue("{half2_seq}{tolower(second_spacer)}{init_second_half}")
     ) |>
     pivot_longer(cols = starts_with("seq_"), values_to = "Sequence") |>
     mutate(

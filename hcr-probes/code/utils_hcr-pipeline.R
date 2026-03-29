@@ -250,9 +250,9 @@ design_probe_candidates <- function(.sequence, .amplifier) {
 
 probes_to_tidy <- function(.split_probes) {
   half1 <- .split_probes |>
-    select(id = odd_ID, seq = probe_1_seq)
+    select(id = half1_id, seq = half1_seq)
   half2 <- .split_probes |>
-    select(id = even_ID, seq = probe_2_seq)
+    select(id = half2_id, seq = half2_seq)
   bind_rows(half1, half2) |>
     arrange(id)
 }
@@ -364,7 +364,7 @@ annotate_blast_results <- function(
       hit_gene = replace_na(hit_gene, "unknown"),
       mch = map2_int(qseq, sseq, calculate_mch),
       on_target = sseqid %in% target_tids,
-      pair_ID = as.integer(str_replace(qseqid, "\\.\\d+$", "")),
+      pair_id = as.integer(str_replace(qseqid, "\\.\\d+$", "")),
       half = as.integer(str_replace(qseqid, "^\\d+\\.", ""))
     )
 }
@@ -381,13 +381,13 @@ filter_probes <- function(.blast_annotated, .split_probes, .mch_threshold) {
     pull(qseqid)
 
   .split_probes |>
-    select(pair_ID, odd_ID, even_ID) |>
+    select(pair_id, half1_id, half2_id) |>
     mutate(
-      half1_on_target = odd_ID %in% on_target_ids,
-      half2_on_target = even_ID %in% on_target_ids,
+      half1_on_target = half1_id %in% on_target_ids,
+      half2_on_target = half2_id %in% on_target_ids,
       both_on_target = half1_on_target & half2_on_target,
-      half1_flagged = odd_ID %in% flagged_ids,
-      half2_flagged = even_ID %in% flagged_ids,
+      half1_flagged = half1_id %in% flagged_ids,
+      half2_flagged = half2_id %in% flagged_ids,
       any_flagged = half1_flagged | half2_flagged,
       passed = both_on_target & !any_flagged
     )
@@ -494,7 +494,7 @@ design_probes <- function(
     left_join(
       select(
         pair_summary,
-        pair_ID,
+        pair_id,
         half1_on_target,
         half2_on_target,
         both_on_target,
@@ -503,12 +503,12 @@ design_probes <- function(
         any_flagged,
         passed
       ),
-      by = "pair_ID"
+      by = "pair_id"
     )
   write_tsv(probes_annotated, here(gene_dir, "05_probes-annotated.tsv"))
 
   passing_probes <- split_probes |>
-    filter(pair_ID %in% pair_summary$pair_ID[pair_summary$passed])
+    filter(pair_id %in% pair_summary$pair_id[pair_summary$passed])
 
   if (nrow(passing_probes) > 0) {
     opools <- make_oPools_df(passing_probes, sanitize_gene_id(.gene_id), .species)
