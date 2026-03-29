@@ -16,8 +16,8 @@
 
 library(tidyverse)
 library(Biostrings)
-library(R.utils)
 library(glue)
+library(writexl)
 library(here)
 library(conflicted)
 
@@ -96,16 +96,28 @@ sanitize_gene_id <- function(.gene_id) {
 #'
 #' @param .gene_id Character. Gene ID (e.g. "ncbi:118414000")
 #' @param .species Character. Species abbreviation ("bflo", "crob", "scla")
+#' @param .mapping Optional pre-loaded mapping tibble
+#' @param .txome Optional pre-loaded DNAStringSet (names already cleaned)
 #'
 #' @return Tibble with transcript_id, length, and any other columns from mapping
-list_transcripts <- function(.gene_id, .species) {
-  config <- get_species_config(.species)
-  mapping <- read_tsv(config$mapping, show_col_types = FALSE)
-  txome <- readDNAStringSet(config$transcriptome)
+list_transcripts <- function(
+  .gene_id,
+  .species,
+  .mapping = NULL,
+  .txome = NULL
+) {
+  if (is.null(.mapping) || is.null(.txome)) {
+    config <- get_species_config(.species)
+  }
+  if (is.null(.mapping)) {
+    .mapping <- read_tsv(config$mapping, show_col_types = FALSE)
+  }
+  if (is.null(.txome)) {
+    .txome <- readDNAStringSet(config$transcriptome)
+    names(.txome) <- str_replace(names(.txome), "\\s.*", "")
+  }
 
-  names(txome) <- str_replace(names(txome), "\\s.*", "")
-
-  gene_txs <- mapping |>
+  gene_txs <- .mapping |>
     filter(gene_id == .env$.gene_id)
 
   if (nrow(gene_txs) == 0) {
@@ -115,8 +127,8 @@ list_transcripts <- function(.gene_id, .species) {
   }
 
   tx_lengths <- tibble(
-    transcript_id = names(txome),
-    length = width(txome)
+    transcript_id = names(.txome),
+    length = width(.txome)
   )
 
   gene_txs |>
@@ -132,12 +144,23 @@ select_transcript <- function(
   .gene_id,
   .species,
   .transcript_id = NULL,
-  .expression = NULL
+  .expression = NULL,
+  .mapping = NULL,
+  .txome = NULL
 ) {
-  config <- get_species_config(.species)
-  mapping <- read_tsv(config$mapping, show_col_types = FALSE)
-  txome <- readDNAStringSet(config$transcriptome)
-  names(txome) <- str_replace(names(txome), "\\s.*", "")
+  if (is.null(.mapping) || is.null(.txome)) {
+    config <- get_species_config(.species)
+  }
+  if (is.null(.mapping)) {
+    .mapping <- read_tsv(config$mapping, show_col_types = FALSE)
+  }
+  if (is.null(.txome)) {
+    .txome <- readDNAStringSet(config$transcriptome)
+    names(.txome) <- str_replace(names(.txome), "\\s.*", "")
+  }
+
+  mapping <- .mapping
+  txome <- .txome
 
   gene_txs <- mapping |>
     filter(gene_id == .env$.gene_id)
@@ -194,8 +217,7 @@ select_transcript <- function(
       )
   } else {
     stop(glue(
-      "Provide either an expression data frame or an explicit transcript_id.\n",
-      "Use list_transcripts('{.gene_id}', '{.species}') to see available transcripts."
+      "Provide either an expression data frame or an explicit transcript_id."
     ))
   }
 
@@ -222,7 +244,7 @@ design_probe_candidates <- function(.sequence, .amplifier) {
   make_split_probes(fl_probes, .amplifier)
 }
 
-probes_to_fasta <- function(.split_probes) {
+probes_to_tidy <- function(.split_probes) {
   half1 <- .split_probes |>
     select(id = odd_ID, seq = probe_1_seq)
   half2 <- .split_probes |>
@@ -235,34 +257,39 @@ probes_to_fasta <- function(.split_probes) {
 # step 3: BLAST ===============================================================
 ###############################################################################
 
-ensure_blast_db <- function(.config) {
-  db_path <- file.path(.config$blastdb_dir, "txome")
-  db_file <- glue("{db_path}.ndb")
+blast_db_path <- function(.config) {
+  db_name <- basename(.config$transcriptome) |>
+    str_remove("(\\.fasta|\\.fna|\\.fa)(\\.gz)?$")
+  here(.config$blastdb_dir, db_name, "db")
+}
 
-  if (file.exists(db_file)) {
+ensure_blast_db <- function(.config) {
+  db_path <- blast_db_path(.config)
+
+  if (file.exists(glue("{db_path}.ndb"))) {
     message(glue("BLAST database already exists: {db_path}"))
     return(db_path)
   }
 
-  fs::dir_create(.config$blastdb_dir)
-
-  # decompress if gzipped (makeblastdb doesn't read .gz)
-  txome_path <- .config$transcriptome
-  if (grepl("\\.gz$", txome_path)) {
-    decompressed <- file.path(.config$blastdb_dir, "txome_input.fasta")
-    if (!file.exists(decompressed)) {
-      message("Decompressing transcriptome for BLAST database...")
-      gunzip(txome_path, destname = decompressed, remove = FALSE)
-    }
-    txome_path <- decompressed
-  }
+  fs::dir_create(dirname(db_path))
+  fasta <- .config$transcriptome
 
   message("Building BLAST database...")
-  cmd <- glue(
-    "makeblastdb -in {shQuote(txome_path)} -dbtype nucl -out {shQuote(db_path)}"
-  )
+  if (grepl("\\.gz$", fasta)) {
+    db_title <- basename(fasta) |>
+      str_remove("(\\.fasta|\\.fna|\\.fa)(\\.gz)?$")
+    cmd <- glue(
+      "gunzip -c {shQuote(fasta)}",
+      " | makeblastdb -in - -dbtype nucl",
+      " -title {shQuote(db_title)} -out {shQuote(db_path)}"
+    )
+  } else {
+    cmd <- glue(
+      "makeblastdb -in {shQuote(fasta)} -dbtype nucl -out {shQuote(db_path)}"
+    )
+  }
   result <- system(cmd, intern = TRUE)
-  if (!file.exists(db_file)) {
+  if (!file.exists(glue("{db_path}.ndb"))) {
     stop(glue(
       "Failed to build BLAST database. Output:\n{paste(result, collapse = '\n')}"
     ))
@@ -272,44 +299,7 @@ ensure_blast_db <- function(.config) {
 }
 
 run_blast <- function(.query_fasta, .blast_db, .evalue = 100) {
-  outfmt_fields <- paste(
-    "qseqid",
-    "sseqid",
-    "pident",
-    "qcovhsp",
-    "length",
-    "mismatch",
-    "gapopen",
-    "qstart",
-    "qend",
-    "sstart",
-    "send",
-    "sstrand",
-    "evalue",
-    "bitscore",
-    "qseq",
-    "sseq",
-    collapse = " "
-  )
-
-  out_file <- tempfile(fileext = ".tsv")
-
-  cmd <- glue(
-    "blastn",
-    " -query {shQuote(.query_fasta)}",
-    " -db {shQuote(.blast_db)}",
-    " -outfmt {shQuote(paste('6', outfmt_fields))}",
-    " -task blastn-short",
-    " -evalue {.evalue}",
-    " -max_hsps 1",
-    " -max_target_seqs 100000",
-    " -strand both",
-    " -out {shQuote(out_file)}"
-  )
-
-  system(cmd)
-
-  col_names <- c(
+  blast_fields <- c(
     "qseqid",
     "sseqid",
     "pident",
@@ -328,13 +318,37 @@ run_blast <- function(.query_fasta, .blast_db, .evalue = 100) {
     "sseq"
   )
 
-  if (file.info(out_file)$size == 0) {
-    return(tibble(
-      !!!set_names(rep(list(character(0)), length(col_names)), col_names)
+  out_file <- tempfile(fileext = ".tsv")
+
+  cmd <- glue(
+    "blastn",
+    " -query {shQuote(.query_fasta)}",
+    " -db {shQuote(.blast_db)}",
+    " -outfmt {shQuote(paste('6', paste(blast_fields, collapse = ' ')))}",
+    " -task blastn-short",
+    " -evalue {.evalue}",
+    " -max_hsps 1",
+    " -max_target_seqs 100000",
+    " -strand both",
+    " -out {shQuote(out_file)}"
+  )
+
+  exit_code <- system(cmd)
+  if (exit_code != 0) {
+    stop(glue(
+      "BLAST exited with status {exit_code}. ",
+      "Check that blastn is installed and the database exists."
     ))
   }
 
-  read_tsv(out_file, col_names = col_names, show_col_types = FALSE)
+  # If no hits, return empty tibble with correct column names.
+  if (file.info(out_file)$size == 0) {
+    return(tibble(
+      !!!set_names(rep(list(character(0)), length(blast_fields)), blast_fields)
+    ))
+  }
+
+  read_tsv(out_file, col_names = blast_fields, show_col_types = FALSE)
 }
 
 ###############################################################################
@@ -360,9 +374,6 @@ calculate_mch <- function(.qseq, .sseq) {
   max_run
 }
 
-calculate_mch_v <- function(.qseq, .sseq) {
-  map2_int(.qseq, .sseq, calculate_mch)
-}
 
 ###############################################################################
 # step 5: annotate and filter =================================================
@@ -388,7 +399,7 @@ annotate_blast_results <- function(
     left_join(tid_to_gene, by = c("sseqid" = "transcript_id")) |>
     mutate(
       hit_gene = replace_na(hit_gene, "unknown"),
-      mch = calculate_mch_v(qseq, sseq),
+      mch = map2_int(qseq, sseq, calculate_mch),
       on_target = sseqid %in% target_tids,
       pair_ID = as.integer(str_replace(qseqid, "\\.\\d+$", "")),
       half = as.integer(str_replace(qseqid, "^\\d+\\.", ""))
@@ -396,30 +407,24 @@ annotate_blast_results <- function(
 }
 
 filter_probes <- function(.blast_annotated, .split_probes, .mch_threshold) {
+  on_target_ids <- .blast_annotated |>
+    filter(on_target) |>
+    distinct(qseqid) |>
+    pull(qseqid)
+
+  flagged_ids <- .blast_annotated |>
+    filter(!on_target, mch >= .mch_threshold) |>
+    distinct(qseqid) |>
+    pull(qseqid)
+
   .split_probes |>
     select(pair_ID, odd_ID, even_ID) |>
     mutate(
-      half1_on_target = map_lgl(odd_ID, \(id) {
-        any(.blast_annotated$qseqid == id & .blast_annotated$on_target)
-      }),
-      half2_on_target = map_lgl(even_ID, \(id) {
-        any(.blast_annotated$qseqid == id & .blast_annotated$on_target)
-      }),
+      half1_on_target = odd_ID %in% on_target_ids,
+      half2_on_target = even_ID %in% on_target_ids,
       both_on_target = half1_on_target & half2_on_target,
-      half1_flagged = map_lgl(odd_ID, \(id) {
-        any(
-          .blast_annotated$qseqid == id &
-            !.blast_annotated$on_target &
-            .blast_annotated$mch >= .mch_threshold
-        )
-      }),
-      half2_flagged = map_lgl(even_ID, \(id) {
-        any(
-          .blast_annotated$qseqid == id &
-            !.blast_annotated$on_target &
-            .blast_annotated$mch >= .mch_threshold
-        )
-      }),
+      half1_flagged = odd_ID %in% flagged_ids,
+      half2_flagged = even_ID %in% flagged_ids,
       any_flagged = half1_flagged | half2_flagged,
       passed = both_on_target & !any_flagged
     )
@@ -437,7 +442,9 @@ filter_probes <- function(.blast_annotated, .split_probes, .mch_threshold) {
 #' @param .transcript_id Character or NULL. Manual transcript override
 #' @param .expression Data frame or NULL. Must have transcript_id + tpm columns
 #' @param .blast_db Character or NULL. Path to pre-built BLAST db
-#' @param .evalue Numeric. BLAST e-value threshold (default 100, permissive)
+#' @param .evalue Numeric. BLAST e-value threshold. Deliberately permissive
+#'   (default 100) to catch weak cross-hybridization; MCH filtering handles
+#'   specificity downstream.
 #' @param .mch_threshold Integer. MCH threshold for off-target flagging
 #' @param .outdir Character. Output directory for results
 #'
@@ -450,14 +457,16 @@ design_probes <- function(
   .expression = NULL,
   .blast_db = NULL,
   .evalue = 100,
-  .mch_threshold = 14,
+  .mch_threshold = 18,
   .outdir = here("hcr-probes/results")
 ) {
   config <- get_species_config(.species)
-  gene_dir <- file.path(.outdir, sanitize_gene_id(.gene_id))
+  gene_dir <- here(.outdir, sanitize_gene_id(.gene_id))
   fs::dir_create(gene_dir)
 
   mapping <- read_tsv(config$mapping, show_col_types = FALSE)
+  txome <- readDNAStringSet(config$transcriptome)
+  names(txome) <- str_replace(names(txome), "\\s.*", "")
 
   # step 1: select transcript -------------------------------------------------
   message(glue("Step 1: Selecting transcript for {.gene_id}..."))
@@ -466,16 +475,18 @@ design_probes <- function(
     .gene_id = .gene_id,
     .species = .species,
     .transcript_id = .transcript_id,
-    .expression = .expression
+    .expression = .expression,
+    .mapping = mapping,
+    .txome = txome
   )
 
   write_tsv(
     tx$selection_table,
-    file.path(gene_dir, "01_transcript-selection.tsv")
+    here(gene_dir, "01_transcript-selection.tsv")
   )
   writeXStringSet(
     tx$sequence,
-    file.path(gene_dir, "02_selected-transcript.fasta")
+    here(gene_dir, "02_selected-transcript.fasta")
   )
 
   message(glue(
@@ -488,12 +499,12 @@ design_probes <- function(
   split_probes <- design_probe_candidates(tx$sequence, .amplifier)
   message(glue("  Generated {nrow(split_probes)} probe pairs"))
 
-  write_tsv(split_probes, file.path(gene_dir, "03_probe-candidates.tsv"))
+  write_tsv(split_probes, here(gene_dir, "03_probe-candidates.tsv"))
 
-  probe_fasta_data <- probes_to_fasta(split_probes)
+  probe_fasta_data <- probes_to_tidy(split_probes)
   probe_seqs <- DNAStringSet(probe_fasta_data$seq)
   names(probe_seqs) <- probe_fasta_data$id
-  probe_fasta_path <- file.path(gene_dir, "03_probe-candidates.fasta")
+  probe_fasta_path <- here(gene_dir, "03_probe-candidates.fasta")
   writeXStringSet(probe_seqs, probe_fasta_path)
 
   # step 3: BLAST -------------------------------------------------------------
@@ -515,7 +526,7 @@ design_probes <- function(
     .species,
     mapping
   )
-  write_tsv(blast_annotated, file.path(gene_dir, "04_blast-results.tsv"))
+  write_tsv(blast_annotated, here(gene_dir, "04_blast-results.tsv"))
 
   # step 5: filter and output --------------------------------------------------
   message("Step 5: Filtering probes...")
@@ -537,18 +548,20 @@ design_probes <- function(
       ),
       by = "pair_ID"
     )
-  write_tsv(probes_annotated, file.path(gene_dir, "05_probes-annotated.tsv"))
+  write_tsv(probes_annotated, here(gene_dir, "05_probes-annotated.tsv"))
 
   passing_probes <- split_probes |>
     filter(pair_ID %in% pair_summary$pair_ID[pair_summary$passed])
 
   if (nrow(passing_probes) > 0) {
-    opools <- make_oPools_df(passing_probes)
-    write_tsv(opools, file.path(gene_dir, "06_probes-passing.tsv"))
+    opools <- make_oPools_df(passing_probes, sanitize_gene_id(.gene_id), .species)
+    write_tsv(opools, here(gene_dir, "06_probes-passing.tsv"))
+    opools_xlsx <- opools |> rename(`Pool name` = Pool_name)
+    write_xlsx(opools_xlsx, here(gene_dir, "06_probes-passing.xlsx"))
   } else {
     write_tsv(
       tibble(Pool_name = character(), Sequence = character()),
-      file.path(gene_dir, "06_probes-passing.tsv")
+      here(gene_dir, "06_probes-passing.tsv")
     )
   }
 
@@ -576,4 +589,39 @@ design_probes <- function(
     n_total = n_total,
     outdir = gene_dir
   ))
+}
+
+###############################################################################
+# combine for ordering ========================================================
+###############################################################################
+
+#' Combine passing probes from multiple genes into a single IDT oPools xlsx
+#'
+#' @param .gene_ids Character vector. Gene IDs that have already been run
+#'   through design_probes()
+#' @param .results_dir Character. Directory containing per-gene results
+#' @param .out_path Character. File path for the combined xlsx
+#'
+#' @return Writes xlsx and returns combined tibble invisibly
+combine_opools <- function(
+  .gene_ids,
+  .results_dir = here("hcr-probes/results"),
+  .out_path = here("hcr-probes/results/oPools-order.xlsx")
+) {
+  combined <- map(.gene_ids, \(gid) {
+    gene_dir <- here(.results_dir, sanitize_gene_id(gid))
+    tsv_path <- here(gene_dir, "06_probes-passing.tsv")
+    df <- read_tsv(tsv_path, show_col_types = FALSE)
+    if (nrow(df) == 0) {
+      stop(glue("No passing probes for {gid}."))
+    }
+    df
+  }) |>
+    bind_rows()
+
+  fs::dir_create(dirname(.out_path))
+  combined_xlsx <- combined |> rename(`Pool name` = Pool_name)
+  write_xlsx(combined_xlsx, .out_path)
+
+  invisible(combined)
 }
