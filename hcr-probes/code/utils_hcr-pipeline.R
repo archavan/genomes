@@ -38,52 +38,31 @@ source(here("hcr-probes/code/utils_probe-design.R"), local = TRUE)
 ###############################################################################
 
 get_species_config <- function(.species) {
+  bflo_dir <- here("species/bflo/VNyyK")
+  crob_dir <- here("species/crob/KY21")
+  scla_dir <- here("species/scla/refseq_v1")
+
+  # fmt: skip
   configs <- list(
     bflo = list(
-      transcriptome = here(
-        "species/bflo/VNyyK/data/refseq",
-        "GCF_000003815.2_Bfl_VNyyK_rna.fna.gz"
-      ),
-      mapping = here("species/bflo/VNyyK/results/genes/gid-tid_mapping.tsv"),
-      blastdb = here(
-        "species/bflo/VNyyK/results/blastdb",
-        "GCF_000003815.2_Bfl_VNyyK_rna", "db"
-      )
+      transcriptome = here(bflo_dir, "data/refseq/GCF_000003815.2_Bfl_VNyyK_rna.fna.gz"),
+      mapping = here(bflo_dir, "results/genes/gid-tid_mapping.tsv"),
+      blastdb = here(bflo_dir, "results/blastdb/GCF_000003815.2_Bfl_VNyyK_rna/db")
     ),
     crob = list(
-      transcriptome = here(
-        "species/crob/KY21/results/fasta",
-        "KY21_transcripts_with-mito.fasta.gz"
-      ),
-      mapping = here("species/crob/KY21/results/genes/gid-tid_mapping.tsv"),
-      blastdb = here(
-        "species/crob/KY21/results/blastdb",
-        "KY21_transcripts_with-mito", "db"
-      )
+      transcriptome = here(crob_dir, "results/fasta/KY21_transcripts_with-mito.fasta.gz"),
+      mapping = here(crob_dir, "results/genes/gid-tid_mapping.tsv"),
+      blastdb = here(crob_dir, "results/blastdb/KY21_transcripts_with-mito/db")
     ),
     scla = list(
-      transcriptome = here(
-        "species/scla/refseq_v1/data/refseq",
-        "GCF_013122585.1_ASM1312258v2_rna.fna.gz"
-      ),
-      mapping = here(
-        "species/scla/refseq_v1/results/genes/gid-tid_mapping.tsv"
-      ),
-      blastdb = here(
-        "species/scla/refseq_v1/results/blastdb",
-        "GCF_013122585.1_ASM1312258v2_rna", "db"
-      )
+      transcriptome = here(scla_dir, "data/refseq/GCF_013122585.1_ASM1312258v2_rna.fna.gz"),
+      mapping = here(scla_dir, "results/genes/gid-tid_mapping.tsv"),
+      blastdb = here(scla_dir, "results/blastdb/GCF_013122585.1_ASM1312258v2_rna/db")
     )
   )
 
   if (!.species %in% names(configs)) {
-    stop(
-      "Unknown species: '",
-      .species,
-      "'. ",
-      "Available: ",
-      paste(names(configs), collapse = ", ")
-    )
+    stop(glue("Species '{.species}' not recognized."))
   }
 
   configs[[.species]]
