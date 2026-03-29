@@ -273,13 +273,13 @@ run_blast <- function(.query_fasta, .blast_db, .evalue = 100) {
 }
 
 ###############################################################################
-# step 4: MCH calculation and alignment display ===============================
+# step 4: LCM calculation and alignment display ===============================
 ###############################################################################
 
-# MCH (Max Continuous Homology): longest run of consecutive matching bases
-# between query and subject. Used to flag off-target probe hits — a high MCH
+# LCM (Longest Contiguous Match): longest run of consecutive matching bases
+# between query and subject. Used to flag off-target probe hits — a high LCM
 # means the probe could cross-hybridize even if overall percent identity is low.
-calculate_mch <- function(.qseq, .sseq) {
+calculate_lcm <- function(.qseq, .sseq) {
   q_chars <- strsplit(.qseq, "")[[1]]
   s_chars <- strsplit(.sseq, "")[[1]]
   max_run <- 0L
@@ -320,21 +320,21 @@ annotate_blast_results <- function(
     left_join(tid_to_gene, by = c("sseqid" = "transcript_id")) |>
     mutate(
       hit_gene = replace_na(hit_gene, "unknown"),
-      mch = map2_int(qseq, sseq, calculate_mch),
+      lcm = map2_int(qseq, sseq, calculate_lcm),
       on_target = sseqid %in% target_tids,
       pair_id = as.integer(str_replace(qseqid, "\\.\\d+$", "")),
       half = as.integer(str_replace(qseqid, "^\\d+\\.", ""))
     )
 }
 
-filter_probes <- function(.blast_annotated, .split_probes, .mch_threshold) {
+filter_probes <- function(.blast_annotated, .split_probes, .lcm_threshold) {
   on_target_ids <- .blast_annotated |>
     filter(on_target) |>
     distinct(qseqid) |>
     pull(qseqid)
 
   flagged_ids <- .blast_annotated |>
-    filter(!on_target, mch >= .mch_threshold) |>
+    filter(!on_target, lcm >= .lcm_threshold) |>
     distinct(qseqid) |>
     pull(qseqid)
 
@@ -363,9 +363,9 @@ filter_probes <- function(.blast_annotated, .split_probes, .mch_threshold) {
 #' @param .transcript_id Character or NULL. Manual transcript override
 #' @param .expression Data frame or NULL. Must have transcript_id + tpm columns
 #' @param .evalue Numeric. BLAST e-value threshold. Deliberately permissive
-#'   (default 100) to catch weak cross-hybridization; MCH filtering handles
+#'   (default 100) to catch weak cross-hybridization; LCM filtering handles
 #'   specificity downstream.
-#' @param .mch_threshold Integer. MCH threshold for off-target flagging
+#' @param .lcm_threshold Integer. LCM threshold for off-target flagging
 #' @param .outdir Character. Output directory for results
 #'
 #' @return Invisible list with all intermediate results
@@ -376,7 +376,7 @@ design_probes <- function(
   .transcript_id = NULL,
   .expression = NULL,
   .evalue = 100,
-  .mch_threshold = 18,
+  .lcm_threshold = 18,
   .outdir = here("hcr-probes/results")
 ) {
   config <- get_species_config(.species)
@@ -429,7 +429,11 @@ design_probes <- function(
   # step 3: BLAST -------------------------------------------------------------
   message("Step 3: Running BLAST specificity check...")
 
-  blast_results <- run_blast(probe_fasta_path, config$blastdb, .evalue = .evalue)
+  blast_results <- run_blast(
+    probe_fasta_path,
+    config$blastdb,
+    .evalue = .evalue
+  )
   message(glue("  BLAST returned {nrow(blast_results)} hits"))
 
   # step 4: annotate blast results ---------------------------------------------
@@ -446,7 +450,7 @@ design_probes <- function(
   # step 5: filter and output --------------------------------------------------
   message("Step 5: Filtering probes...")
 
-  pair_summary <- filter_probes(blast_annotated, split_probes, .mch_threshold)
+  pair_summary <- filter_probes(blast_annotated, split_probes, .lcm_threshold)
 
   probes_annotated <- split_probes |>
     left_join(
@@ -469,7 +473,11 @@ design_probes <- function(
     filter(pair_id %in% pair_summary$pair_id[pair_summary$passed])
 
   if (nrow(passing_probes) > 0) {
-    opools <- make_oPools_df(passing_probes, sanitize_gene_id(.gene_id), .species)
+    opools <- make_oPools_df(
+      passing_probes,
+      sanitize_gene_id(.gene_id),
+      .species
+    )
     write_tsv(opools, here(gene_dir, "06_probes-passing.tsv"))
     opools_xlsx <- opools |> rename(`Pool name` = Pool_name)
     write_xlsx(opools_xlsx, here(gene_dir, "06_probes-passing.xlsx"))
