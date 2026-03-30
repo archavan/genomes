@@ -1,9 +1,1 @@
 species	gene_id	symbol	marker_of	amplifier	hcr_version	supplier	order_id	order_date	why_ordered	stain_date	stain_result	notes
-crob	ncbi:494399	cortical granule lectin-like	kupffer-like	B1	v3	MI	MUV7DTCRNA	2023-12-19	Best kupffer-like candidate (cluster 37); FIBCD1 had off-targets in cluster 9		pending	tested but outcome not recorded
-crob	ncbi:100187393	PRSS2	exocrine	B1	v3	MI	MUV7DTCRNA	2023-12-19	Top exocrine marker (cluster 17); off-targets not expressed		success	
-crob	ncbi:100183372	FABP1	absorptive / hepatocyte-like	B2	v3	MI	MUV7DTCRNA	2023-12-19	Top marker for hepatocyte-like clusters (2, 13, 8)		partial	"maybe" in original notes
-crob	ncbi:100175492	adhesion GPCR D1-like	endothelial	B3	v3	MI	MUV7DTCRNA	2023-12-19	Top endothelial marker (cluster 24)		pending	tested but outcome not recorded
-bflo	ncbi:118412380	dickkopf-related protein 4-like	kupffer		v3	MI	ZOYDSZY5M6	2023-06-27	Fewest off-targets among kupffer candidates; all off-target genes specific to cluster 18			
-bflo	ncbi:118403996	chymotrypsin A-like (CTRB)	exocrine		v3	MI	ZOYDSZY5M6	2023-06-27	Best exocrine candidate; specific probes designable	2023-09-12	fail	No signal; suspected probe strand or expression location issue; doubled probe concentration as troubleshooting
-bflo	ncbi:118413316	CR2	hepatocyte		v3	MI	ZOYDSZY5M6	2023-06-27	Hepatocyte marker (clusters 1, 8, 25); specific probes designable			
-bflo	ncbi:118431188	uncharacterized	hepatocyte		v3	MI	ZOYDSZY5M6	2023-06-27	Hepatocyte marker (clusters 1, 8, 25); specific probes designable			
