@@ -408,6 +408,12 @@ design_probes <- function(
     here(gene_dir, "02_selected-transcript.fasta")
   )
 
+  # for pasting into Molecular Instruments order form
+  write_lines(
+    as.character(tx$sequence[[1]]) |> str_replace_all("T", "U"),
+    here(gene_dir, "02_selected-transcript-rna.txt")
+  )
+
   message(glue(
     "  Selected transcript: {tx$transcript_id} (length: {width(tx$sequence)} nt)"
   ))
