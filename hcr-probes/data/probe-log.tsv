@@ -1,1 +1,16 @@
-species	gene_id	symbol	marker_of	amplifier	hcr_version	supplier	order_id	order_date	why_ordered	stain_date	stain_result	notes
+probe_id	species	gene_id	symbol	marker_of	amplifier	hcr_version	supplier	order_id	order_date	why_ordered	stain_date	stain_result	notes
+	bflo	ncbi:118414344	m3b2_Spi(1,b,c)	31	X2	pro	MI	CSKGVX3FWJ	2026-04-05	PU.1 ortholog			
+	bflo	ncbi:118410441	[p] NTF3	5,21,26,29	X2	pro	MI	CSKGVX3FWJ	2026-04-05	stromal clusters, gut			
+	bflo	ncbi:118418336	[p] Spiderine-2a	13	X2	pro	MI	CSKGVX3FWJ	2026-04-05	stromal clusters, mdiv			
+	bflo	ncbi:118423395	m3b1_Cnn(1-3)	17	X2	pro	MI	CSKGVX3FWJ	2026-04-05	stromal clusters, mdiv			
+	bflo	ncbi:118426472	[e] MMP15	33	X2	pro	MI	CSKGVX3FWJ	2026-04-05	coelomocyte-like			
+	bflo	ncbi:118414386	[e] WDR6	3,22		pro	MI			atrial			
+	crob	KY21.Chr7.743	m3c1_Inhca.Ltf.Trf	6,19	X2	pro	MI	RRHFW96JWF	2026-04-05	stromal			
+	crob	KY21.Chr12.747	[h] AXIN2	28,36	X2	pro	MI	RRHFW96JWF	2026-04-05	stromal			
+	crob	KY21.Chr1.567	m2c1_Col9a(1,3)	35	X2	pro	MI	RRHFW96JWF	2026-04-05	stromal			
+	crob	KY21.Chr6.542	m3c1_Spi(1,b,c)	6,34,15	X2	pro	MI	RRHFW96JWF	2026-04-05	Pu.1 ortholog			
+	crob	KY21.Chr12.262	[h] UTY	2,4,31		pro	MI			enteric phagocyte			
+	crob	KY21.Chr8.628	[h] TFPI	8,21		pro	MI			hepatocyte-like			
+	crob	KY21.Chr11.222	[h] EVA1C	11,20	X2	pro	MI	RRHFW96JWF	2026-04-05	immune			
+	crob	KY21.Chr7.840	m2c17_Fcn(a,b)	26	X2	pro	MI	RRHFW96JWF	2026-04-05	immune			
+	crob	KY21.Chr13.78	[h] THSD7A	34	X2	pro	MI	RRHFW96JWF	2026-04-05	immune			
