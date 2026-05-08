@@ -106,3 +106,14 @@ design_probes(
   .expression = tpm,
   .outdir = here(resdir, "atrial")
 )
+
+## Kupffer-like ===============================================================
+
+# cluster_v1: 18
+design_probes(
+  .gene_id = "ncbi:118412380",
+  .species = "bflo",
+  .amplifier = "B1",
+  .expression = tpm,
+  .outdir = here(resdir, "kupffer-like")
+)
