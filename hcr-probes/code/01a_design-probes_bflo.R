@@ -75,6 +75,15 @@ design_probes(
 design_probes(
   .gene_id = "ncbi:118426472",
   .species = "bflo",
+  .amplifier = "B2",
+  .expression = tpm,
+  .outdir = here(resdir, "likely-coelomocytes_bf33")
+)
+
+# cluster_v1: 33
+design_probes(
+  .gene_id = "ncbi:118414102",
+  .species = "bflo",
   .amplifier = "B1",
   .expression = tpm,
   .outdir = here(resdir, "likely-coelomocytes_bf33")
