@@ -1,4 +1,7 @@
 probe_id	species	gene_id	symbol	marker_of	amplifier	hcr_version	supplier	order_id	order_date	why_ordered	stain_date	stain_result	notes
+	crob	KY21.Chr7.743	m3c1_Inhca.Ltf.Trf	6,19	B1	v3	IDT	QTE-822197	2026-05-17	stromal			
+	crob	KY21.Chr11.222	[h] EVA1C	11,20	B2	v3	IDT	QTE-822197	2026-05-17	immune			
+	crob	KY21.Chr12.538	[h] MEPCE	11,20	B2	v3	IDT	QTE-822197	2026-05-17	immune			
 	bflo	ncbi:118410441	[p] NTF3	5,21,26,29	B1	v3	IDT	23575835	2026-05-14	stromal clusters, gut			
 	bflo	ncbi:118426472	[e] MMP15	33	B2	v3	IDT	23575835	2026-05-14	coelomocyte-like			
 	bflo	ncbi:118414102	[e] CPE	33	B1	v3	IDT	23575835	2026-05-14	coelomocyte-like			

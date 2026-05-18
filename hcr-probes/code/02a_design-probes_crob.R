@@ -149,7 +149,7 @@ walk(
   ~ design_probes(
     .gene_id = .x,
     .species = "crob",
-    .amplifier = "B1",
+    .amplifier = "B2",
     .expression = tpm,
     .evalue = 20,
     .outdir = here(resdir, "immune_cr11.15.20")
