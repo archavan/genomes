@@ -1,4 +1,8 @@
 probe_id	species	gene_id	symbol	marker_of	amplifier	hcr_version	supplier	order_id	order_date	why_ordered	stain_date	stain_result	notes
+	bflo	ncbi:118410441	[p] NTF3	5,21,26,29	B1	v3	IDT	23575835	2026-05-14	stromal clusters, gut			
+	bflo	ncbi:118426472	[e] MMP15	33	B2	v3	IDT	23575835	2026-05-14	coelomocyte-like			
+	bflo	ncbi:118414102	[e] CPE	33	B1	v3	IDT	23575835	2026-05-14	coelomocyte-like			
+	bflo	ncbi:118414160	m2b1_Igfbp(7,l1)	5,21,26,29	B2	v3	IDT	23575835	2026-05-14	stromal clusters, gut			
 	bflo	ncbi:118412380	dickkopf-related protein 4-like	18	X2	pro	MI	SGFK81UC6V	2026-05-08	Kupffer-like cluster			
 	bflo	ncbi:118414344	m3b2_Spi(1,b,c)	31	X2	pro	MI	CSKGVX3FWJ	2026-04-05	PU.1 ortholog			
 	bflo	ncbi:118410441	[p] NTF3	5,21,26,29	X2	pro	MI	CSKGVX3FWJ	2026-04-05	stromal clusters, gut			
