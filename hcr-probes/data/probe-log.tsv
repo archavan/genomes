@@ -1,4 +1,15 @@
 probe_id	species	gene_id	symbol	marker_of	amplifier	hcr_version	supplier	order_id	order_date	why_ordered	stain_date	stain_result	notes
+	crob	KY21.Chr12.262	[h] UTY	2,4,31	B1	v3	IDT	QTE-836982W	2026-06-24	enteric phagocytes?			
+	crob	KY21.Chr8.628	[h] TFPI	8,21	B1	v3	IDT	QTE-836982W	2026-06-24	hepatocyte-like			
+	crob	KY21.Chr2.1138	m1c2_Npc2	12,13	B2	v3	IDT	QTE-836982W	2026-06-24	absorptive			
+	crob	KY21.Chr1.2158	[h] SEMA5A	5,29	B3	v3	IDT	QTE-836982W	2026-06-24	enteric phagocytes?			
+	crob	KY21.Chr7.852	[h] MON1A	23	B3	v3	IDT	QTE-836982W	2026-06-24	ciliated epithelial?			
+	crob	KY21.Chr2.1024	m1c1_Slc10a7	11,25	B4	v3	IDT	QTE-836982W	2026-06-24	immune/stromal?			
+	crob	KY21.Chr8.932	[h] VCAN	10,17	B1	v3	IDT	QTE-836982W	2026-06-24	immune/pigmented?			
+	crob	KY21.Chr1.1090	[h] SHANK2	7	B2	v3	IDT	QTE-836982W	2026-06-24	immune?			
+	crob	KY21.Chr1.1264	[h] SNAP47	18	B3	v3	IDT	QTE-836982W	2026-06-24	immune?			
+	crob	KY21.Chr11.714	m4c14_C6.C8a.C8b.C9	22	B4	v3	IDT	QTE-836982W	2026-06-24	immune?			
+	crob	KY21.Chr8.1350	[h] TECTA	30	B3	v3	IDT	QTE-836982W	2026-06-24	goblet?			
 	crob	KY21.Chr7.743	m3c1_Inhca.Ltf.Trf	6,19	B1	v3	IDT	QTE-822197	2026-05-17	stromal			
 	crob	KY21.Chr11.222	[h] EVA1C	11,20	B2	v3	IDT	QTE-822197	2026-05-17	immune			
 	crob	KY21.Chr12.538	[h] MEPCE	11,20	B2	v3	IDT	QTE-822197	2026-05-17	immune			
@@ -12,13 +23,10 @@ probe_id	species	gene_id	symbol	marker_of	amplifier	hcr_version	supplier	order_i
 	bflo	ncbi:118418336	[p] Spiderine-2a	13	X2	pro	MI	CSKGVX3FWJ	2026-04-05	stromal clusters, mdiv			
 	bflo	ncbi:118423395	m3b1_Cnn(1-3)	17	X2	pro	MI	CSKGVX3FWJ	2026-04-05	stromal clusters, mdiv			
 	bflo	ncbi:118426472	[e] MMP15	33	X2	pro	MI	CSKGVX3FWJ	2026-04-05	coelomocyte-like			
-	bflo	ncbi:118414386	[e] WDR6	3,22		pro	MI			atrial			
 	crob	KY21.Chr7.743	m3c1_Inhca.Ltf.Trf	6,19	X2	pro	MI	RRHFW96JWF	2026-04-05	stromal			
 	crob	KY21.Chr12.747	[h] AXIN2	28,36	X2	pro	MI	RRHFW96JWF	2026-04-05	stromal			
 	crob	KY21.Chr1.567	m2c1_Col9a(1,3)	35	X2	pro	MI	RRHFW96JWF	2026-04-05	stromal			
 	crob	KY21.Chr6.542	m3c1_Spi(1,b,c)	6,34,15	X2	pro	MI	RRHFW96JWF	2026-04-05	Pu.1 ortholog			
-	crob	KY21.Chr12.262	[h] UTY	2,4,31		pro	MI			enteric phagocyte			
-	crob	KY21.Chr8.628	[h] TFPI	8,21		pro	MI			hepatocyte-like			
 	crob	KY21.Chr11.222	[h] EVA1C	11,20	X2	pro	MI	RRHFW96JWF	2026-04-05	immune			
 	crob	KY21.Chr7.840	m2c17_Fcn(a,b)	26	X2	pro	MI	RRHFW96JWF	2026-04-05	immune			
 	crob	KY21.Chr13.78	[h] THSD7A	34	X2	pro	MI	RRHFW96JWF	2026-04-05	immune			

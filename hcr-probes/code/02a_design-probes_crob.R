@@ -81,7 +81,7 @@ walk(
 
 ## clusters 10 and 17 =========================================================
 walk(
-  c("KY21.Chr13.184", "KY21.Chr10.33"),
+  c("KY21.Chr13.184", "KY21.Chr10.33", "KY21.Chr8.932"),
   ~ design_probes(
     .gene_id = .x,
     .species = "crob",
@@ -98,14 +98,14 @@ walk(
   ~ design_probes(
     .gene_id = .x,
     .species = "crob",
-    .amplifier = "B1",
+    .amplifier = "B3",
     .expression = tpm,
     .evalue = 20,
     .outdir = here(resdir, "cr5.29")
   )
 )
 
-## clusters 8 and 21 ===========================================================
+## clusters 8 and 21 (hepatocyte-like) ========================================
 walk(
   c("KY21.Chr8.628"),
   ~ design_probes(
@@ -118,7 +118,95 @@ walk(
   )
 )
 
+## clusters 12 and 13 (absorptive) ============================================
+
+walk(
+  c("KY21.Chr2.1138"),
+  ~ design_probes(
+    .gene_id = .x,
+    .species = "crob",
+    .amplifier = "B2",
+    .expression = tpm,
+    .evalue = 20,
+    .outdir = here(resdir, "cr12.13")
+  )
+)
+
+## cluster 23 =================================================================
+walk(
+  c("KY21.Chr1.1392", "KY21.Chr7.852", "KY21.Chr7.426"),
+  ~ design_probes(
+    .gene_id = .x,
+    .species = "crob",
+    .amplifier = "B3",
+    .expression = tpm,
+    .evalue = 20,
+    .outdir = here(resdir, "cr23")
+  )
+)
+
+## cluster 30 =================================================================
+walk(
+  c("KY21.Chr8.1350", "KY21.Chr13.294"),
+  ~ design_probes(
+    .gene_id = .x,
+    .species = "crob",
+    .amplifier = "B3",
+    .expression = tpm,
+    .evalue = 20,
+    .outdir = here(resdir, "cr30")
+  )
+)
+
 ## immune clusters ============================================================
+
+walk(
+  c("KY21.Chr4.869", "KY21.Chr2.1024"),
+  ~ design_probes(
+    .gene_id = .x,
+    .species = "crob",
+    .amplifier = "B4",
+    .expression = tpm,
+    .evalue = 20,
+    .outdir = here(resdir, "immune_cr11.25")
+  )
+)
+
+walk(
+  c("KY21.Chr1.1090"),
+  ~ design_probes(
+    .gene_id = .x,
+    .species = "crob",
+    .amplifier = "B2",
+    .expression = tpm,
+    .evalue = 20,
+    .outdir = here(resdir, "immune_cr7")
+  )
+)
+
+walk(
+  c("KY21.Chr1.1264"),
+  ~ design_probes(
+    .gene_id = .x,
+    .species = "crob",
+    .amplifier = "B3",
+    .expression = tpm,
+    .evalue = 20,
+    .outdir = here(resdir, "immune_cr18")
+  )
+)
+
+walk(
+  c("KY21.Chr11.714", "KY21.Chr7.236"),
+  ~ design_probes(
+    .gene_id = .x,
+    .species = "crob",
+    .amplifier = "B4",
+    .expression = tpm,
+    .evalue = 20,
+    .outdir = here(resdir, "immune_cr22")
+  )
+)
 
 walk(
   c("KY21.Chr7.840", "KY21.Chr11.668"),
@@ -166,4 +254,29 @@ walk(
     .evalue = 20,
     .outdir = here(resdir, "immune_m3c1@Spi_1.b.c")
   )
+)
+
+###############################################################################
+# combined order sheets =======================================================
+###############################################################################
+
+combine_opools(
+  .dirs = paste0(
+    here(resdir),
+    "/",
+    c(
+      "likely-enteric-phagocyte_cr2.4.31/KY21.Chr12.262",
+      "cr8.21/KY21.Chr8.628",
+      "cr12.13/KY21.Chr2.1138",
+      "cr5.29/KY21.Chr1.2158",
+      "cr23/KY21.Chr7.852",
+      "immune_cr11.25/KY21.Chr2.1024",
+      "cr10.17/KY21.Chr8.932",
+      "immune_cr7/KY21.Chr1.1090",
+      "immune_cr18/KY21.Chr1.1264",
+      "immune_cr22/KY21.Chr11.714",
+      "cr30/KY21.Chr8.1350"
+    )
+  ),
+  .out_path = here("hcr-probes/docs/orders/2026-06-24/combined-opools.xlsx")
 )
