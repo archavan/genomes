@@ -526,26 +526,26 @@ design_probes <- function(
 
 #' Combine passing probes from multiple genes into a single IDT oPools xlsx
 #'
-#' @param .gene_ids Character vector. Gene IDs that have already been run
-#'   through design_probes()
-#' @param .results_dir Character. Directory containing per-gene results
+#' @param .dirs Character vector. Paths to per-gene result directories (each
+#'   must contain 06_probes-passing.tsv)
 #' @param .out_path Character. File path for the combined xlsx
 #'
 #' @return Writes xlsx and returns combined tibble invisibly
 combine_opools <- function(
-  .gene_ids,
-  .results_dir = here("hcr-probes/results"),
+  .dirs,
   .out_path = here("hcr-probes/results/oPools-order.xlsx")
 ) {
-  combined <- map(.gene_ids, \(gid) {
-    gene_dir <- here(.results_dir, sanitize_gene_id(gid))
-    tsv_path <- here(gene_dir, "06_probes-passing.tsv")
-    df <- read_tsv(tsv_path, show_col_types = FALSE)
-    if (nrow(df) == 0) {
-      stop(glue("No passing probes for {gid}."))
+  combined <- map(
+    .dirs,
+    function(x) {
+      tsv_path <- here(x, "06_probes-passing.tsv")
+      df <- read_tsv(tsv_path, show_col_types = FALSE)
+      if (nrow(df) == 0) {
+        stop(glue("No passing probes in {x}."))
+      }
+      df
     }
-    df
-  }) |>
+  ) |>
     bind_rows()
 
   fs::dir_create(dirname(.out_path))
