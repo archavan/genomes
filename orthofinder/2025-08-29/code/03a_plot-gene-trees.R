@@ -255,4 +255,38 @@ pdf(file = here(resdir, "Slc2a1.pdf"), 11, 20)
 plot_gene_tree("Slc2a1", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
 dev.off()
 
+pdf(file = here(resdir, "Nlrp1b.pdf"), 11, 9)
+plot_gene_tree("Nlrp1b", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
+dev.off()
+
+pdf(file = here(resdir, "Nlrp1a.pdf"), 11, 11)
+plot_gene_tree("Nlrp1a", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
+dev.off()
+
+## ===
+# RTKs
+pdf(file = here(resdir, "Csf1.pdf"), 11, 3)
+plot_gene_tree("Csf1", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
+dev.off()
+
+pdf(file = here(resdir, "Csf1r.pdf"), 11, 5)
+plot_gene_tree("Csf1r", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
+dev.off()
+
+pdf(file = here(resdir, "Pdgfa.pdf"), 11, 10)
+plot_gene_tree("Pdgfa", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
+dev.off()
+
+pdf(file = here(resdir, "Kitl.pdf"), 11, 3)
+plot_gene_tree("Kitl", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
+dev.off()
+
+pdf(file = here(resdir, "Pdgfra.pdf"), 11, 3)
+plot_gene_tree("Pdgfra", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
+dev.off()
+
+pdf(file = here(resdir, "Flt1.pdf"), 11, 10)
+plot_gene_tree("Flt1", label_dup_nodes = TRUE, label_hog_nodes = FALSE)
+dev.off()
+
 # end =========================================================================
