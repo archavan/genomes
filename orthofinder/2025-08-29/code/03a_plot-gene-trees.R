@@ -231,15 +231,15 @@ dev.off()
 
 
 ## ===
-pdf(file = here(resdir, "Hnf4a_HOGs-mmus-bflo.pdf"), 11, 10)
+pdf(file = here(resdir, "Hnf4a_HOGs-mmus-bflo.pdf"), 11, 6)
 plot_gene_tree("Hnf4a", node_for_hog = get_mrca_node_id("mmus", "bflo"))
 dev.off()
 
-pdf(file = here(resdir, "Hnf4a_HOGs-mmus-pmar.pdf"), 11, 10)
+pdf(file = here(resdir, "Hnf4a_HOGs-mmus-pmar.pdf"), 11, 6)
 plot_gene_tree("Hnf4a", node_for_hog = get_mrca_node_id("mmus", "pmar"))
 dev.off()
 
-pdf(file = here(resdir, "Hnf4a_HOGs-crob-scla.pdf"), 11, 10)
+pdf(file = here(resdir, "Hnf4a_HOGs-crob-scla.pdf"), 11, 6)
 plot_gene_tree("Hnf4a", node_for_hog = get_mrca_node_id("crob", "scla"))
 dev.off()
 
