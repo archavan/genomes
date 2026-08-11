@@ -121,11 +121,28 @@ walk(
 ## clusters 12 and 13 (absorptive) ============================================
 
 walk(
-  c("KY21.Chr2.1138"),
+  c(
+    "KY21.Chr2.1138",
+    "KY21.Chr8.1221"
+  ),
   ~ design_probes(
     .gene_id = .x,
     .species = "crob",
     .amplifier = "B2",
+    .expression = tpm,
+    .evalue = 20,
+    .outdir = here(resdir, "cr12.13")
+  )
+)
+
+walk(
+  c(
+    "KY21.Chr3.750"
+  ),
+  ~ design_probes(
+    .gene_id = .x,
+    .species = "crob",
+    .amplifier = "B4",
     .expression = tpm,
     .evalue = 20,
     .outdir = here(resdir, "cr12.13")
@@ -279,4 +296,19 @@ combine_opools(
     )
   ),
   .out_path = here("hcr-probes/docs/orders/2026-06-24/combined-opools.xlsx")
+)
+
+
+combine_opools(
+  .dirs = paste0(
+    here(resdir),
+    "/",
+    c(
+      "cr12.13/KY21.Chr3.750",
+      "cr12.13/KY21.Chr8.1221"
+    )
+  ),
+  .out_path = here(
+    "hcr-probes/docs/orders/2026-08-11/combined-opools-crob.xlsx"
+  )
 )

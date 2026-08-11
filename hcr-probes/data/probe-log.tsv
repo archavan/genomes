@@ -1,4 +1,7 @@
 probe_id	species	gene_id	symbol	marker_of	amplifier	hcr_version	supplier	order_id	order_date	why_ordered	stain_date	stain_result	notes
+	bflo	ncbi:118403568	m1b1_Mnx1	9,23	B3	v3	IDT	QTE-854175W	2026-08-11	endocrine			
+	crob	KY21.Chr3.750	[h] SLC25A24	12,13	B4	v3	IDT	QTE-854175W	2026-08-11	absorptive			
+	crob	KY21.Chr8.1221	m2c5_Mep1(a,b)	12,13	B2	v3	IDT	QTE-854175W	2026-08-11	absorptive			
 	crob	KY21.Chr12.262	[h] UTY	2,4,31	B1	v3	IDT	QTE-836982W	2026-06-24	enteric phagocytes?			
 	crob	KY21.Chr8.628	[h] TFPI	8,21	B1	v3	IDT	QTE-836982W	2026-06-24	hepatocyte-like			
 	crob	KY21.Chr2.1138	m1c2_Npc2	12,13	B2	v3	IDT	QTE-836982W	2026-06-24	absorptive			

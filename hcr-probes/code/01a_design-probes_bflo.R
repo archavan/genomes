@@ -126,3 +126,14 @@ design_probes(
   .expression = tpm,
   .outdir = here(resdir, "kupffer-like")
 )
+
+## endocrine ==================================================================
+
+# cluster_v1: 9,23
+design_probes(
+  .gene_id = "ncbi:118403568",
+  .species = "bflo",
+  .amplifier = "B3",
+  .expression = tpm,
+  .outdir = here(resdir, "endocrine")
+)
