@@ -1,0 +1,190 @@
+---
+title: "`Orthofinder` sanity checks"
+author: Arun Chavan
+format: 
+  html:
+    theme: cosmo
+    self-contained: true
+toc: true
+editor: source
+fontsize: 0.95em
+---
+
+Started: 2026-08-11    
+Last edited: `r format(Sys.time())`
+
+# Setup
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(dpi = 300, collapse = TRUE, comment = "#>", error = TRUE)
+
+library(phytools)
+library(ape)
+library(tidyverse)
+library(here)
+library(glue)
+library(conflicted)
+
+conflicts_prefer(purrr::map())
+conflicts_prefer(dplyr::filter())
+
+basedir <- here("orthofinder/2026-08-07")
+```
+
+# Data
+
+```{r}
+sptr <- read.tree(here(
+  basedir,
+  "results/out/Species_Tree/SpeciesTree_rooted_node_labels.txt"
+))
+
+genetrees <- read_rds(here(basedir, "results/processed/genetrees.rds"))
+dup_nodes <- read_rds(here(basedir, "results/processed/duplication-nodes.rds"))
+sym_og <- read_rds(here(basedir, "results/processed/symbol-og-mapping.rds"))
+hogs <- read_rds(here(basedir, "results/processed/hogs.rds"))
+hog_nodes <- read_rds(here(basedir, "results/processed/hog-node-ids.rds"))
+```
+
+# functions
+
+```{r}
+nodelabel_to_nodeid <- function(tr, labels) {
+  which(tr$node.label %in% labels) + length(tr$tip.label)
+}
+
+get_mrca_node_id <- function(.sp1, .sp2) {
+  all_labels <- c(sptr$tip.label, sptr$node.label)
+  nodeid <- getMRCA(sptr, c(.sp1, .sp2))
+  all_labels[nodeid]
+}
+
+get_hog_nodes <- function(.og, .sptr_node) {
+  hog_nodes |>
+    filter(og == .og, node == .sptr_node) |>
+    pull(genetree_nodeid) |>
+    unique()
+}
+
+plot_gene_tree <- function(
+  .symbol = NULL,
+  .og = NULL,
+  label_dup_nodes = TRUE,
+  label_hog_nodes = TRUE,
+  node_for_hog = NULL
+) {
+  if (!is.null(.symbol) & !is.null(.og)) {
+    stop("Provide either .symbol or .og, not both")
+  }
+  if (is.null(.symbol) & !is.null(.og)) {
+    og <- .og
+  }
+  if (!is.null(.symbol) & is.null(.og)) {
+    og <- sym_og[[.symbol]]
+  }
+
+  x <- genetrees[[og]]
+
+  par(mar = c(1, 1, 1, 1))
+  plot.phylo(
+    x,
+    label.offset = 0.01,
+    align.tip.label = TRUE,
+    x.lim = max(node.depth.edgelength(x)) * 1.3
+  )
+
+  if (label_dup_nodes) {
+    nodelabels(node = dup_nodes[[og]], col = "grey", pch = 19, cex = 1.5)
+  }
+
+  if (label_hog_nodes) {
+    x_hogs <- get_hog_nodes(og, node_for_hog)
+    nodelabels(node = x_hogs, col = "salmon", pch = 19, cex = 1.5)
+  }
+}
+```
+
+# Species tree for reference
+
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+
+plot.phylo(sptr, show.node.label = TRUE, use.edge.length = FALSE)
+```
+
+# HOG node issue
+
+I think there is an issue with what `Orthofinder` calls the hierarchical orthogroup (HOG) node in a gene tree in one particular situation. 
+
+The follwing is a situation where it works as expected and correctly. Let's try to find the HOG node at the level of tunicates, which descend from the node `N3` in the species tree above and contain two species in out sample, _Ciona robusta_ (crob) and _Styela clava_ (scla), for the orthogroup containing the mouse gene _Slc5a1_. There were two paralogs of this gene in the common ancestor of _crob_ and _scla_, as correctly identified by the two HOG nodes in the gene tree by `Orthofinder`. 
+
+```{r}
+#| fig-width: 12
+#| fig-height: 10
+
+slc_og <- sym_og[["Slc5a1"]]
+slc_tr <- genetrees[[slc_og]]
+
+plot_gene_tree(
+  "Slc5a1",
+  label_dup_nodes = FALSE,
+  label_hog_nodes = TRUE,
+  node_for_hog = "N3"
+)
+```
+
+
+The following is an example where the HOG node identified by `Orthofinder` is unexpected / incorrect. Here, we find the HOG node at the tunicate level again for the gene tree of the orthogroup containing the mouse gene _Abcg1_. In this case, in the common ancestor of _crob_ and _scla_ there was only one cooy of this gene, and the HOG node at the tunicate level in this gene tree should be (at least according to me) the node `n2`, whereas that identified by `Orthofinder` is node `n0`, which is the base of the entire orthogroup. 
+
+```{r}
+abcg_og <- sym_og[["Abcg1"]]
+abcg_tr <- genetrees[[abcg_og]]
+
+hog_nodes |>
+  filter(og == abcg_og, node == "N3")
+```
+
+```{r}
+#| fig-width: 10
+#| fig-height: 6
+
+par(mar = c(1, 5, 1, 1), xpd = TRUE)
+plot.phylo(
+  abcg_tr,
+  show.node.label = TRUE,
+  align.tip.label = TRUE,
+  x.lim = max(node.depth.edgelength(abcg_tr)) * 1.3
+)
+nodelabels(
+  text = "Tunicate HOG\n(should be)",
+  node = nodelabel_to_nodeid(abcg_tr, "n2"),
+  frame = "none",
+  offset = 1,
+  adj = c(1.1, 0.5),
+  col = "blue"
+)
+nodelabels(
+  text = "Tunicate HOG\n(Orthofinder)",
+  node = hog_nodes$genetree_nodeid[which(
+    hog_nodes$og == abcg_og & hog_nodes$node == "N3"
+  )],
+  frame = "none",
+  adj = c(1.1, 0.5),
+  col = "red"
+)
+```
+
+For the purpose of correctly identifying orthologs and their types (1:1, 1:n, 1:1, and n:n), this does's make a difference. As seen below, the listed HOG for this gene tree at tunicate level (`N3` node in species tree) only contains the _crob_ and _scla_ genes, as expected and correctly. 
+
+```{r}
+hogs |>
+  filter(og == abcg_og, node == "N3") |>
+  glimpse()
+```
+
+This still feels like a problem to me that should be fixed. 
+
+# Session Info
+```{r session_info, eval=TRUE}
+sessionInfo()
+```
