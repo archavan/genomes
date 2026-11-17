@@ -20,7 +20,7 @@ gut18	Reesterification	digestion	absorption	lipid	reesterification	Mogat1; Mogat
 gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Mttp; Apob; Apoa1; Apoa4; Sar1b	microsomal TG transfer protein, apolipoproteins (B-48, A-I, A-IV), COPII vesicle GTPase (pre-chylomicron ER-to-Golgi transport)
 gut20	Export: lipid	digestion	absorption	lipid	basolateral.export	Abca1	cholesterol/phospholipid efflux to nascent HDL (alternative to chylomicron pathway)
 gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc46a1; Slc11a2; Slc40a1; Heph; Slc23a1	PCFT (folate), DMT1 (apical iron uptake), ferroportin (basolateral iron export), hephaestin (ferroxidase), SVCT1 (vitamin C)
-gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Gck; Hk1; Hk2; Hk3; G6pc1; Pfkl; G6pd	glucokinase, hexokinases, glucose-6-phosphatase (gluconeogenesis), phosphofructokinase (glycolysis), glucose-6-phosphate dehydrogenase (pentose phosphate pathway)
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Gck; Hk1; Hk2; Hk3; G6pc1; Pfkl; G6pdx	glucokinase, hexokinases, glucose-6-phosphatase (gluconeogenesis), phosphofructokinase (glycolysis), glucose-6-phosphate dehydrogenase (pentose phosphate pathway)
 gut23	Synthesis: carb	digestion	metabolism	carbohydrate	synthesis	Pck1	PEPCK (gluconeogenesis)
 gut24	Catabolism: AA	digestion	metabolism	amino.acid	catabolism	Gls; Arg2; Ass1	glutaminase (primary enterocyte fuel), arginase II and argininosuccinate synthase (arginine to citrulline conversion)
 gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Arg1; Otc; Cps1; Bhmt	urea cycle enzymes, betaine-homocysteine methyltransferase
