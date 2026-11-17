@@ -31,7 +31,7 @@ gut29	Synthesis: cholesterol	digestion	metabolism	lipid	cholesterol.synthesis	Hm
 gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abca1; Abca2; Abca3; Abca5; Abca7; Abcg1; Abcg4; Abcg5; Abcg8	ABC transporters for cholesterol/phospholipid efflux; Abcg5/8 are apical (sterol efflux to lumen)
 gut31	Storage: lipid droplet	digestion	storage	lipid.droplets		Plin1; Plin2; Plin3; Plin4; Plin5; Dgat1; Dgat2; Pnpla2; Lipe; Cidea	perilipins (LD coat), TG synthesis, adipose triglyceride lipase, hormone-sensitive lipase, LD fusion
 gut32	Storage: glycogen	digestion	storage	glycogen		Gyg1; Gys1; Gys2; Pygl	glycogenin, glycogen synthases, glycogen phosphorylase (glycogenolysis)
-gut33	Detoxification	digestion	detoxification			Cyp3a11; Cyp2j6; Nr1i2; Nr1i3; Ahr; Cyp1a1; Cyp1a2; Ces1; Gstm1; Gstp1; Abcb1a	phase I CYPs, carboxylesterase, nuclear receptors (PXR, CAR, AhR), phase II GSTs, phase III P-glycoprotein
+gut33	Detoxification	defense	detoxification			Cyp3a11; Cyp2j6; Nr1i2; Nr1i3; Ahr; Cyp1a1; Cyp1a2; Ces1; Gstm1; Gstp1; Abcb1a	phase I CYPs, carboxylesterase, nuclear receptors (PXR, CAR, AhR), phase II GSTs, phase III P-glycoprotein
 gut34	Tissue barrier	defense	tissue.barrier			Tjp1; Ocln; Cldn2; Cldn3; Cldn4; Cldn7; Cldn15; Cdh1	tight junctions (ZO-1, occludin, claudins), adherens junction (E-cadherin)
 gut35	Mucus barrier	defense	mucus.barrier			Muc5ac; Muc2; Spdef; Tff1; Tff2; Tff3	gel-forming mucins, goblet cell TF, trefoil factors (mucosal protection/repair)
 gut36	Antimicrobial	defense	antimicrobial.activity			Reg3g; Lyz1; Lyz2; Lyz3; Lyg1; Lyg2; Defa5	regenerating islet-derived 3 gamma, lysozymes, lysozyme g, alpha-defensin
