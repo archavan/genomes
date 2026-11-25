@@ -1,0 +1,476 @@
+id	label	module.1	module.2	module.3	module.4	gene_mm	ortholog	hog	hog_label	display_name
+gut02	Acidic digestion	digestion	acidic.digestion	NA	NA	Atp4a	ncbi.120326521	N1.HOG0000587	m6s1_Atp(1a1,1a2,1a3,1a4,4a,12a)	[ncbi.120326521]; m6s1_Atp(1a1,1a2,1a3,1a4,4a,12a); [n] sodium/potassium-transporting ATPase subunit alpha-3-like
+gut02	Acidic digestion	digestion	acidic.digestion	NA	NA	Atp4b	ncbi.120345798	N1.HOG0000662	m5s1_Atp(1b1,1b2,1b3,1b4,4b)	[ncbi.120345798]; m5s1_Atp(1b1,1b2,1b3,1b4,4b); [n] sodium/potassium-transporting ATPase subunit beta-2-like
+gut02	Acidic digestion	digestion	acidic.digestion	NA	NA	Aqp4	ncbi.120329381	NA	NA	[ncbi.120329381]; [p] MIP; [n] aquaporin-4-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg1	ncbi.120340361	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120340361]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg1	ncbi.120340362	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120340362]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg1	ncbi.120341086	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120341086]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg1	ncbi.120341280	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120341280]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg1	ncbi.120341599	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120341599]; m2s5_Lyg(1,2); [p] Glycine, glutamate and proline-rich protein
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg2	ncbi.120340361	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120340361]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg2	ncbi.120340362	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120340362]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg2	ncbi.120341086	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120341086]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg2	ncbi.120341280	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120341280]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg2	ncbi.120341599	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120341599]; m2s5_Lyg(1,2); [p] Glycine, glutamate and proline-rich protein
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Reg3g	ncbi.120332603	NA	NA	[ncbi.120332603]; [p] Reg3g; [p] Regenerating islet-derived protein 3-gamma
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz1	ncbi.120340361	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120340361]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz1	ncbi.120340362	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120340362]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz1	ncbi.120341086	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120341086]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz1	ncbi.120341280	N1.HOG0001749	m2s5_Lyg(1,2)	[ncbi.120341280]; m2s5_Lyg(1,2); [n] lysozyme g-like
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz2	NA	NA	NA	NA
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz3	NA	NA	NA	NA
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Defa5	ncbi.120328504	NA	NA	[ncbi.120328504]; [p] Defa5; [p] Alpha-defensin 5
+gut06	BB hydrolysis: carb	digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Mgam	ncbi.120327875	N1.HOG0001535	m3s3_Mgam(,2-ps).Sis	[ncbi.120327875]; m3s3_Mgam(,2-ps).Sis; [n] maltase-glucoamylase, intestinal-like
+gut06	BB hydrolysis: carb	digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Mgam	ncbi.120328284	N1.HOG0001535	m3s3_Mgam(,2-ps).Sis	[ncbi.120328284]; m3s3_Mgam(,2-ps).Sis; [p] Maltase-glucoamylase
+gut06	BB hydrolysis: carb	digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Mgam	ncbi.120328903	N1.HOG0001535	m3s3_Mgam(,2-ps).Sis	[ncbi.120328903]; m3s3_Mgam(,2-ps).Sis; [p] Protein HemX (Fragment)
+gut06	BB hydrolysis: carb	digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Sis	ncbi.120327875	N1.HOG0001535	m3s3_Mgam(,2-ps).Sis	[ncbi.120327875]; m3s3_Mgam(,2-ps).Sis; [n] maltase-glucoamylase, intestinal-like
+gut06	BB hydrolysis: carb	digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Sis	ncbi.120328284	N1.HOG0001535	m3s3_Mgam(,2-ps).Sis	[ncbi.120328284]; m3s3_Mgam(,2-ps).Sis; [p] Maltase-glucoamylase
+gut06	BB hydrolysis: carb	digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Sis	ncbi.120328903	N1.HOG0001535	m3s3_Mgam(,2-ps).Sis	[ncbi.120328903]; m3s3_Mgam(,2-ps).Sis; [p] Protein HemX (Fragment)
+gut06	BB hydrolysis: carb	digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Lct	ncbi.120331019	N1.HOG0002342	m1s1_Lct	[ncbi.120331019]; m1s1_Lct; [e] Lactase-phlorizin
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep	ncbi.120337448	N1.HOG0001323	m2s7_Anpep.Lvrn	[ncbi.120337448]; m2s7_Anpep.Lvrn; [n] aminopeptidase Ey-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep	ncbi.120337449	N1.HOG0001323	m2s7_Anpep.Lvrn	[ncbi.120337449]; m2s7_Anpep.Lvrn; [n] aminopeptidase N-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep	ncbi.120337450	N1.HOG0001323	m2s7_Anpep.Lvrn	[ncbi.120337450]; m2s7_Anpep.Lvrn; [n] aminopeptidase N-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep	ncbi.120337452	N1.HOG0001323	m2s7_Anpep.Lvrn	[ncbi.120337452]; m2s7_Anpep.Lvrn; [n] aminopeptidase N-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep	ncbi.120337571	N1.HOG0001323	m2s7_Anpep.Lvrn	[ncbi.120337571]; m2s7_Anpep.Lvrn; [n] aminopeptidase N-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep	ncbi.120337688	N1.HOG0001323	m2s7_Anpep.Lvrn	[ncbi.120337688]; m2s7_Anpep.Lvrn; [n] aminopeptidase N-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep	ncbi.120337993	N1.HOG0001323	m2s7_Anpep.Lvrn	[ncbi.120337993]; m2s7_Anpep.Lvrn; [n] aminopeptidase N-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Enpep	ncbi.120347412	N1.HOG0008412	m1s1_Enpep	[ncbi.120347412]; m1s1_Enpep; [n] glutamyl aminopeptidase-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	ncbi.120329820	N1.HOG0000488	m2s9_Dpp4.Fap	[ncbi.120329820]; m2s9_Dpp4.Fap; [n] prolyl endopeptidase FAP-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	ncbi.120330326	N1.HOG0000488	m2s9_Dpp4.Fap	[ncbi.120330326]; m2s9_Dpp4.Fap; [n] prolyl endopeptidase FAP-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	ncbi.120334582	N1.HOG0000488	m2s9_Dpp4.Fap	[ncbi.120334582]; m2s9_Dpp4.Fap; [n] dipeptidyl peptidase 4-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	ncbi.120335378	N1.HOG0000488	m2s9_Dpp4.Fap	[ncbi.120335378]; m2s9_Dpp4.Fap; [n] dipeptidyl peptidase 4-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	ncbi.120335379	N1.HOG0000488	m2s9_Dpp4.Fap	[ncbi.120335379]; m2s9_Dpp4.Fap; [n] dipeptidyl peptidase 4-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	ncbi.120335380	N1.HOG0000488	m2s9_Dpp4.Fap	[ncbi.120335380]; m2s9_Dpp4.Fap; [n] dipeptidyl peptidase 4-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	ncbi.120335383	N1.HOG0000488	m2s9_Dpp4.Fap	[ncbi.120335383]; m2s9_Dpp4.Fap; [n] dipeptidyl peptidase 4-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	ncbi.120336539	N1.HOG0000488	m2s9_Dpp4.Fap	[ncbi.120336539]; m2s9_Dpp4.Fap; [n] dipeptidyl peptidase 4-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	ncbi.120336540	N1.HOG0000488	m2s9_Dpp4.Fap	[ncbi.120336540]; m2s9_Dpp4.Fap; [n] dipeptidyl peptidase 4-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	ncbi.120326385	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120326385]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	ncbi.120326559	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120326559]; m2s10_Mep1(a,b); [n] meprin A subunit alpha-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	ncbi.120334903	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120334903]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	ncbi.120335019	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120335019]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	ncbi.120335037	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120335037]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	ncbi.120337642	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120337642]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	ncbi.120338139	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120338139]; m2s10_Mep1(a,b); [n] meprin A subunit alpha-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	ncbi.120338485	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120338485]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	ncbi.120345411	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120345411]; m2s10_Mep1(a,b); [n] astacin-like metalloendopeptidase
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	ncbi.120345412	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120345412]; m2s10_Mep1(a,b); [n] astacin-like metalloendopeptidase
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	ncbi.120326385	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120326385]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	ncbi.120326559	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120326559]; m2s10_Mep1(a,b); [n] meprin A subunit alpha-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	ncbi.120334903	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120334903]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	ncbi.120335019	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120335019]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	ncbi.120335037	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120335037]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	ncbi.120337642	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120337642]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	ncbi.120338139	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120338139]; m2s10_Mep1(a,b); [n] meprin A subunit alpha-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	ncbi.120338485	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120338485]; m2s10_Mep1(a,b); [n] meprin A subunit beta-like
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	ncbi.120345411	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120345411]; m2s10_Mep1(a,b); [n] astacin-like metalloendopeptidase
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	ncbi.120345412	N1.HOG0000648	m2s10_Mep1(a,b)	[ncbi.120345412]; m2s10_Mep1(a,b); [n] astacin-like metalloendopeptidase
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp7a1	ncbi.120333146	N1.HOG0000508	m4s1_Cyp(7a1,7b1,8b1).Ptgis	[ncbi.120333146]; m4s1_Cyp(7a1,7b1,8b1).Ptgis; [n] cytochrome P450 7B1-like
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp7b1	ncbi.120333146	N1.HOG0000508	m4s1_Cyp(7a1,7b1,8b1).Ptgis	[ncbi.120333146]; m4s1_Cyp(7a1,7b1,8b1).Ptgis; [n] cytochrome P450 7B1-like
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp8b1	ncbi.120333146	N1.HOG0000508	m4s1_Cyp(7a1,7b1,8b1).Ptgis	[ncbi.120333146]; m4s1_Cyp(7a1,7b1,8b1).Ptgis; [n] cytochrome P450 7B1-like
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Nr1h4	ncbi.120336324	N1.HOG0001530	m2s1_Nr1h(4,5)	[ncbi.120336324]; m2s1_Nr1h(4,5); [n] bile acid receptor-like
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp27a1	NA	NA	NA	NA
+gut24	Catabolism: AA	digestion	metabolism	amino.acid	catabolism	Gls	ncbi.120342934	N1.HOG0001969	m2s1_Gls(,2)	[ncbi.120342934]; m2s1_Gls(,2); [n] glutaminase kidney isoform, mitochondrial-like
+gut24	Catabolism: AA	digestion	metabolism	amino.acid	catabolism	Ass1	ncbi.120344914	N1.HOG0010033	m1s1_Ass1	[ncbi.120344914]; m1s1_Ass1; [n] argininosuccinate synthase-like
+gut24	Catabolism: AA	digestion	metabolism	amino.acid	catabolism	Arg2	NA	NA	NA	NA
+gut28	Catabolism: FA	digestion	metabolism	lipid	fatty.acid.oxidation	Cpt1a	ncbi.120335734	N1.HOG0001765	m3s1_Cpt1(a,b,c)	[ncbi.120335734]; m3s1_Cpt1(a,b,c); [n] carnitine O-palmitoyltransferase 1, liver isoform-like
+gut28	Catabolism: FA	digestion	metabolism	lipid	fatty.acid.oxidation	Hadha	ncbi.120334615	N1.HOG0006014	m1s1_Hadha	[ncbi.120334615]; m1s1_Hadha; [n] trifunctional enzyme subunit alpha, mitochondrial-like
+gut28	Catabolism: FA	digestion	metabolism	lipid	fatty.acid.oxidation	Ppara	ncbi.120338882	N1.HOG0001349	m3s1_Ppar(a,d,g)	[ncbi.120338882]; m3s1_Ppar(a,d,g); [n] peroxisome proliferator-activated receptor delta-like
+gut28	Catabolism: FA	digestion	metabolism	lipid	fatty.acid.oxidation	Hmgcs2	NA	NA	NA	NA
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Gck	ncbi.120329043	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120329043]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Gck	ncbi.120334911	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120334911]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Gck	ncbi.120337555	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120337555]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Gck	ncbi.120338920	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120338920]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk1	ncbi.120329043	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120329043]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk1	ncbi.120334911	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120334911]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk1	ncbi.120337555	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120337555]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk1	ncbi.120338920	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120338920]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk2	ncbi.120329043	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120329043]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk2	ncbi.120334911	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120334911]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk2	ncbi.120337555	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120337555]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk2	ncbi.120338920	N1.HOG0000564	m4s4_Gck.Hk1.Hk2.Hkdc1	[ncbi.120338920]; m4s4_Gck.Hk1.Hk2.Hkdc1; [n] hexokinase-2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	G6pc1	ncbi.120327110	N1.HOG0001543	m3s1_G6pc(1-3)	[ncbi.120327110]; m3s1_G6pc(1-3); [n] glucose-6-phosphatase 2-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Pfkl	ncbi.120338191	N1.HOG0001040	m3s2_Pfk(l,m,p)	[ncbi.120338191]; m3s2_Pfk(l,m,p); [n] ATP-dependent 6-phosphofructokinase, muscle type-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Pfkl	ncbi.120342241	N1.HOG0001040	m3s2_Pfk(l,m,p)	[ncbi.120342241]; m3s2_Pfk(l,m,p); [n] ATP-dependent 6-phosphofructokinase, muscle type-like
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk3	NA	NA	NA	NA
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	G6pd	ncbi.120338958	N1.HOG0004773	m2s1_G6pd(2,x)	[ncbi.120338958]; m2s1_G6pd(2,x); [n] glucose-6-phosphate 1-dehydrogenase-like
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Mttp	ncbi.120347133	N1.HOG0004504	m1s1_Mttp	[ncbi.120347133]; m1s1_Mttp; [n] microsomal triglyceride transfer protein-like
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Sar1b	ncbi.120347551	N1.HOG0003798	m2s1_Sar1(a,b)	[ncbi.120347551]; m2s1_Sar1(a,b); [n] GTP-binding protein SAR1b-like
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Apob	NA	NA	NA	NA
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Apoa1	ncbi.120343224	NA	NA	[ncbi.120343224]; [p] Apoa1; [p] Apolipoprotein A-I
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Apoa4	NA	NA	NA	NA
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Rfx3	ncbi.120347450	N1.HOG0001603	m4s1_Rfx(1-3,8)	[ncbi.120347450]; m4s1_Rfx(1-3,8); [n] transcription factor RFX3-like
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Mcidas	ncbi.120325497	N1.HOG0002394	m2s2_Gmnn.Mcidas	[ncbi.120325497]; m2s2_Gmnn.Mcidas; [n] geminin-like
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Mcidas	ncbi.120329852	N1.HOG0002394	m2s2_Gmnn.Mcidas	[ncbi.120329852]; m2s2_Gmnn.Mcidas; [n] geminin-like
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Ccno	ncbi.120337811	N1.HOG0001007	m1s1_Ccno	[ncbi.120337811]; m1s1_Ccno; [p] Cyclin-SDS
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Dnah5	ncbi.120326134	N1.HOG0005790	m1s1_Dnah5	[ncbi.120326134]; m1s1_Dnah5; [n] dynein heavy chain 5, axonemal-like
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Dnai1	ncbi.120346552	N1.HOG0005997	m1s2_Dnai1	[ncbi.120346552]; m1s2_Dnai1; [n] dynein intermediate chain 2, ciliary-like
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Dnai1	ncbi.120346812	N1.HOG0005997	m1s2_Dnai1	[ncbi.120346812]; m1s2_Dnai1; [n] dynein intermediate chain 2, ciliary-like
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Rsph4a	ncbi.120339023	N1.HOG0004991	m2s1_Rsph(4a,6a)	[ncbi.120339023]; m2s1_Rsph(4a,6a); [n] radial spoke head protein 4 homolog A-like
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Ift88	ncbi.120334339	N1.HOG0006508	m1s1_Ift88	[ncbi.120334339]; m1s1_Ift88; [n] intraflagellar transport protein 88 homolog
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Cep41	ncbi.120329616	N1.HOG0004917	m1s2_Cep41	[ncbi.120329616]; m1s2_Cep41; [n] centrosomal protein of 41 kDa-like
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Cep41	ncbi.120339588	N1.HOG0004917	m1s2_Cep41	[ncbi.120339588]; m1s2_Cep41; [n] centrosomal protein of 41 kDa-like
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Lztfl1	ncbi.120342765	N1.HOG0007048	m1s1_Lztfl1	[ncbi.120342765]; m1s1_Lztfl1; [n] leucine zipper transcription factor-like protein 1
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Foxj1	NA	NA	NA	NA
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Dnah11	ncbi.120340470	NA	NA	[ncbi.120340470]; [e] DNAH11; [n] dynein beta chain, ciliary-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120332192	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120332192]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [e] Cytochrome P450
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120332300	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120332300]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A29-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120332302	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120332302]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A29-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120332303	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120332303]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A8-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120332304	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120332304]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A31-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120332305	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120332305]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A11-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120332318	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120332318]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A29-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120332320	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120332320]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A8-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120332321	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120332321]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A11-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120340954	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120340954]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A5-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120344192	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120344192]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A21-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120344193	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120344193]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A5-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120344194	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120344194]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A5-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120344200	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120344200]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A21-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120344219	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120344219]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A5-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120344234	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120344234]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A16-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120344237	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120344237]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A16-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120344872	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120344872]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A21-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120344967	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120344967]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A5-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120344968	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120344968]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A18-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120347406	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120347406]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A2-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	ncbi.120347618	N1.HOG0000180	m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[ncbi.120347618]; m9s22_Cyp3a(11,13,16,25,41a,41b,44,57,59); [n] cytochrome P450 3A31-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp2j6	ncbi.120325390	N1.HOG0000008	m47s1_Cyp2(a4,a5,a12,a22,b9,b10,b13,b19,b23,c23,c29,c37,c38,c39,c40,c50,c54,c55,c65,c66,c67,c68,c69,c70,d9,d10,d11,d12,d13,d22,d26,d34,d40,e1,f2,g1,j5,j6,j7,j8,j9,j11,j12,j13,r1,t4,w1)	[ncbi.120325390]; m47s1_Cyp2(a4,a5,a12,a22,b9,b10,b13,b19,b23,c23,c29,c37,c38,c39,c40,c50,c54,c55,c65,c66,c67,c68,c69,c70,d9,d10,d11,d12,d13,d22,d26,d34,d40,e1,f2,g1,j5,j6,j7,j8,j9,j11,j12,j13,r1,t4,w1); [n] cytochrome P450 2C42-like
+gut33	Detoxification	defense	detoxification	NA	NA	Nr1i2	ncbi.120330841	N1.HOG0000467	m3s3_Nr1i(2,3).Vdr	[ncbi.120330841]; m3s3_Nr1i(2,3).Vdr; [n] nuclear receptor subfamily 1 group I member 3-like
+gut33	Detoxification	defense	detoxification	NA	NA	Nr1i2	ncbi.120331580	N1.HOG0000467	m3s3_Nr1i(2,3).Vdr	[ncbi.120331580]; m3s3_Nr1i(2,3).Vdr; [n] nuclear receptor subfamily 1 group I member 3-like
+gut33	Detoxification	defense	detoxification	NA	NA	Nr1i2	ncbi.120343952	N1.HOG0000467	m3s3_Nr1i(2,3).Vdr	[ncbi.120343952]; m3s3_Nr1i(2,3).Vdr; [n] vitamin D3 receptor-like
+gut33	Detoxification	defense	detoxification	NA	NA	Nr1i3	ncbi.120330841	N1.HOG0000467	m3s3_Nr1i(2,3).Vdr	[ncbi.120330841]; m3s3_Nr1i(2,3).Vdr; [n] nuclear receptor subfamily 1 group I member 3-like
+gut33	Detoxification	defense	detoxification	NA	NA	Nr1i3	ncbi.120331580	N1.HOG0000467	m3s3_Nr1i(2,3).Vdr	[ncbi.120331580]; m3s3_Nr1i(2,3).Vdr; [n] nuclear receptor subfamily 1 group I member 3-like
+gut33	Detoxification	defense	detoxification	NA	NA	Nr1i3	ncbi.120343952	N1.HOG0000467	m3s3_Nr1i(2,3).Vdr	[ncbi.120343952]; m3s3_Nr1i(2,3).Vdr; [n] vitamin D3 receptor-like
+gut33	Detoxification	defense	detoxification	NA	NA	Ahr	ncbi.120337615	N1.HOG0002800	m1s1_Ahr	[ncbi.120337615]; m1s1_Ahr; [n] circadian locomoter output cycles protein kaput-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp1a1	ncbi.120337706	N1.HOG0000470	m2s2_Cyp1a(1,2)	[ncbi.120337706]; m2s2_Cyp1a(1,2); [n] cytochrome P450 1A1-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp1a1	ncbi.120347324	N1.HOG0000470	m2s2_Cyp1a(1,2)	[ncbi.120347324]; m2s2_Cyp1a(1,2); [n] cytochrome P450 1A4-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp1a2	ncbi.120337706	N1.HOG0000470	m2s2_Cyp1a(1,2)	[ncbi.120337706]; m2s2_Cyp1a(1,2); [n] cytochrome P450 1A1-like
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp1a2	ncbi.120347324	N1.HOG0000470	m2s2_Cyp1a(1,2)	[ncbi.120347324]; m2s2_Cyp1a(1,2); [n] cytochrome P450 1A4-like
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	ncbi.120337668	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120337668]; m7s10_Gstm(1-7); [n] glutathione S-transferase Mu 1-like
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	ncbi.120337677	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120337677]; m7s10_Gstm(1-7); [n] glutathione S-transferase 2-like
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	ncbi.120337709	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120337709]; m7s10_Gstm(1-7); [n] glutathione S-transferase class-mu 26 kDa isozyme 47-like
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	ncbi.120337852	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120337852]; m7s10_Gstm(1-7); [n] glutathione S-transferase Mu 1-like
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	ncbi.120337997	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120337997]; m7s10_Gstm(1-7); [n] glutathione S-transferase-like
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	ncbi.120338048	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120338048]; m7s10_Gstm(1-7); [n] glutathione S-transferase class-mu 26 kDa isozyme-like
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	ncbi.120338387	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120338387]; m7s10_Gstm(1-7); [n] glutathione S-transferase Mu 1-like
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	ncbi.120339806	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120339806]; m7s10_Gstm(1-7); [n] glutathione S-transferase Mu 2-like
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	ncbi.120348302	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120348302]; m7s10_Gstm(1-7); [n] glutathione S-transferase Mu 2-like
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	ncbi.120348612	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120348612]; m7s10_Gstm(1-7); [n] glutathione S-transferase Mu 4-like
+gut33	Detoxification	defense	detoxification	NA	NA	Abcb1a	ncbi.120339682	N1.HOG0001180	m4s5_Abcb(1a,1b,4,5)	[ncbi.120339682]; m4s5_Abcb(1a,1b,4,5); [n] ATP-dependent translocase ABCB1-like
+gut33	Detoxification	defense	detoxification	NA	NA	Abcb1a	ncbi.120342657	N1.HOG0001180	m4s5_Abcb(1a,1b,4,5)	[ncbi.120342657]; m4s5_Abcb(1a,1b,4,5); [n] ATP-dependent translocase ABCB1-like
+gut33	Detoxification	defense	detoxification	NA	NA	Abcb1a	ncbi.120342658	N1.HOG0001180	m4s5_Abcb(1a,1b,4,5)	[ncbi.120342658]; m4s5_Abcb(1a,1b,4,5); [n] ATP-dependent translocase ABCB1-like
+gut33	Detoxification	defense	detoxification	NA	NA	Abcb1a	ncbi.120342659	N1.HOG0001180	m4s5_Abcb(1a,1b,4,5)	[ncbi.120342659]; m4s5_Abcb(1a,1b,4,5); [n] ATP-dependent translocase ABCB1-like
+gut33	Detoxification	defense	detoxification	NA	NA	Abcb1a	ncbi.120346870	N1.HOG0001180	m4s5_Abcb(1a,1b,4,5)	[ncbi.120346870]; m4s5_Abcb(1a,1b,4,5); [n] ATP-dependent translocase ABCB1-like
+gut33	Detoxification	defense	detoxification	NA	NA	Ces1	NA	NA	NA	NA
+gut33	Detoxification	defense	detoxification	NA	NA	Gstp1	ncbi.120337668	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120337668]; m7s10_Gstm(1-7); [n] glutathione S-transferase Mu 1-like
+gut33	Detoxification	defense	detoxification	NA	NA	Gstp1	ncbi.120337677	N1.HOG0000710	m7s10_Gstm(1-7)	[ncbi.120337677]; m7s10_Gstm(1-7); [n] glutathione S-transferase 2-like
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abca3	ncbi.120335314	N1.HOG0004018	m5s1_Abca(3,14-17)	[ncbi.120335314]; m5s1_Abca(3,14-17); [n] ATP-binding cassette sub-family A member 3-like
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abca5	ncbi.120339393	N1.HOG0001725	m5s1_Abca(5,6,8a,8b,9)	[ncbi.120339393]; m5s1_Abca(5,6,8a,8b,9); [n] ATP-binding cassette sub-family A member 5-like
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abcg1	ncbi.120335858	N1.HOG0002626	m2s1_Abcg(1,4)	[ncbi.120335858]; m2s1_Abcg(1,4); [n] ATP-binding cassette sub-family G member 4-like
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abcg4	ncbi.120335858	N1.HOG0002626	m2s1_Abcg(1,4)	[ncbi.120335858]; m2s1_Abcg(1,4); [n] ATP-binding cassette sub-family G member 4-like
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abca1	ncbi.120335282	NA	NA	[ncbi.120335282]; [e] ABCA1; [n] phospholipid-transporting ATPase ABCA1-like
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abca2	NA	NA	NA	NA
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abca7	NA	NA	NA	NA
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abcg5	NA	NA	NA	NA
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abcg8	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Neurog3	ncbi.120348056	N1.HOG0002141	m3s1_Neurog(1-3)	[ncbi.120348056]; m3s1_Neurog(1-3); [n] basic helix-loop-helix neural transcription factor TAP-like
+gut01	Endocrine	regulation	endocrine	NA	NA	Pdx1	ncbi.120333024	N1.HOG0005778	m1s1_Pdx1	[ncbi.120333024]; m1s1_Pdx1; [n] pancreas/duodenum homeobox protein 1-like
+gut01	Endocrine	regulation	endocrine	NA	NA	Pcsk2	ncbi.120327027	N1.HOG0006874	m1s1_Pcsk2	[ncbi.120327027]; m1s1_Pcsk2; [n] neuroendocrine convertase 2-like
+gut01	Endocrine	regulation	endocrine	NA	NA	Tph1	ncbi.120335756	N1.HOG0002556	m2s1_Tph(1,2)	[ncbi.120335756]; m2s1_Tph(1,2); [n] tryptophan 5-hydroxylase 1-like
+gut01	Endocrine	regulation	endocrine	NA	NA	Cpe	ncbi.120347184	N1.HOG0005808	m1s1_Cpm	[ncbi.120347184]; m1s1_Cpm; [n] carboxypeptidase E-like
+gut01	Endocrine	regulation	endocrine	NA	NA	Pcsk1	ncbi.120346276	NA	NA	[ncbi.120346276]; [p] Pcsk1; [n] PC3-like endoprotease variant B
+gut01	Endocrine	regulation	endocrine	NA	NA	Pcsk1n	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Scg5	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Gcg	ncbi.120346634	NA	NA	[ncbi.120346634]; [p] Glucagon family neuropeptides
+gut01	Endocrine	regulation	endocrine	NA	NA	Cck	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Gip	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Sct	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Pyy	ncbi.120330149	NA	NA	[ncbi.120330149]; [p] pyya; [p] Peptide YY-A
+gut01	Endocrine	regulation	endocrine	NA	NA	Ghrl	ncbi.120339839	NA	NA	[ncbi.120339839]; [p] ghrl; [p] Ghrelin
+gut01	Endocrine	regulation	endocrine	NA	NA	Gast	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Sst	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Chga	NA	NA	NA	NA
+gut10	Endocytosis	digestion	intracellular.digestion	endocytosis	NA	Msr1	ncbi.120329348	N1.HOG0000965	m3s1_Marco.Msr1.Scara5	[ncbi.120329348]; m3s1_Marco.Msr1.Scara5; [n] macrophage receptor MARCO-like
+gut10	Endocytosis	digestion	intracellular.digestion	endocytosis	NA	Dab2	ncbi.120335281	N1.HOG0001976	m2s1_Dab(1,2)	[ncbi.120335281]; m2s1_Dab(1,2); [n] probable serine/threonine-protein kinase DDB_G0282963
+gut10	Endocytosis	digestion	intracellular.digestion	endocytosis	NA	Rab5a	ncbi.120329439	N1.HOG0000928	m4s1_Rab(5a,5b,5c,17)	[ncbi.120329439]; m4s1_Rab(5a,5b,5c,17); [n] ras-related protein Rab-5B-like
+gut10	Endocytosis	digestion	intracellular.digestion	endocytosis	NA	Rab7	ncbi.120327668	N1.HOG0002613	m2s1_Rab7(,b)	[ncbi.120327668]; m2s1_Rab7(,b); [n] ras-related protein Rab-7a-like
+gut15	Export: AA	digestion	absorption	amino.acid	basolateral.export	Slc7a7	ncbi.120337300	N1.HOG0001614	m2s1_Slc7a(6,7)	[ncbi.120337300]; m2s1_Slc7a(6,7); [n] Y+L amino acid transporter 2-like
+gut15	Export: AA	digestion	absorption	amino.acid	basolateral.export	Slc7a8	ncbi.120333378	N1.HOG0002764	m2s1_Slc7a(8,10)	[ncbi.120333378]; m2s1_Slc7a(8,10); [n] large neutral amino acids transporter small subunit 2-like
+gut15	Export: AA	digestion	absorption	amino.acid	basolateral.export	Slc16a10	ncbi.120348233	N1.HOG0002847	m2s1_Slc16a(2,10)	[ncbi.120348233]; m2s1_Slc16a(2,10); [n] monocarboxylate transporter 10-like
+gut15	Export: AA	digestion	absorption	amino.acid	basolateral.export	Slc3a2	NA	NA	NA	NA
+gut13	Export: carb	digestion	absorption	carbohydrate	basolateral.export	Slc2a2	ncbi.120330483	N1.HOG0000162	m4s2_Slc2a(1-4)	[ncbi.120330483]; m4s2_Slc2a(1-4); [n] solute carrier family 2, facilitated glucose transporter member 3-like
+gut13	Export: carb	digestion	absorption	carbohydrate	basolateral.export	Slc2a2	ncbi.120342951	N1.HOG0000162	m4s2_Slc2a(1-4)	[ncbi.120342951]; m4s2_Slc2a(1-4); [n] solute carrier family 2, facilitated glucose transporter member 1-like
+gut13	Export: carb	digestion	absorption	carbohydrate	basolateral.export	Slc2a1	ncbi.120330483	N1.HOG0000162	m4s2_Slc2a(1-4)	[ncbi.120330483]; m4s2_Slc2a(1-4); [n] solute carrier family 2, facilitated glucose transporter member 3-like
+gut13	Export: carb	digestion	absorption	carbohydrate	basolateral.export	Slc2a1	ncbi.120342951	N1.HOG0000162	m4s2_Slc2a(1-4)	[ncbi.120342951]; m4s2_Slc2a(1-4); [n] solute carrier family 2, facilitated glucose transporter member 1-like
+gut20	Export: lipid	digestion	absorption	lipid	basolateral.export	Abca1	ncbi.120335282	NA	NA	[ncbi.120335282]; [e] ABCA1; [n] phospholipid-transporting ATPase ABCA1-like
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp1	ncbi.120346034	N1.HOG0000777	m2s3_Fabp(1,6)	[ncbi.120346034]; m2s3_Fabp(1,6); [n] fatty acid-binding protein, liver-like
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp1	ncbi.120346320	N1.HOG0000777	m2s3_Fabp(1,6)	[ncbi.120346320]; m2s3_Fabp(1,6); [n] fatty acid-binding protein 2, liver-like
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp1	ncbi.120346496	N1.HOG0000777	m2s3_Fabp(1,6)	[ncbi.120346496]; m2s3_Fabp(1,6); [p] TATA-box-binding protein
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp2	ncbi.120347364	N1.HOG0000810	m3s1_Crabp(1,2).Fabp2	[ncbi.120347364]; m3s1_Crabp(1,2).Fabp2; [n] fatty acid-binding protein, intestinal-like
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp6	ncbi.120346034	N1.HOG0000777	m2s3_Fabp(1,6)	[ncbi.120346034]; m2s3_Fabp(1,6); [n] fatty acid-binding protein, liver-like
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp6	ncbi.120346320	N1.HOG0000777	m2s3_Fabp(1,6)	[ncbi.120346320]; m2s3_Fabp(1,6); [n] fatty acid-binding protein 2, liver-like
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp6	ncbi.120346496	N1.HOG0000777	m2s3_Fabp(1,6)	[ncbi.120346496]; m2s3_Fabp(1,6); [p] TATA-box-binding protein
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Npc2	ncbi.120331562	N1.HOG0004222	m1s1_Npc2	[ncbi.120331562]; m1s1_Npc2; [n] NPC intracellular cholesterol transporter 2-like
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp5	ncbi.120347695	NA	NA	[ncbi.120347695]; [e] FABP5; [n] fatty acid-binding protein, brain-like
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp5	ncbi.120348278	NA	NA	[ncbi.120348278]; [e] FABP5; [n] fatty acid-binding protein, heart-like
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Npc1	ncbi.120330689	NA	NA	[ncbi.120330689]; [e] NPC1; [n] NPC intracellular cholesterol transporter 1-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy1	ncbi.120334780	N1.HOG0001422	m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5)	[ncbi.120334780]; m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5); [n] integumentary mucin C.1-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy2a1	ncbi.120334780	N1.HOG0001422	m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5)	[ncbi.120334780]; m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5); [n] integumentary mucin C.1-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy2a2	ncbi.120334780	N1.HOG0001422	m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5)	[ncbi.120334780]; m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5); [n] integumentary mucin C.1-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy2a3	ncbi.120334780	N1.HOG0001422	m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5)	[ncbi.120334780]; m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5); [n] integumentary mucin C.1-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy2a4	ncbi.120334780	N1.HOG0001422	m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5)	[ncbi.120334780]; m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5); [n] integumentary mucin C.1-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy2a5	ncbi.120334780	N1.HOG0001422	m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5)	[ncbi.120334780]; m6s1_Amy(1,2a1,2a2,2a3,2a4,2a5); [n] integumentary mucin C.1-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa1	ncbi.120339096	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120339096]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase B-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa1	ncbi.120339097	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120339097]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase B-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa1	ncbi.120339102	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120339102]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase B-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa1	ncbi.120339120	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120339120]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase O-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa1	ncbi.120339198	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120339198]; m4s7_Cpa(1,2,4,5); [p] Tyrosine--tRNA ligase 2, cytoplasmic
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa1	ncbi.120341799	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120341799]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase B-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa1	ncbi.120342892	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120342892]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase B-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	ncbi.120339096	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120339096]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase B-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	ncbi.120339097	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120339097]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase B-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	ncbi.120339102	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120339102]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase B-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	ncbi.120339120	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120339120]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase O-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	ncbi.120339198	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120339198]; m4s7_Cpa(1,2,4,5); [p] Tyrosine--tRNA ligase 2, cytoplasmic
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	ncbi.120341799	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120341799]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase B-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	ncbi.120342892	N1.HOG0000214	m4s7_Cpa(1,2,4,5)	[ncbi.120342892]; m4s7_Cpa(1,2,4,5); [n] carboxypeptidase B-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ctrb1	ncbi.120325756	N1.HOG0000389	m2s4_Ctr(b1,l)	[ncbi.120325756]; m2s4_Ctr(b1,l); [n] chymotrypsin B-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ctrb1	ncbi.120325759	N1.HOG0000389	m2s4_Ctr(b1,l)	[ncbi.120325759]; m2s4_Ctr(b1,l); [n] chymotrypsinogen A-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ctrb1	ncbi.120326175	N1.HOG0000389	m2s4_Ctr(b1,l)	[ncbi.120326175]; m2s4_Ctr(b1,l); [n] chymotrypsinogen A-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ctrb1	ncbi.120326176	N1.HOG0000389	m2s4_Ctr(b1,l)	[ncbi.120326176]; m2s4_Ctr(b1,l); [n] chymotrypsinogen A-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Pnlip	ncbi.120336409	N1.HOG0001527	m3s2_Pnlip(,rp1,rp2)	[ncbi.120336409]; m3s2_Pnlip(,rp1,rp2); [n] inactive pancreatic lipase-related protein 1-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Pnlip	ncbi.120343131	N1.HOG0001527	m3s2_Pnlip(,rp1,rp2)	[ncbi.120343131]; m3s2_Pnlip(,rp1,rp2); [n] inactive pancreatic lipase-related protein 1-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cel	ncbi.120344809	N1.HOG0005145	m1s1_Cel	[ncbi.120344809]; m1s1_Cel; [e] trans-permethrin hydrolase activity
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Prss1	ncbi.120341886	N1.HOG0000138	m15s1_Gm(x1).Klk(8,11,13,14).Prss(1,1l,2,3,3b,3l).Rik(x1).Try(4,5,10)	[ncbi.120341886]; m15s1_Gm(x1).Klk(8,11,13,14).Prss(1,1l,2,3,3b,3l).Rik(x1).Try(4,5,10); [n] trypsin-3-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Prss2	ncbi.120341886	N1.HOG0000138	m15s1_Gm(x1).Klk(8,11,13,14).Prss(1,1l,2,3,3b,3l).Rik(x1).Try(4,5,10)	[ncbi.120341886]; m15s1_Gm(x1).Klk(8,11,13,14).Prss(1,1l,2,3,3b,3l).Rik(x1).Try(4,5,10); [n] trypsin-3-like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ptf1a	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cela1	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cela2a	ncbi.120339087	NA	NA	[ncbi.120339087]; [p] F12; [n] chymotrypsin-like elastase family member 2A
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cela2a	ncbi.120339088	NA	NA	[ncbi.120339088]; [p] F12; [n] chymotrypsin-like elastase family member 2A
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cela2a	ncbi.120342018	NA	NA	[ncbi.120342018]; [n] chymotrypsin-like elastase family member 2A
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Clps	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Pgc	NA	NA	NA	NA
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Acp2	ncbi.120346030	N1.HOG0002903	m3s1_Acp(2-4)	[ncbi.120346030]; m3s1_Acp(2-4); [n] prostatic acid phosphatase-like
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Lamp1	ncbi.120328234	N1.HOG0000713	m3s1_Lamp(1-3)	[ncbi.120328234]; m3s1_Lamp(1-3); [n] lysosome-associated membrane glycoprotein 2-like
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Lamp2	ncbi.120328234	N1.HOG0000713	m3s1_Lamp(1-3)	[ncbi.120328234]; m3s1_Lamp(1-3); [n] lysosome-associated membrane glycoprotein 2-like
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Lamp3	ncbi.120328234	N1.HOG0000713	m3s1_Lamp(1-3)	[ncbi.120328234]; m3s1_Lamp(1-3); [n] lysosome-associated membrane glycoprotein 2-like
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsc	ncbi.120334333	N1.HOG0005282	m1s1_Ctsc	[ncbi.120334333]; m1s1_Ctsc; [n] dipeptidyl peptidase 1-like
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsd	ncbi.120345659	N1.HOG0001412	m3s2_Ctsd.Gm(x1).Ren1	[ncbi.120345659]; m3s2_Ctsd.Gm(x1).Ren1; [n] lysosomal aspartic protease-like
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsd	ncbi.120345732	N1.HOG0001412	m3s2_Ctsd.Gm(x1).Ren1	[ncbi.120345732]; m3s2_Ctsd.Gm(x1).Ren1; [n] cathepsin D-like
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsl	ncbi.120348194	N1.HOG0000223	m3s1_BC051665.Ctsl(,l3)	[ncbi.120348194]; m3s1_BC051665.Ctsl(,l3); [n] procathepsin L-like
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsh	ncbi.120334255	N1.HOG0009625	m1s1_Ctsh	[ncbi.120334255]; m1s1_Ctsh; [n] pro-cathepsin H-like
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsb	ncbi.120339476	N1.HOG0004796	m1s1_Ctsb	[ncbi.120339476]; m1s1_Ctsb; [n] cathepsin B-like
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsf	ncbi.120338590	N1.HOG0009626	m1s1_Ctsf	[ncbi.120338590]; m1s1_Ctsf; [n] cathepsin L-like
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Lamp5	ncbi.120348579	NA	NA	[ncbi.120348579]; [p] lamp5; [p] Lysosome-associated membrane glycoprotein 5
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Lamp5	ncbi.120341392	NA	NA	[ncbi.120341392]; [p] lamp5; [p] Lysosome-associated membrane glycoprotein 5
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Lamp5	ncbi.120341537	NA	NA	[ncbi.120341537]; [p] lamp5; [p] Lysosome-associated membrane glycoprotein 5
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	ncbi.120328587	NA	NA	[ncbi.120328587]; [n] mucin-5AC-like
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	ncbi.120329748	NA	NA	[ncbi.120329748]; [n] mucin-5AC-like
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	ncbi.120334574	NA	NA	[ncbi.120334574]; [n] mucin-5AC-like
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	ncbi.120341247	NA	NA	[ncbi.120341247]; [n] mucin-5AC-like
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	ncbi.120343359	NA	NA	[ncbi.120343359]; [n] mucin-5AC-like
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	ncbi.120346188	NA	NA	[ncbi.120346188]; [n] mucin-5AC-like
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	ncbi.120347429	NA	NA	[ncbi.120347429]; [n] mucin-5AC-like
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc2	ncbi.120332005	NA	NA	[ncbi.120332005]; [p] Muc2; [n] mucin-2-like
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Spdef	NA	NA	NA	NA
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Tff1	NA	NA	NA	NA
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Tff2	ncbi.120344565	NA	NA	[ncbi.120344565]; [p] Tff2; [p] Trefoil factor 2
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Tff3	NA	NA	NA	NA
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Mertk	ncbi.120338493	N1.HOG0002001	m3s1_Axl.Mertk.Tyro3	[ncbi.120338493]; m3s1_Axl.Mertk.Tyro3; [n] tyrosine-protein kinase Mer-like
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Gulp1	ncbi.120341888	N1.HOG0004791	m1s1_Gulp1	[ncbi.120341888]; m1s1_Gulp1; [p] Protein numb homolog
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Elmo1	ncbi.120347407	N1.HOG0001577	m3s1_Elmo(1-3)	[ncbi.120347407]; m3s1_Elmo(1-3); [n] engulfment and cell motility protein 1-like
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Dock1	ncbi.120339858	N1.HOG0000919	m3s1_Dock(1,2,5)	[ncbi.120339858]; m3s1_Dock(1,2,5); [n] dedicator of cytokinesis protein 2-like
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Actr2	ncbi.120335647	N1.HOG0005017	m1s1_Actr2	[ncbi.120335647]; m1s1_Actr2; [n] actin-related protein 2
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Actr3	ncbi.120337491	N1.HOG0004110	m2s1_Actr3(,b)	[ncbi.120337491]; m2s1_Actr3(,b); [n] actin-related protein 3
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Megf10	NA	NA	NA	NA
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Rac1	ncbi.120343527	N1.HOG0000600	m1s2_Rhog	[ncbi.120343527]; m1s2_Rhog; [n] ras-related C3 botulinum toxin substrate 1-like
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Rac1	ncbi.120329732	NA	NA	[ncbi.120329732]; [e] RAC2; [n] ras-related C3 botulinum toxin substrate 1-like
+gut08	Pinocytosis	digestion	intracellular.digestion	pinocytosis	NA	Lrp2	ncbi.120329256	N1.HOG0005190	m1s1_Lrp2	[ncbi.120329256]; m1s1_Lrp2; [n] low-density lipoprotein receptor-related protein 2-like
+gut08	Pinocytosis	digestion	intracellular.digestion	pinocytosis	NA	Cubn	ncbi.120343058	N1.HOG0008425	m1s1_Cubn	[ncbi.120343058]; m1s1_Cubn; [n] cubilin-like
+gut08	Pinocytosis	digestion	intracellular.digestion	pinocytosis	NA	Amn	ncbi.120326707	N1.HOG0007512	m1s1_Amn	[ncbi.120326707]; m1s1_Amn; [n] protein amnionless-like
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Mogat1	ncbi.120345059	N1.HOG0001381	m3s1_Dgat2.Mogat(1,2)	[ncbi.120345059]; m3s1_Dgat2.Mogat(1,2); [n] 2-acylglycerol O-acyltransferase 2-A-like
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Mogat2	ncbi.120345059	N1.HOG0001381	m3s1_Dgat2.Mogat(1,2)	[ncbi.120345059]; m3s1_Dgat2.Mogat(1,2); [n] 2-acylglycerol O-acyltransferase 2-A-like
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Dgat1	ncbi.120325807	N1.HOG0004551	m1s2_Dgat1	[ncbi.120325807]; m1s2_Dgat1; [n] diacylglycerol O-acyltransferase 1-like
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Dgat1	ncbi.120326316	N1.HOG0004551	m1s2_Dgat1	[ncbi.120326316]; m1s2_Dgat1; [n] diacylglycerol O-acyltransferase 1-like
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Dgat2	ncbi.120345059	N1.HOG0001381	m3s1_Dgat2.Mogat(1,2)	[ncbi.120345059]; m3s1_Dgat2.Mogat(1,2); [n] 2-acylglycerol O-acyltransferase 2-A-like
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Lpcat3	ncbi.120328699	N1.HOG0008229	m1s1_Lpcat3	[ncbi.120328699]; m1s1_Lpcat3; [n] lysophospholipid acyltransferase 5-like
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Acat1	ncbi.120332324	NA	NA	[ncbi.120332324]; [e] ACAT1; [n] acetyl-CoA acetyltransferase, mitochondrial-like
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Acat2	NA	NA	NA	NA
+gut37	Stem cells	maintenance	renewal	stem.cell	NA	Pcna	ncbi.120332412	N1.HOG0007419	m1s1_Pcna	[ncbi.120332412]; m1s1_Pcna; [n] proliferating cell nuclear antigen
+gut37	Stem cells	maintenance	renewal	stem.cell	NA	Mki67	ncbi.120328285	N1.HOG0003827	m2s1_Cdca2.Mki67	[ncbi.120328285]; m2s1_Cdca2.Mki67; [n] proliferation marker protein Ki-67-like
+gut37	Stem cells	maintenance	renewal	stem.cell	NA	Lgr5	ncbi.120331689	N1.HOG0002499	m3s1_Lgr(4-6)	[ncbi.120331689]; m3s1_Lgr(4-6); [n] leucine-rich repeat-containing G-protein coupled receptor 5-like
+gut37	Stem cells	maintenance	renewal	stem.cell	NA	Top2a	ncbi.120330502	N1.HOG0002834	m2s1_Top2(a,b)	[ncbi.120330502]; m2s1_Top2(a,b); [n] DNA topoisomerase 2-alpha-like
+gut37	Stem cells	maintenance	renewal	stem.cell	NA	Olfm4	NA	NA	NA	NA
+gut32	Storage: glycogen	digestion	storage	glycogen	NA	Gyg1	ncbi.120327742	N1.HOG0003259	m1s1_Gyg1	[ncbi.120327742]; m1s1_Gyg1; [n] glycogenin-1-like
+gut32	Storage: glycogen	digestion	storage	glycogen	NA	Gys1	ncbi.120330481	N1.HOG0003136	m2s1_Gys(1,2)	[ncbi.120330481]; m2s1_Gys(1,2); [n] glycogen [starch] synthase, muscle-like
+gut32	Storage: glycogen	digestion	storage	glycogen	NA	Gys2	ncbi.120330481	N1.HOG0003136	m2s1_Gys(1,2)	[ncbi.120330481]; m2s1_Gys(1,2); [n] glycogen [starch] synthase, muscle-like
+gut32	Storage: glycogen	digestion	storage	glycogen	NA	Pygl	ncbi.120325990	N1.HOG0001696	m3s1_Pyg(b,l,m)	[ncbi.120325990]; m3s1_Pyg(b,l,m); [n] glycogen phosphorylase, brain form-like
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Plin1	ncbi.120343008	N1.HOG0000991	m5s1_Plin(1-5)	[ncbi.120343008]; m5s1_Plin(1-5); [n] perilipin-2-like
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Plin2	ncbi.120343008	N1.HOG0000991	m5s1_Plin(1-5)	[ncbi.120343008]; m5s1_Plin(1-5); [n] perilipin-2-like
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Plin3	ncbi.120343008	N1.HOG0000991	m5s1_Plin(1-5)	[ncbi.120343008]; m5s1_Plin(1-5); [n] perilipin-2-like
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Plin4	ncbi.120343008	N1.HOG0000991	m5s1_Plin(1-5)	[ncbi.120343008]; m5s1_Plin(1-5); [n] perilipin-2-like
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Plin5	ncbi.120343008	N1.HOG0000991	m5s1_Plin(1-5)	[ncbi.120343008]; m5s1_Plin(1-5); [n] perilipin-2-like
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Dgat1	ncbi.120325807	N1.HOG0004551	m1s2_Dgat1	[ncbi.120325807]; m1s2_Dgat1; [n] diacylglycerol O-acyltransferase 1-like
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Dgat1	ncbi.120326316	N1.HOG0004551	m1s2_Dgat1	[ncbi.120326316]; m1s2_Dgat1; [n] diacylglycerol O-acyltransferase 1-like
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Dgat2	ncbi.120345059	N1.HOG0001381	m3s1_Dgat2.Mogat(1,2)	[ncbi.120345059]; m3s1_Dgat2.Mogat(1,2); [n] 2-acylglycerol O-acyltransferase 2-A-like
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Pnpla2	ncbi.120342677	N1.HOG0001661	m3s1_Pnpla(1-3)	[ncbi.120342677]; m3s1_Pnpla(1-3); [p] Patatin-like phospholipase domain-containing protein 2
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Lipe	ncbi.120335513	N1.HOG0007953	m1s1_Lipe	[ncbi.120335513]; m1s1_Lipe; [n] hormone-sensitive lipase-like
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Cidea	NA	NA	NA	NA
+gut26	Synthesis: AA	digestion	metabolism	amino.acid	synthesis	Glul	ncbi.120342089	N1.HOG0003229	m1s1_Glul	[ncbi.120342089]; m1s1_Glul; [n] glutamine synthetase-like
+gut26	Synthesis: AA	digestion	metabolism	amino.acid	synthesis	Gls	ncbi.120342934	N1.HOG0001969	m2s1_Gls(,2)	[ncbi.120342934]; m2s1_Gls(,2); [n] glutaminase kidney isoform, mitochondrial-like
+gut27	Synthesis: FA	digestion	metabolism	lipid	synthesis	Scd1	ncbi.120340923	N1.HOG0002399	m4s3_Scd(1-4)	[ncbi.120340923]; m4s3_Scd(1-4); [n] stearoyl-CoA desaturase 5-like
+gut27	Synthesis: FA	digestion	metabolism	lipid	synthesis	Scd1	ncbi.120341183	N1.HOG0002399	m4s3_Scd(1-4)	[ncbi.120341183]; m4s3_Scd(1-4); [n] stearoyl-CoA desaturase 5-like
+gut27	Synthesis: FA	digestion	metabolism	lipid	synthesis	Scd1	ncbi.120346179	N1.HOG0002399	m4s3_Scd(1-4)	[ncbi.120346179]; m4s3_Scd(1-4); [n] stearoyl-CoA desaturase 5-like
+gut27	Synthesis: FA	digestion	metabolism	lipid	synthesis	Fasn	NA	NA	NA	NA
+gut23	Synthesis: carb	digestion	metabolism	carbohydrate	synthesis	Pck1	ncbi.120332617	N1.HOG0002933	m2s1_Pck(1,2)	[ncbi.120332617]; m2s1_Pck(1,2); [n] phosphoenolpyruvate carboxykinase, cytosolic [GTP]-like
+gut29	Synthesis: cholesterol	digestion	metabolism	lipid	cholesterol.synthesis	Hmgcr	ncbi.120331473	N1.HOG0004492	m1s2_Hmgcr	[ncbi.120331473]; m1s2_Hmgcr; [n] 3-hydroxy-3-methylglutaryl-coenzyme A reductase 2-like
+gut29	Synthesis: cholesterol	digestion	metabolism	lipid	cholesterol.synthesis	Hmgcr	ncbi.120331474	N1.HOG0004492	m1s2_Hmgcr	[ncbi.120331474]; m1s2_Hmgcr; [n] 3-hydroxy-3-methylglutaryl-coenzyme A reductase 2-like
+gut29	Synthesis: cholesterol	digestion	metabolism	lipid	cholesterol.synthesis	Sqle	NA	NA	NA	NA
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Tjp1	ncbi.120338046	N1.HOG0001202	m3s1_Tjp(1-3)	[ncbi.120338046]; m3s1_Tjp(1-3); [n] tight junction protein ZO-1-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120326816	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120326816]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120327232	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327232]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120327234	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327234]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120327237	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327237]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-14-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120327612	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327612]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120328372	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120328372]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120330051	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120330051]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-1-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120330879	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120330879]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120339531	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120339531]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-15-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120342383	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120342383]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120342402	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120342402]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120343324	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120343324]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120344091	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120344091]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120347233	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347233]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120347237	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347237]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120347239	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347239]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	ncbi.120347810	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347810]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120326816	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120326816]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120327232	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327232]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120327234	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327234]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120327237	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327237]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-14-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120327612	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327612]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120328372	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120328372]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120330051	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120330051]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-1-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120330879	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120330879]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120339531	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120339531]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-15-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120342383	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120342383]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120342402	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120342402]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120343324	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120343324]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120344091	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120344091]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120347233	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347233]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120347237	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347237]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120347239	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347239]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	ncbi.120347810	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347810]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120326816	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120326816]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120327232	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327232]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120327234	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327234]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120327237	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327237]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-14-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120327612	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327612]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120328372	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120328372]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120330051	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120330051]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-1-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120330879	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120330879]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120339531	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120339531]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-15-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120342383	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120342383]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120342402	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120342402]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120343324	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120343324]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120344091	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120344091]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120347233	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347233]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120347237	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347237]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120347239	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347239]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	ncbi.120347810	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347810]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120326816	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120326816]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120327232	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327232]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120327234	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327234]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120327237	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327237]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-14-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120327612	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327612]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120328372	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120328372]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120330051	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120330051]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-1-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120330879	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120330879]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120339531	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120339531]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-15-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120342383	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120342383]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120342402	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120342402]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120343324	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120343324]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120344091	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120344091]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120347233	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347233]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120347237	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347237]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120347239	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347239]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	ncbi.120347810	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347810]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120326816	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120326816]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120327232	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327232]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120327234	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327234]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120327237	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327237]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-14-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120327612	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120327612]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120328372	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120328372]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120330051	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120330051]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-1-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120330879	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120330879]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120339531	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120339531]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-15-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120342383	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120342383]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120342402	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120342402]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120343324	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120343324]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120344091	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120344091]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120347233	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347233]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120347237	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347237]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120347239	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347239]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-7-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	ncbi.120347810	N1.HOG0000032	m22s17_Cldn(1-11,13-20,22,24,25)	[ncbi.120347810]; m22s17_Cldn(1-11,13-20,22,24,25); [n] claudin-19-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cdh1	ncbi.120325629	N1.HOG0000136	m16s1_Cdh(1-4,13,15,26).Dsc(1-3).Dsg(1a,1b,1c,2,3,4)	[ncbi.120325629]; m16s1_Cdh(1-4,13,15,26).Dsc(1-3).Dsg(1a,1b,1c,2,3,4); [n] cadherin-2-like
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Ocln	ncbi.120337298	NA	NA	[ncbi.120337298]; [p] OCLN; [p] Occludin
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc15a1	ncbi.120330303	N1.HOG0001899	m2s3_Slc15a(1,2)	[ncbi.120330303]; m2s3_Slc15a(1,2); [n] solute carrier family 15 member 2-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc15a1	ncbi.120348242	N1.HOG0001899	m2s3_Slc15a(1,2)	[ncbi.120348242]; m2s3_Slc15a(1,2); [n] solute carrier family 15 member 1-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc15a1	ncbi.120348667	N1.HOG0001899	m2s3_Slc15a(1,2)	[ncbi.120348667]; m2s3_Slc15a(1,2); [n] solute carrier family 15 member 2-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a19	ncbi.120334609	N1.HOG0000331	m4s2_Slc6a(18,19,20a,20b)	[ncbi.120334609]; m4s2_Slc6a(18,19,20a,20b); [n] sodium- and chloride-dependent transporter XTRP3A-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a19	ncbi.120340852	N1.HOG0000331	m4s2_Slc6a(18,19,20a,20b)	[ncbi.120340852]; m4s2_Slc6a(18,19,20a,20b); [n] sodium- and chloride-dependent transporter XTRP3A-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a15	ncbi.120331047	N1.HOG0000332	m3s3_Slc6a1(5-7)	[ncbi.120331047]; m3s3_Slc6a1(5-7); [n] sodium-dependent neutral amino acid transporter B(0)AT2-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a15	ncbi.120333690	N1.HOG0000332	m3s3_Slc6a1(5-7)	[ncbi.120333690]; m3s3_Slc6a1(5-7); [n] sodium-dependent neutral amino acid transporter B(0)AT2-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a15	ncbi.120334094	N1.HOG0000332	m3s3_Slc6a1(5-7)	[ncbi.120334094]; m3s3_Slc6a1(5-7); [n] sodium-dependent neutral amino acid transporter B(0)AT2-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a14	ncbi.120347109	N1.HOG0004356	m1s1_Slc6a14	[ncbi.120347109]; m1s1_Slc6a14; [n] sodium- and chloride-dependent neutral and basic amino acid transporter B(0+)-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc3a1	ncbi.120332763	N1.HOG0005657	m1s2_Slc3a1	[ncbi.120332763]; m1s2_Slc3a1; [n] neutral and basic amino acid transport protein rBAT-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc3a1	ncbi.120332765	N1.HOG0005657	m1s2_Slc3a1	[ncbi.120332765]; m1s2_Slc3a1; [n] neutral and basic amino acid transport protein rBAT-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc36a1	ncbi.120340455	N1.HOG0002253	m4s3_Slc36a(1-4)	[ncbi.120340455]; m4s3_Slc36a(1-4); [n] proton-coupled amino acid transporter 1-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc36a1	ncbi.120341986	N1.HOG0002253	m4s3_Slc36a(1-4)	[ncbi.120341986]; m4s3_Slc36a(1-4); [n] proton-coupled amino acid transporter 1-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc36a1	ncbi.120345939	N1.HOG0002253	m4s3_Slc36a(1-4)	[ncbi.120345939]; m4s3_Slc36a(1-4); [n] proton-coupled amino acid transporter 1-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc7a9	ncbi.120326085	N1.HOG0000650	m1s2_Slc7a15	[ncbi.120326085]; m1s2_Slc7a15; [n] b(0,+)-type amino acid transporter 1-like
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc7a9	ncbi.120326853	N1.HOG0000650	m1s2_Slc7a15	[ncbi.120326853]; m1s2_Slc7a15; [n] b(0,+)-type amino acid transporter 1-like
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	ncbi.120341805	N1.HOG0000603	m6s9_Slc5a(1,2,4a,4b,9,10)	[ncbi.120341805]; m6s9_Slc5a(1,2,4a,4b,9,10); [n] sodium/glucose cotransporter 4-like
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	ncbi.120341896	N1.HOG0000603	m6s9_Slc5a(1,2,4a,4b,9,10)	[ncbi.120341896]; m6s9_Slc5a(1,2,4a,4b,9,10); [n] sodium/glucose cotransporter 1-like
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	ncbi.120341897	N1.HOG0000603	m6s9_Slc5a(1,2,4a,4b,9,10)	[ncbi.120341897]; m6s9_Slc5a(1,2,4a,4b,9,10); [n] sodium/glucose cotransporter 4-like
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	ncbi.120341898	N1.HOG0000603	m6s9_Slc5a(1,2,4a,4b,9,10)	[ncbi.120341898]; m6s9_Slc5a(1,2,4a,4b,9,10); [n] sodium/glucose cotransporter 4-like
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	ncbi.120341899	N1.HOG0000603	m6s9_Slc5a(1,2,4a,4b,9,10)	[ncbi.120341899]; m6s9_Slc5a(1,2,4a,4b,9,10); [n] sodium/glucose cotransporter 4-like
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	ncbi.120341900	N1.HOG0000603	m6s9_Slc5a(1,2,4a,4b,9,10)	[ncbi.120341900]; m6s9_Slc5a(1,2,4a,4b,9,10); [n] sodium/glucose cotransporter 1-like
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	ncbi.120341901	N1.HOG0000603	m6s9_Slc5a(1,2,4a,4b,9,10)	[ncbi.120341901]; m6s9_Slc5a(1,2,4a,4b,9,10); [n] sodium/glucose cotransporter 4-like
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	ncbi.120344335	N1.HOG0000603	m6s9_Slc5a(1,2,4a,4b,9,10)	[ncbi.120344335]; m6s9_Slc5a(1,2,4a,4b,9,10); [n] sodium/glucose cotransporter 4-like
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	ncbi.120344767	N1.HOG0000603	m6s9_Slc5a(1,2,4a,4b,9,10)	[ncbi.120344767]; m6s9_Slc5a(1,2,4a,4b,9,10); [n] sodium/glucose cotransporter 4-like
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc2a5	ncbi.120345375	N1.HOG0000163	m3s2_Slc2a(5,7,9)	[ncbi.120345375]; m3s2_Slc2a(5,7,9); [n] solute carrier family 2, facilitated glucose transporter member 5-like
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc2a5	ncbi.120346118	N1.HOG0000163	m3s2_Slc2a(5,7,9)	[ncbi.120346118]; m3s2_Slc2a(5,7,9); [n] solute carrier family 2, facilitated glucose transporter member 5-like
+gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Cd36	ncbi.120327866	N1.HOG0000656	m1s3_Cd36	[ncbi.120327866]; m1s3_Cd36; [n] platelet glycoprotein 4-like
+gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Cd36	ncbi.120328810	N1.HOG0000656	m1s3_Cd36	[ncbi.120328810]; m1s3_Cd36; [n] platelet glycoprotein 4-like
+gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Cd36	ncbi.120348115	N1.HOG0000656	m1s3_Cd36	[ncbi.120348115]; m1s3_Cd36; [n] lysosome membrane protein 2-like
+gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Slc27a4	ncbi.120347318	N1.HOG0003554	m2s1_Slc27a(1,4)	[ncbi.120347318]; m2s1_Slc27a(1,4); [n] long-chain fatty acid transport protein 4-like
+gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Npc1l1	NA	NA	NA	NA
+gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Scarb1	ncbi.120327866	N1.HOG0000656	m1s3_Cd36	[ncbi.120327866]; m1s3_Cd36; [n] platelet glycoprotein 4-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc46a1	ncbi.120346386	N1.HOG0004724	m1s1_Slc46a1	[ncbi.120346386]; m1s1_Slc46a1; [n] proton-coupled folate transporter-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc11a2	ncbi.120331390	N1.HOG0002378	m2s3_Slc11a(1,2)	[ncbi.120331390]; m2s3_Slc11a(1,2); [n] natural resistance-associated macrophage protein 2-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc11a2	ncbi.120331713	N1.HOG0002378	m2s3_Slc11a(1,2)	[ncbi.120331713]; m2s3_Slc11a(1,2); [n] natural resistance-associated macrophage protein 2-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc11a2	ncbi.120331718	N1.HOG0002378	m2s3_Slc11a(1,2)	[ncbi.120331718]; m2s3_Slc11a(1,2); [n] natural resistance-associated macrophage protein 2-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc40a1	ncbi.120329664	N1.HOG0003245	m1s2_Slc40a1	[ncbi.120329664]; m1s2_Slc40a1; [n] solute carrier family 40 member 1-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc40a1	ncbi.120329673	N1.HOG0003245	m1s2_Slc40a1	[ncbi.120329673]; m1s2_Slc40a1; [n] solute carrier family 40 member 1-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Heph	ncbi.120326549	N1.HOG0000234	m3s9_Cp.Heph(,l1)	[ncbi.120326549]; m3s9_Cp.Heph(,l1); [n] hephaestin-like protein
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Heph	ncbi.120326550	N1.HOG0000234	m3s9_Cp.Heph(,l1)	[ncbi.120326550]; m3s9_Cp.Heph(,l1); [n] ferroxidase HEPHL1-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Heph	ncbi.120326554	N1.HOG0000234	m3s9_Cp.Heph(,l1)	[ncbi.120326554]; m3s9_Cp.Heph(,l1); [n] hephaestin-like protein
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Heph	ncbi.120326555	N1.HOG0000234	m3s9_Cp.Heph(,l1)	[ncbi.120326555]; m3s9_Cp.Heph(,l1); [n] ferroxidase HEPHL1-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Heph	ncbi.120326716	N1.HOG0000234	m3s9_Cp.Heph(,l1)	[ncbi.120326716]; m3s9_Cp.Heph(,l1); [n] ferroxidase HEPHL1-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Heph	ncbi.120326950	N1.HOG0000234	m3s9_Cp.Heph(,l1)	[ncbi.120326950]; m3s9_Cp.Heph(,l1); [n] ferroxidase HEPHL1-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Heph	ncbi.120327671	N1.HOG0000234	m3s9_Cp.Heph(,l1)	[ncbi.120327671]; m3s9_Cp.Heph(,l1); [n] ferroxidase HEPHL1-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Heph	ncbi.120328559	N1.HOG0000234	m3s9_Cp.Heph(,l1)	[ncbi.120328559]; m3s9_Cp.Heph(,l1); [n] hephaestin-like protein
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Heph	ncbi.120331992	N1.HOG0000234	m3s9_Cp.Heph(,l1)	[ncbi.120331992]; m3s9_Cp.Heph(,l1); [n] ferroxidase HEPHL1-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc23a1	ncbi.120335632	N1.HOG0000410	m2s3_Slc23a(1,2)	[ncbi.120335632]; m2s3_Slc23a(1,2); [n] solute carrier family 23 member 1-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc23a1	ncbi.120345003	N1.HOG0000410	m2s3_Slc23a(1,2)	[ncbi.120345003]; m2s3_Slc23a(1,2); [n] solute carrier family 23 member 1-like
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc23a1	ncbi.120345061	N1.HOG0000410	m2s3_Slc23a(1,2)	[ncbi.120345061]; m2s3_Slc23a(1,2); [n] solute carrier family 23 member 1-like
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Otc	ncbi.120329553	N1.HOG0009851	m1s1_Otc	[ncbi.120329553]; m1s1_Otc; [n] ornithine carbamoyltransferase, mitochondrial-like
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Cps1	ncbi.120327643	N1.HOG0008554	m1s2_Cps1	[ncbi.120327643]; m1s2_Cps1; [n] carbamoyl-phosphate synthase [ammonia], mitochondrial-like
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Cps1	ncbi.120328367	N1.HOG0008554	m1s2_Cps1	[ncbi.120328367]; m1s2_Cps1; [n] carbamoyl-phosphate synthase [ammonia], mitochondrial-like
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Bhmt	ncbi.120326246	N1.HOG0001546	m3s5_Bhmt(,1b,2)	[ncbi.120326246]; m3s5_Bhmt(,1b,2); [n] betaine--homocysteine S-methyltransferase 1-like
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Bhmt	ncbi.120327870	N1.HOG0001546	m3s5_Bhmt(,1b,2)	[ncbi.120327870]; m3s5_Bhmt(,1b,2); [n] betaine--homocysteine S-methyltransferase 1-like
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Bhmt	ncbi.120328505	N1.HOG0001546	m3s5_Bhmt(,1b,2)	[ncbi.120328505]; m3s5_Bhmt(,1b,2); [n] betaine--homocysteine S-methyltransferase 1-like
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Bhmt	ncbi.120328506	N1.HOG0001546	m3s5_Bhmt(,1b,2)	[ncbi.120328506]; m3s5_Bhmt(,1b,2); [n] betaine--homocysteine S-methyltransferase 1-like
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Bhmt	ncbi.120328890	N1.HOG0001546	m3s5_Bhmt(,1b,2)	[ncbi.120328890]; m3s5_Bhmt(,1b,2); [n] betaine--homocysteine S-methyltransferase 1-like
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Arg1	NA	NA	NA	NA

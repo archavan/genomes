@@ -50,9 +50,13 @@ rsconnect/
 
 # additions below this ========================================================
 **/data
-**/results
 **/docs
 **/scratch
+
+**/results/*
+!**/results/genes/
+**/results/genes/*
+!**/results/genes/functional-modules_gut.tsv
 
 *.html
 *.pdf

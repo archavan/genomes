@@ -1,0 +1,382 @@
+id	label	module.1	module.2	module.3	module.4	gene_mm	ortholog	hog	hog_label	display_name
+gut02	Acidic digestion	digestion	acidic.digestion	NA	NA	Atp4a	KY21.Chr10.100	N1.HOG0000587	m6c2_Atp(1a1,1a2,1a3,1a4,4a,12a)	[KY21.Chr10.100]; m6c2_Atp(1a1,1a2,1a3,1a4,4a,12a); [h] ATPase Na+/K+ transporting subunit alpha 3
+gut02	Acidic digestion	digestion	acidic.digestion	NA	NA	Atp4a	KY21.Chr10.102	N1.HOG0000587	m6c2_Atp(1a1,1a2,1a3,1a4,4a,12a)	[KY21.Chr10.102]; m6c2_Atp(1a1,1a2,1a3,1a4,4a,12a); [h] ATPase Na+/K+ transporting subunit alpha 3
+gut02	Acidic digestion	digestion	acidic.digestion	NA	NA	Atp4b	KY21.Chr7.146	N1.HOG0000662	m5c1_Atp(1b1,1b2,1b3,1b4,4b)	[KY21.Chr7.146]; m5c1_Atp(1b1,1b2,1b3,1b4,4b); [h] ATPase Na+/K+ transporting subunit beta 2
+gut02	Acidic digestion	digestion	acidic.digestion	NA	NA	Aqp4	NA	NA	NA	NA
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg1	KY21.Chr1.1835	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr1.1835]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg1	KY21.Chr13.354	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr13.354]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg1	KY21.Chr13.355	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr13.355]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg1	KY21.Chr13.356	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr13.356]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg1	KY21.Chr14.262	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr14.262]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg2	KY21.Chr1.1835	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr1.1835]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg2	KY21.Chr13.354	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr13.354]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg2	KY21.Chr13.355	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr13.355]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg2	KY21.Chr13.356	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr13.356]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyg2	KY21.Chr14.262	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr14.262]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Reg3g	NA	NA	NA	NA
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz1	KY21.Chr1.1835	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr1.1835]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz1	KY21.Chr13.354	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr13.354]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz1	KY21.Chr13.355	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr13.355]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz1	KY21.Chr13.356	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr13.356]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz1	KY21.Chr14.262	N1.HOG0001749	m2c5_Lyg(1,2)	[KY21.Chr14.262]; m2c5_Lyg(1,2); [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz1	KY21.Chr7.1170	NA	NA	[KY21.Chr7.1170]; [h] LYG2; [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz1	KY21.Chr8.1174	NA	NA	[KY21.Chr8.1174]; [h] LYG2; [h] lysozyme g2
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz2	NA	NA	NA	NA
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Lyz3	NA	NA	NA	NA
+gut36	Antimicrobial	defense	antimicrobial.activity	NA	NA	Defa5	NA	NA	NA	NA
+gut06	BB hydrolysis: carb	digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Mgam	KY21.Chr7.622	N1.HOG0001535	m3c1_Mgam(,2-ps).Sis	[KY21.Chr7.622]; m3c1_Mgam(,2-ps).Sis; [h] maltase-glucoamylase
+gut06	BB hydrolysis: carb	digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Sis	KY21.Chr7.622	N1.HOG0001535	m3c1_Mgam(,2-ps).Sis	[KY21.Chr7.622]; m3c1_Mgam(,2-ps).Sis; [h] maltase-glucoamylase
+gut06	BB hydrolysis: carb	digestion	extracellular.digestion	brush.border.hydrolysis	carbohydrate	Lct	KY21.Chr11.1103	N1.HOG0002342	m1c1_Lct	[KY21.Chr11.1103]; m1c1_Lct; [h] lactase
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep	KY21.Chr11.1215	N1.HOG0001323	m2c3_Anpep.Lvrn	[KY21.Chr11.1215]; m2c3_Anpep.Lvrn; [h] alanyl aminopeptidase, membrane
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep	KY21.Chr13.350	N1.HOG0001323	m2c3_Anpep.Lvrn	[KY21.Chr13.350]; m2c3_Anpep.Lvrn; [h] alanyl aminopeptidase, membrane
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Anpep	KY21.Chr8.253	N1.HOG0001323	m2c3_Anpep.Lvrn	[KY21.Chr8.253]; m2c3_Anpep.Lvrn; [h] alanyl aminopeptidase, membrane
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Enpep	KY21.Chr12.696	N1.HOG0008412	m1c1_Enpep	[KY21.Chr12.696]; m1c1_Enpep; [h] glutamyl aminopeptidase
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	KY21.Chr10.686	N1.HOG0000488	m2c4_Dpp4.Fap	[KY21.Chr10.686]; m2c4_Dpp4.Fap; [h] dipeptidyl peptidase 4
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	KY21.Chr3.539	N1.HOG0000488	m2c4_Dpp4.Fap	[KY21.Chr3.539]; m2c4_Dpp4.Fap; [h] dipeptidyl peptidase 4
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	KY21.Chr9.1143	N1.HOG0000488	m2c4_Dpp4.Fap	[KY21.Chr9.1143]; m2c4_Dpp4.Fap; [h] fibroblast activation protein alpha
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Dpp4	KY21.Chr9.534	N1.HOG0000488	m2c4_Dpp4.Fap	[KY21.Chr9.534]; m2c4_Dpp4.Fap; [h] dipeptidyl peptidase 4
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	KY21.Chr8.1039	N1.HOG0000648	m2c5_Mep1(a,b)	[KY21.Chr8.1039]; m2c5_Mep1(a,b); [h] zinc finger protein 875
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	KY21.Chr8.1042	N1.HOG0000648	m2c5_Mep1(a,b)	[KY21.Chr8.1042]; m2c5_Mep1(a,b); [h] MAM domain containing glycosylphosphatidylinositol anchor 1
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	KY21.Chr8.1219	N1.HOG0000648	m2c5_Mep1(a,b)	[KY21.Chr8.1219]; m2c5_Mep1(a,b); [h] meprin A subunit alpha
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	KY21.Chr8.1220	N1.HOG0000648	m2c5_Mep1(a,b)	[KY21.Chr8.1220]; m2c5_Mep1(a,b); [h] meprin A subunit beta
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1a	KY21.Chr8.1221	N1.HOG0000648	m2c5_Mep1(a,b)	[KY21.Chr8.1221]; m2c5_Mep1(a,b); [h] meprin A subunit alpha
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	KY21.Chr8.1039	N1.HOG0000648	m2c5_Mep1(a,b)	[KY21.Chr8.1039]; m2c5_Mep1(a,b); [h] zinc finger protein 875
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	KY21.Chr8.1042	N1.HOG0000648	m2c5_Mep1(a,b)	[KY21.Chr8.1042]; m2c5_Mep1(a,b); [h] MAM domain containing glycosylphosphatidylinositol anchor 1
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	KY21.Chr8.1219	N1.HOG0000648	m2c5_Mep1(a,b)	[KY21.Chr8.1219]; m2c5_Mep1(a,b); [h] meprin A subunit alpha
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	KY21.Chr8.1220	N1.HOG0000648	m2c5_Mep1(a,b)	[KY21.Chr8.1220]; m2c5_Mep1(a,b); [h] meprin A subunit beta
+gut07	BB hydrolysis: peptide	digestion	extracellular.digestion	brush.border.hydrolysis	peptide	Mep1b	KY21.Chr8.1221	N1.HOG0000648	m2c5_Mep1(a,b)	[KY21.Chr8.1221]; m2c5_Mep1(a,b); [h] meprin A subunit alpha
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp7a1	KY21.Chr14.149	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr14.149]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily A member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp7a1	KY21.Chr2.1152	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr2.1152]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily B member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp7a1	KY21.Chr3.1566	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr3.1566]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily B member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp7a1	KY21.Chr5.704	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr5.704]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily A member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp7b1	KY21.Chr14.149	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr14.149]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily A member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp7b1	KY21.Chr2.1152	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr2.1152]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily B member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp7b1	KY21.Chr3.1566	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr3.1566]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily B member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp7b1	KY21.Chr5.704	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr5.704]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily A member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp8b1	KY21.Chr14.149	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr14.149]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily A member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp8b1	KY21.Chr2.1152	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr2.1152]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily B member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp8b1	KY21.Chr3.1566	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr3.1566]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily B member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp8b1	KY21.Chr5.704	N1.HOG0000508	m4c4_Cyp(7a1,7b1,8b1).Ptgis	[KY21.Chr5.704]; m4c4_Cyp(7a1,7b1,8b1).Ptgis; [h] cytochrome P450 family 7 subfamily A member 1
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Nr1h4	KY21.Chr2.908	N1.HOG0001530	m2c1_Nr1h(4,5)	[KY21.Chr2.908]; m2c1_Nr1h(4,5); [g] nuclear receptor subfamily 1 group H member 4
+gut04	Bile acid metabolism	digestion	extracellular.digestion	emulsification	bile.acid.metabolism	Cyp27a1	KY21.Chr7.942	N1.HOG0001621	m1c5_Cyp24a1	[KY21.Chr7.942]; m1c5_Cyp24a1; [h] cytochrome P450 family 27 subfamily A member 1
+gut24	Catabolism: AA	digestion	metabolism	amino.acid	catabolism	Gls	KY21.Chr1.776	N1.HOG0001969	m2c1_Gls(,2)	[KY21.Chr1.776]; m2c1_Gls(,2); [h] glutaminase
+gut24	Catabolism: AA	digestion	metabolism	amino.acid	catabolism	Arg2	KY21.Chr11.604	N1.HOG0004282	m2c1_Arg(1,2)	[KY21.Chr11.604]; m2c1_Arg(1,2); [h] arginase 2
+gut24	Catabolism: AA	digestion	metabolism	amino.acid	catabolism	Ass1	KY21.Chr9.1057	NA	NA	[KY21.Chr9.1057]; [h] ASS1; [h] argininosuccinate synthase 1
+gut28	Catabolism: FA	digestion	metabolism	lipid	fatty.acid.oxidation	Cpt1a	KY21.Chr14.468	N1.HOG0001765	m3c1_Cpt1(a,b,c)	[KY21.Chr14.468]; m3c1_Cpt1(a,b,c); [h] carnitine palmitoyltransferase 1A
+gut28	Catabolism: FA	digestion	metabolism	lipid	fatty.acid.oxidation	Hadha	KY21.Chr1.229	N1.HOG0006014	m1c1_Hadha	[KY21.Chr1.229]; m1c1_Hadha; [h] hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit alpha
+gut28	Catabolism: FA	digestion	metabolism	lipid	fatty.acid.oxidation	Ppara	KY21.Chr8.983	N1.HOG0001349	m3c1_Ppar(a,d,g)	[KY21.Chr8.983]; m3c1_Ppar(a,d,g); [g] peroxisome proliferator activated receptor
+gut28	Catabolism: FA	digestion	metabolism	lipid	fatty.acid.oxidation	Hmgcs2	KY21.Chr5.467	NA	NA	[KY21.Chr5.467]; [h] HMGCS1; [h] 3-hydroxy-3-methylglutaryl-CoA synthase 1
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Gck	KY21.Chr11.842	N1.HOG0000564	m4c2_Gck.Hk1.Hk2.Hkdc1	[KY21.Chr11.842]; m4c2_Gck.Hk1.Hk2.Hkdc1; [h] hexokinase 1
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Gck	KY21.Chr2.1257	N1.HOG0000564	m4c2_Gck.Hk1.Hk2.Hkdc1	[KY21.Chr2.1257]; m4c2_Gck.Hk1.Hk2.Hkdc1; [h] hexokinase 2
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk1	KY21.Chr11.842	N1.HOG0000564	m4c2_Gck.Hk1.Hk2.Hkdc1	[KY21.Chr11.842]; m4c2_Gck.Hk1.Hk2.Hkdc1; [h] hexokinase 1
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk1	KY21.Chr2.1257	N1.HOG0000564	m4c2_Gck.Hk1.Hk2.Hkdc1	[KY21.Chr2.1257]; m4c2_Gck.Hk1.Hk2.Hkdc1; [h] hexokinase 2
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk2	KY21.Chr11.842	N1.HOG0000564	m4c2_Gck.Hk1.Hk2.Hkdc1	[KY21.Chr11.842]; m4c2_Gck.Hk1.Hk2.Hkdc1; [h] hexokinase 1
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk2	KY21.Chr2.1257	N1.HOG0000564	m4c2_Gck.Hk1.Hk2.Hkdc1	[KY21.Chr2.1257]; m4c2_Gck.Hk1.Hk2.Hkdc1; [h] hexokinase 2
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Pfkl	KY21.Chr9.273	N1.HOG0001040	m3c1_Pfk(l,m,p)	[KY21.Chr9.273]; m3c1_Pfk(l,m,p); [h] phosphofructokinase, muscle
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	Hk3	KY21.Chr3.804	NA	NA	[KY21.Chr3.804]; [h] HK3; [h] hexokinase 3
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	G6pc1	NA	NA	NA	NA
+gut22	Catabolism: carb	digestion	metabolism	carbohydrate	catabolism	G6pd	KY21.Chr4.526	N1.HOG0004773	m2c1_G6pd(2,x)	[KY21.Chr4.526]; m2c1_G6pd(2,x); [h] glucose-6-phosphate dehydrogenase
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Mttp	KY21.Chr6.39	N1.HOG0004504	m1c1_Mttp	[KY21.Chr6.39]; m1c1_Mttp; [h] microsomal triglyceride transfer protein
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Sar1b	KY21.Chr14.355	N1.HOG0003798	m2c1_Sar1(a,b)	[KY21.Chr14.355]; m2c1_Sar1(a,b); [h] secretion associated Ras related GTPase 1A
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Apob	KY21.Chr1.2009	NA	NA	[KY21.Chr1.2009]; [h] APOB; [h] apolipoprotein B
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Apob	KY21.Chr8.1053	NA	NA	[KY21.Chr8.1053]; [h] APOB; [h] apolipoprotein B
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Apob	KY21.UAContig19.1	NA	NA	[KY21.UAContig19.1]; [h] APOB; [h] apolipoprotein B
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Apoa1	NA	NA	NA	NA
+gut19	Chylomicron assembly	digestion	absorption	lipid	chylomicron.assembly	Apoa4	NA	NA	NA	NA
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Rfx3	KY21.Chr5.758	N1.HOG0001603	m4c1_Rfx(1-3,8)	[KY21.Chr5.758]; m4c1_Rfx(1-3,8); [h] regulatory factor X3
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Mcidas	KY21.Chr1.1139	N1.HOG0002394	m2c1_Gmnn.Mcidas	[KY21.Chr1.1139]; m2c1_Gmnn.Mcidas; [h] geminin DNA replication inhibitor
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Ccno	KY21.Chr7.674	N1.HOG0001007	m1c1_Ccno	[KY21.Chr7.674]; m1c1_Ccno; [h] cyclin O
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Dnah5	KY21.Chr6.9	N1.HOG0005790	m1c1_Dnah5	[KY21.Chr6.9]; m1c1_Dnah5; [h] dynein axonemal heavy chain 5
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Dnai1	KY21.Chr4.772	N1.HOG0005997	m1c1_Dnai1	[KY21.Chr4.772]; m1c1_Dnai1; [h] dynein axonemal intermediate chain 1
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Rsph4a	KY21.Chr10.893	N1.HOG0004991	m2c1_Rsph(4a,6a)	[KY21.Chr10.893]; m2c1_Rsph(4a,6a); [h] radial spoke head component 4A
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Ift88	KY21.Chr1.129	N1.HOG0006508	m1c1_Ift88	[KY21.Chr1.129]; m1c1_Ift88; [h] intraflagellar transport 88
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Cep41	KY21.Chr5.526	N1.HOG0004917	m1c1_Cep41	[KY21.Chr5.526]; m1c1_Cep41; [h] centrosomal protein 41
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Lztfl1	KY21.Chr7.510	N1.HOG0007048	m1c1_Lztfl1	[KY21.Chr7.510]; m1c1_Lztfl1; [h] leucine zipper transcription factor like 1
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Foxj1	NA	NA	NA	NA
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Dnah11	KY21.Chr2.753	NA	NA	[KY21.Chr2.753]; [h] DNAH11; [h] dynein axonemal heavy chain 11
+gut03	Ciliary motility	digestion	motility	ciliary	NA	Dnah11	KY21.Chr4.1027	NA	NA	[KY21.Chr4.1027]; [h] DNAH11; [h] dynein axonemal heavy chain 11
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	KY21.Chr1.1234	N1.HOG0000180	m9c5_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[KY21.Chr1.1234]; m9c5_Cyp3a(11,13,16,25,41a,41b,44,57,59); [h] cytochrome P450 family 3 subfamily A member 43
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	KY21.Chr11.244	N1.HOG0000180	m9c5_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[KY21.Chr11.244]; m9c5_Cyp3a(11,13,16,25,41a,41b,44,57,59); [h] cytochrome P450 family 3 subfamily A member 5
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	KY21.Chr11.245	N1.HOG0000180	m9c5_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[KY21.Chr11.245]; m9c5_Cyp3a(11,13,16,25,41a,41b,44,57,59); [h] cytochrome P450 family 3 subfamily A member 4
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	KY21.Chr11.246	N1.HOG0000180	m9c5_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[KY21.Chr11.246]; m9c5_Cyp3a(11,13,16,25,41a,41b,44,57,59); [h] cytochrome P450 family 3 subfamily A member 5
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp3a11	KY21.Chr11.247	N1.HOG0000180	m9c5_Cyp3a(11,13,16,25,41a,41b,44,57,59)	[KY21.Chr11.247]; m9c5_Cyp3a(11,13,16,25,41a,41b,44,57,59); [h] cytochrome P450 family 3 subfamily A member 5
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp2j6	KY21.Chr1.1805	N1.HOG0000008	m47c3_Cyp2(a4,a5,a12,a22,b9,b10,b13,b19,b23,c23,c29,c37,c38,c39,c40,c50,c54,c55,c65,c66,c67,c68,c69,c70,d9,d10,d11,d12,d13,d22,d26,d34,d40,e1,f2,g1,j5,j6,j7,j8,j9,j11,j12,j13,r1,t4,w1)	[KY21.Chr1.1805]; m47c3_Cyp2(a4,a5,a12,a22,b9,b10,b13,b19,b23,c23,c29,c37,c38,c39,c40,c50,c54,c55,c65,c66,c67,c68,c69,c70,d9,d10,d11,d12,d13,d22,d26,d34,d40,e1,f2,g1,j5,j6,j7,j8,j9,j11,j12,j13,r1,t4,w1); [h] cytochrome P450 family 2 subfamily B member 6
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp2j6	KY21.Chr10.665	N1.HOG0000008	m47c3_Cyp2(a4,a5,a12,a22,b9,b10,b13,b19,b23,c23,c29,c37,c38,c39,c40,c50,c54,c55,c65,c66,c67,c68,c69,c70,d9,d10,d11,d12,d13,d22,d26,d34,d40,e1,f2,g1,j5,j6,j7,j8,j9,j11,j12,j13,r1,t4,w1)	[KY21.Chr10.665]; m47c3_Cyp2(a4,a5,a12,a22,b9,b10,b13,b19,b23,c23,c29,c37,c38,c39,c40,c50,c54,c55,c65,c66,c67,c68,c69,c70,d9,d10,d11,d12,d13,d22,d26,d34,d40,e1,f2,g1,j5,j6,j7,j8,j9,j11,j12,j13,r1,t4,w1); [h] cytochrome P450 family 2 subfamily U member 1
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp2j6	KY21.Chr7.834	N1.HOG0000008	m47c3_Cyp2(a4,a5,a12,a22,b9,b10,b13,b19,b23,c23,c29,c37,c38,c39,c40,c50,c54,c55,c65,c66,c67,c68,c69,c70,d9,d10,d11,d12,d13,d22,d26,d34,d40,e1,f2,g1,j5,j6,j7,j8,j9,j11,j12,j13,r1,t4,w1)	[KY21.Chr7.834]; m47c3_Cyp2(a4,a5,a12,a22,b9,b10,b13,b19,b23,c23,c29,c37,c38,c39,c40,c50,c54,c55,c65,c66,c67,c68,c69,c70,d9,d10,d11,d12,d13,d22,d26,d34,d40,e1,f2,g1,j5,j6,j7,j8,j9,j11,j12,j13,r1,t4,w1); [h] cytochrome P450 family 2 subfamily U member 1
+gut33	Detoxification	defense	detoxification	NA	NA	Nr1i2	KY21.Chr10.482	N1.HOG0000467	m3c2_Nr1i(2,3).Vdr	[KY21.Chr10.482]; m3c2_Nr1i(2,3).Vdr; [g] vitamin D receptor.b
+gut33	Detoxification	defense	detoxification	NA	NA	Nr1i2	KY21.Chr2.1183	N1.HOG0000467	m3c2_Nr1i(2,3).Vdr	[KY21.Chr2.1183]; m3c2_Nr1i(2,3).Vdr; [g] vitamin D receptor.a
+gut33	Detoxification	defense	detoxification	NA	NA	Nr1i3	KY21.Chr10.482	N1.HOG0000467	m3c2_Nr1i(2,3).Vdr	[KY21.Chr10.482]; m3c2_Nr1i(2,3).Vdr; [g] vitamin D receptor.b
+gut33	Detoxification	defense	detoxification	NA	NA	Nr1i3	KY21.Chr2.1183	N1.HOG0000467	m3c2_Nr1i(2,3).Vdr	[KY21.Chr2.1183]; m3c2_Nr1i(2,3).Vdr; [g] vitamin D receptor.a
+gut33	Detoxification	defense	detoxification	NA	NA	Ahr	KY21.Chr12.881	N1.HOG0002800	m1c1_Ahr	[KY21.Chr12.881]; m1c1_Ahr; [h] aryl hydrocarbon receptor
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp1a1	KY21.Chr12.880	N1.HOG0000470	m2c1_Cyp1a(1,2)	[KY21.Chr12.880]; m2c1_Cyp1a(1,2); [h] cytochrome P450 family 1 subfamily A member 2
+gut33	Detoxification	defense	detoxification	NA	NA	Cyp1a2	KY21.Chr12.880	N1.HOG0000470	m2c1_Cyp1a(1,2)	[KY21.Chr12.880]; m2c1_Cyp1a(1,2); [h] cytochrome P450 family 1 subfamily A member 2
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	KY21.Chr1.1050	N1.HOG0000710	m7c8_Gstm(1-7)	[KY21.Chr1.1050]; m7c8_Gstm(1-7); [h] glutathione S-transferase mu 3
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	KY21.Chr1.1950	N1.HOG0000710	m7c8_Gstm(1-7)	[KY21.Chr1.1950]; m7c8_Gstm(1-7); [h] glutathione S-transferase mu 3
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	KY21.Chr2.231	N1.HOG0000710	m7c8_Gstm(1-7)	[KY21.Chr2.231]; m7c8_Gstm(1-7); [h] glutathione S-transferase mu 3
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	KY21.Chr2.622	N1.HOG0000710	m7c8_Gstm(1-7)	[KY21.Chr2.622]; m7c8_Gstm(1-7); [h] glutathione S-transferase mu 1
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	KY21.Chr3.1548	N1.HOG0000710	m7c8_Gstm(1-7)	[KY21.Chr3.1548]; m7c8_Gstm(1-7); [h] glutathione S-transferase mu 3
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	KY21.Chr3.1549	N1.HOG0000710	m7c8_Gstm(1-7)	[KY21.Chr3.1549]; m7c8_Gstm(1-7); [h] glutathione S-transferase mu 3
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	KY21.Chr3.1550	N1.HOG0000710	m7c8_Gstm(1-7)	[KY21.Chr3.1550]; m7c8_Gstm(1-7); [h] glutathione S-transferase mu 3
+gut33	Detoxification	defense	detoxification	NA	NA	Gstm1	KY21.Chr3.1551	N1.HOG0000710	m7c8_Gstm(1-7)	[KY21.Chr3.1551]; m7c8_Gstm(1-7); [h] glutathione S-transferase mu 3
+gut33	Detoxification	defense	detoxification	NA	NA	Abcb1a	KY21.Chr14.562	N1.HOG0001180	m4c5_Abcb(1a,1b,4,5)	[KY21.Chr14.562]; m4c5_Abcb(1a,1b,4,5); [h] ATP binding cassette subfamily B member 1
+gut33	Detoxification	defense	detoxification	NA	NA	Abcb1a	KY21.Chr2.1022	N1.HOG0001180	m4c5_Abcb(1a,1b,4,5)	[KY21.Chr2.1022]; m4c5_Abcb(1a,1b,4,5); [h] ATP binding cassette subfamily B member 1
+gut33	Detoxification	defense	detoxification	NA	NA	Abcb1a	KY21.Chr2.1023	N1.HOG0001180	m4c5_Abcb(1a,1b,4,5)	[KY21.Chr2.1023]; m4c5_Abcb(1a,1b,4,5); [h] ATP binding cassette subfamily B member 1
+gut33	Detoxification	defense	detoxification	NA	NA	Abcb1a	KY21.Chr3.114	N1.HOG0001180	m4c5_Abcb(1a,1b,4,5)	[KY21.Chr3.114]; m4c5_Abcb(1a,1b,4,5); [h] ATP binding cassette subfamily B member 1
+gut33	Detoxification	defense	detoxification	NA	NA	Abcb1a	KY21.Chr3.115	N1.HOG0001180	m4c5_Abcb(1a,1b,4,5)	[KY21.Chr3.115]; m4c5_Abcb(1a,1b,4,5); [h] ATP binding cassette subfamily B member 1
+gut33	Detoxification	defense	detoxification	NA	NA	Ces1	KY21.Chr2.741	NA	NA	[KY21.Chr2.741]; [h] CES1; [h] carboxylesterase 1
+gut33	Detoxification	defense	detoxification	NA	NA	Ces1	KY21.Chr2.743	NA	NA	[KY21.Chr2.743]; [h] CES1; [h] carboxylesterase 1
+gut33	Detoxification	defense	detoxification	NA	NA	Gstp1	NA	NA	NA	NA
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abca3	KY21.Chr9.398	N1.HOG0004018	m5c1_Abca(3,14-17)	[KY21.Chr9.398]; m5c1_Abca(3,14-17); [h] ATP binding cassette subfamily A member 3
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abca5	KY21.Chr9.1132	N1.HOG0001725	m5c1_Abca(5,6,8a,8b,9)	[KY21.Chr9.1132]; m5c1_Abca(5,6,8a,8b,9); [h] ATP binding cassette subfamily A member 5
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abcg1	KY21.Chr3.1415	N1.HOG0002626	m2c2_Abcg(1,4)	[KY21.Chr3.1415]; m2c2_Abcg(1,4); [h] ATP binding cassette subfamily G member 4
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abcg1	KY21.Chr3.1416	N1.HOG0002626	m2c2_Abcg(1,4)	[KY21.Chr3.1416]; m2c2_Abcg(1,4); [h] ATP binding cassette subfamily G member 4
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abcg4	KY21.Chr3.1415	N1.HOG0002626	m2c2_Abcg(1,4)	[KY21.Chr3.1415]; m2c2_Abcg(1,4); [h] ATP binding cassette subfamily G member 4
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abcg4	KY21.Chr3.1416	N1.HOG0002626	m2c2_Abcg(1,4)	[KY21.Chr3.1416]; m2c2_Abcg(1,4); [h] ATP binding cassette subfamily G member 4
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abca1	NA	NA	NA	NA
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abca2	KY21.Chr12.699	NA	NA	[KY21.Chr12.699]; [h] ABCA2; [h] ATP binding cassette subfamily A member 2
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abca7	NA	NA	NA	NA
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abcg5	NA	NA	NA	NA
+gut30	Efflux: cholesterol	digestion	metabolism	lipid	cholesterol.efflux	Abcg8	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Neurog3	KY21.Chr6.434	N1.HOG0002141	m3c1_Neurog(1-3)	[KY21.Chr6.434]; m3c1_Neurog(1-3); [g] Neurogenin
+gut01	Endocrine	regulation	endocrine	NA	NA	Pdx1	KY21.Chr14.616	N1.HOG0005778	m1c2_Pdx1	[KY21.Chr14.616]; m1c2_Pdx1; [g] pancreatic and duodenal homeobox 1
+gut01	Endocrine	regulation	endocrine	NA	NA	Pdx1	KY21.Chr8.1318	N1.HOG0005778	m1c2_Pdx1	[KY21.Chr8.1318]; m1c2_Pdx1; [g] H6 family homeobox
+gut01	Endocrine	regulation	endocrine	NA	NA	Pcsk2	KY21.Chr10.367	N1.HOG0006874	m1c1_Pcsk2	[KY21.Chr10.367]; m1c1_Pcsk2; [h] proprotein convertase subtilisin/kexin type 2
+gut01	Endocrine	regulation	endocrine	NA	NA	Tph1	KY21.Chr14.469	N1.HOG0002556	m2c1_Tph(1,2)	[KY21.Chr14.469]; m2c1_Tph(1,2); [h] tryptophan hydroxylase 1
+gut01	Endocrine	regulation	endocrine	NA	NA	Cpe	KY21.Chr12.180	N1.HOG0005808	m1c1_Cpm	[KY21.Chr12.180]; m1c1_Cpm; [h] carboxypeptidase E
+gut01	Endocrine	regulation	endocrine	NA	NA	Pcsk1	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Pcsk1n	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Scg5	KY21.Chr8.77	NA	NA	[KY21.Chr8.77]; [h] SCG5; [h] secretogranin V
+gut01	Endocrine	regulation	endocrine	NA	NA	Gcg	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Cck	KY21.Chr9.654	NA	NA	[KY21.Chr9.654]; [h] CCK; [h] cholecystokinin
+gut01	Endocrine	regulation	endocrine	NA	NA	Gip	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Sct	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Pyy	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Ghrl	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Gast	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Sst	NA	NA	NA	NA
+gut01	Endocrine	regulation	endocrine	NA	NA	Chga	NA	NA	NA	NA
+gut10	Endocytosis	digestion	intracellular.digestion	endocytosis	NA	Dab2	KY21.Chr5.37	N1.HOG0001976	m2c1_Dab(1,2)	[KY21.Chr5.37]; m2c1_Dab(1,2); [h] DAB adaptor protein 2
+gut10	Endocytosis	digestion	intracellular.digestion	endocytosis	NA	Rab5a	KY21.Chr9.483	N1.HOG0000928	m4c1_Rab(5a,5b,5c,17)	[KY21.Chr9.483]; m4c1_Rab(5a,5b,5c,17); [h] RAB5C, member RAS oncogene family
+gut10	Endocytosis	digestion	intracellular.digestion	endocytosis	NA	Rab7	KY21.Chr1.1176	N1.HOG0002613	m2c1_Rab7(,b)	[KY21.Chr1.1176]; m2c1_Rab7(,b); [h] RAB7A, member RAS oncogene family
+gut10	Endocytosis	digestion	intracellular.digestion	endocytosis	NA	Msr1	NA	NA	NA	NA
+gut15	Export: AA	digestion	absorption	amino.acid	basolateral.export	Slc7a7	KY21.Chr1.994	N1.HOG0001614	m2c2_Slc7a(6,7)	[KY21.Chr1.994]; m2c2_Slc7a(6,7); [h] solute carrier family 7 member 6
+gut15	Export: AA	digestion	absorption	amino.acid	basolateral.export	Slc7a7	KY21.Chr1.995	N1.HOG0001614	m2c2_Slc7a(6,7)	[KY21.Chr1.995]; m2c2_Slc7a(6,7); [h] solute carrier family 7 member 6
+gut15	Export: AA	digestion	absorption	amino.acid	basolateral.export	Slc3a2	KY21.Chr2.504	N1.HOG0004979	m1c1_Slc3a2	[KY21.Chr2.504]; m1c1_Slc3a2; [h] solute carrier family 3 member 2
+gut15	Export: AA	digestion	absorption	amino.acid	basolateral.export	Slc7a8	KY21.Chr11.275	N1.HOG0002764	m2c1_Slc7a(8,10)	[KY21.Chr11.275]; m2c1_Slc7a(8,10); [h] solute carrier family 7 member 8
+gut15	Export: AA	digestion	absorption	amino.acid	basolateral.export	Slc16a10	KY21.Chr12.678	N1.HOG0002847	m2c1_Slc16a(2,10)	[KY21.Chr12.678]; m2c1_Slc16a(2,10); [h] solute carrier family 16 member 10
+gut13	Export: carb	digestion	absorption	carbohydrate	basolateral.export	Slc2a2	KY21.Chr10.108	N1.HOG0000162	m4c1_Slc2a(1-4)	[KY21.Chr10.108]; m4c1_Slc2a(1-4); [h] solute carrier family 2 member 1
+gut13	Export: carb	digestion	absorption	carbohydrate	basolateral.export	Slc2a1	KY21.Chr10.108	N1.HOG0000162	m4c1_Slc2a(1-4)	[KY21.Chr10.108]; m4c1_Slc2a(1-4); [h] solute carrier family 2 member 1
+gut20	Export: lipid	digestion	absorption	lipid	basolateral.export	Abca1	NA	NA	NA	NA
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp1	KY21.Chr7.1152	N1.HOG0000777	m2c1_Fabp(1,6)	[KY21.Chr7.1152]; m2c1_Fabp(1,6); [h] fatty acid binding protein 6
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp2	KY21.Chr6.384	N1.HOG0000810	m3c1_Crabp(1,2).Fabp2	[KY21.Chr6.384]; m3c1_Crabp(1,2).Fabp2; [h] fatty acid binding protein 2
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp5	KY21.Chr12.479	N1.HOG0000519	m8c1_Fabp(3-5,7,9,12).Gm(x1).Pmp2	[KY21.Chr12.479]; m8c1_Fabp(3-5,7,9,12).Gm(x1).Pmp2; [h] fatty acid binding protein 7
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Fabp6	KY21.Chr7.1152	N1.HOG0000777	m2c1_Fabp(1,6)	[KY21.Chr7.1152]; m2c1_Fabp(1,6); [h] fatty acid binding protein 6
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Npc1	KY21.Chr2.67	N1.HOG0003121	m1c1_Npc1	[KY21.Chr2.67]; m1c1_Npc1; [h] NPC intracellular cholesterol transporter 1
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Npc2	KY21.Chr2.1138	N1.HOG0004222	m1c2_Npc2	[KY21.Chr2.1138]; m1c2_Npc2; [h] NPC intracellular cholesterol transporter 2
+gut17	Intracell. transport: lipid	digestion	absorption	lipid	intracellular.transport	Npc2	KY21.Chr2.1139	N1.HOG0004222	m1c2_Npc2	[KY21.Chr2.1139]; m1c2_Npc2; [h] NPC intracellular cholesterol transporter 2
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ctrb1	KY21.Chr10.54	N1.HOG0000389	m2c6_Ctr(b1,l)	[KY21.Chr10.54]; m2c6_Ctr(b1,l); [h] chymotrypsinogen B2
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ctrb1	KY21.Chr10.55	N1.HOG0000389	m2c6_Ctr(b1,l)	[KY21.Chr10.55]; m2c6_Ctr(b1,l); [h] chymotrypsinogen B1
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ctrb1	KY21.Chr10.56	N1.HOG0000389	m2c6_Ctr(b1,l)	[KY21.Chr10.56]; m2c6_Ctr(b1,l); [h] chymotrypsinogen B1
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ctrb1	KY21.Chr10.57	N1.HOG0000389	m2c6_Ctr(b1,l)	[KY21.Chr10.57]; m2c6_Ctr(b1,l); [h] chymotrypsinogen B1
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ctrb1	KY21.Chr10.58	N1.HOG0000389	m2c6_Ctr(b1,l)	[KY21.Chr10.58]; m2c6_Ctr(b1,l); [h] chymotrypsin like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ctrb1	KY21.Chr9.851	N1.HOG0000389	m2c6_Ctr(b1,l)	[KY21.Chr9.851]; m2c6_Ctr(b1,l); [h] chymotrypsin like
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Pnlip	KY21.Chr7.358	N1.HOG0001527	m3c1_Pnlip(,rp1,rp2)	[KY21.Chr7.358]; m3c1_Pnlip(,rp1,rp2); [h] pancreatic lipase
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Clps	KY21.Chr2.136	N1.HOG0010602	m1c1_Clps	[KY21.Chr2.136]; m1c1_Clps; [h] colipase
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Prss1	KY21.Chr11.1023	N1.HOG0000138	m15c1_Gm(x1).Klk(8,11,13,14).Prss(1,1l,2,3,3b,3l).Rik(x1).Try(4,5,10)	[KY21.Chr11.1023]; m15c1_Gm(x1).Klk(8,11,13,14).Prss(1,1l,2,3,3b,3l).Rik(x1).Try(4,5,10); [h] serine protease 1
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Prss2	KY21.Chr11.1023	N1.HOG0000138	m15c1_Gm(x1).Klk(8,11,13,14).Prss(1,1l,2,3,3b,3l).Rik(x1).Try(4,5,10)	[KY21.Chr11.1023]; m15c1_Gm(x1).Klk(8,11,13,14).Prss(1,1l,2,3,3b,3l).Rik(x1).Try(4,5,10); [h] serine protease 1
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ptf1a	KY21.Chr11.539	NA	NA	[KY21.Chr11.539]; [g] Ptf1a-r; [g] pancreas associated transcription factor 1a-related
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Ptf1a	KY21.Chr3.511	N1.HOG0002797	m2c3_Ascl(1,2)	[KY21.Chr3.511]; m2c3_Ascl(1,2); [g] pancreas associated transcription factor 1a
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy1	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy2a1	KY21.Chr5.113	NA	NA	[KY21.Chr5.113]; [h] AMY2B; [h] amylase alpha 2B
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy2a2	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy2a3	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy2a4	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Amy2a5	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa1	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	KY21.Chr1.2194	NA	NA	[KY21.Chr1.2194]; [h] CPA2; [h] carboxypeptidase A2
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	KY21.Chr12.114	NA	NA	[KY21.Chr12.114]; [h] CPA2; [h] carboxypeptidase A2
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	KY21.Chr12.356	NA	NA	[KY21.Chr12.356]; [h] CPA2; [h] carboxypeptidase A2
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	KY21.Chr8.1316	NA	NA	[KY21.Chr8.1316]; [h] CPA2; [h] carboxypeptidase A2
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cpa2	KY21.Chr8.707	NA	NA	[KY21.Chr8.707]; [h] CPA2; [h] carboxypeptidase A2
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cela1	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cela2a	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Cel	NA	NA	NA	NA
+gut05	Luminal hydrolysis	digestion	extracellular.digestion	luminal.hydrolysis	NA	Pgc	KY21.Chr8.496	NA	NA	[KY21.Chr8.496]; [h] PGC; [h] progastricsin
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Acp2	KY21.Chr2.54	N1.HOG0002903	m3c2_Acp(2-4)	[KY21.Chr2.54]; m3c2_Acp(2-4); [h] acid phosphatase 2, lysosomal
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Acp2	KY21.Chr2.55	N1.HOG0002903	m3c2_Acp(2-4)	[KY21.Chr2.55]; m3c2_Acp(2-4); [h] acid phosphatase 2, lysosomal
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Lamp1	KY21.Chr1.893	N1.HOG0000713	m3c1_Lamp(1-3)	[KY21.Chr1.893]; m3c1_Lamp(1-3); [h] lysosomal associated membrane protein 1
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Lamp2	KY21.Chr1.893	N1.HOG0000713	m3c1_Lamp(1-3)	[KY21.Chr1.893]; m3c1_Lamp(1-3); [h] lysosomal associated membrane protein 1
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Lamp3	KY21.Chr1.893	N1.HOG0000713	m3c1_Lamp(1-3)	[KY21.Chr1.893]; m3c1_Lamp(1-3); [h] lysosomal associated membrane protein 1
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsc	KY21.Chr1.1142	N1.HOG0005282	m1c1_Ctsc	[KY21.Chr1.1142]; m1c1_Ctsc; [h] cathepsin C
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsd	KY21.Chr1.583	N1.HOG0001412	m3c2_Ctsd.Gm(x1).Ren1	[KY21.Chr1.583]; m3c2_Ctsd.Gm(x1).Ren1; [h] cathepsin D
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsd	KY21.Chr6.135	N1.HOG0001412	m3c2_Ctsd.Gm(x1).Ren1	[KY21.Chr6.135]; m3c2_Ctsd.Gm(x1).Ren1; [h] cathepsin D
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsl	KY21.Chr3.1432	N1.HOG0000223	m3c1_BC051665.Ctsl(,l3)	[KY21.Chr3.1432]; m3c1_BC051665.Ctsl(,l3); [h] cathepsin L
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsh	KY21.Chr3.262	N1.HOG0009625	m1c1_Ctsh	[KY21.Chr3.262]; m1c1_Ctsh; [h] cathepsin H
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsb	KY21.Chr5.51	N1.HOG0004796	m1c1_Ctsb	[KY21.Chr5.51]; m1c1_Ctsb; [h] cathepsin B
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Ctsf	KY21.Chr12.96	N1.HOG0009626	m1c1_Ctsf	[KY21.Chr12.96]; m1c1_Ctsf; [h] cathepsin F
+gut11	Lysosomal digestion	digestion	intracellular.digestion	lysosomal.digestion	NA	Lamp5	NA	NA	NA	NA
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Spdef	KY21.Chr12.672	N1.HOG0008024	m1c1_Spdef	[KY21.Chr12.672]; m1c1_Spdef; [g] SAM pointed domain containing ETS transcription factor
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Tff1	KY21.Chr6.297	N1.HOG0002757	m3c1_Tff(1-3)	[KY21.Chr6.297]; m3c1_Tff(1-3); [h] trefoil factor 2
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Tff2	KY21.Chr6.297	N1.HOG0002757	m3c1_Tff(1-3)	[KY21.Chr6.297]; m3c1_Tff(1-3); [h] trefoil factor 2
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Tff3	KY21.Chr6.297	N1.HOG0002757	m3c1_Tff(1-3)	[KY21.Chr6.297]; m3c1_Tff(1-3); [h] trefoil factor 2
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	KY21.Chr12.703	NA	NA	[KY21.Chr12.703]; [h] MUC5AC; [h] mucin 5AC, oligomeric mucus/gel-forming
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	KY21.Chr13.373	NA	NA	[KY21.Chr13.373]; [h] MUC5AC; [h] mucin 5AC, oligomeric mucus/gel-forming
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	KY21.Chr2.1407	NA	NA	[KY21.Chr2.1407]; [h] MUC5AC; [h] mucin 5AC, oligomeric mucus/gel-forming
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	KY21.Chr4.149	NA	NA	[KY21.Chr4.149]; [h] MUC5AC; [h] mucin 5AC, oligomeric mucus/gel-forming
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	KY21.Chr7.89	NA	NA	[KY21.Chr7.89]; [h] MUC5AC; [h] mucin 5AC, oligomeric mucus/gel-forming
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc5ac	KY21.UAContig3.77	NA	NA	[KY21.UAContig3.77]; [h] MUC5AC; [h] mucin 5AC, oligomeric mucus/gel-forming
+gut35	Mucus barrier	defense	mucus.barrier	NA	NA	Muc2	KY21.Chr11.472	NA	NA	[KY21.Chr11.472]; [h] MUC2; [h] mucin 2, oligomeric mucus/gel-forming
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Mertk	KY21.Chr14.83	N1.HOG0002001	m3c1_Axl.Mertk.Tyro3	[KY21.Chr14.83]; m3c1_Axl.Mertk.Tyro3; [h] AXL receptor tyrosine kinase
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Gulp1	KY21.Chr7.151	N1.HOG0004791	m1c1_Gulp1	[KY21.Chr7.151]; m1c1_Gulp1; [h] GULP PTB domain containing engulfment adaptor 1
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Elmo1	KY21.Chr10.1175	N1.HOG0001577	m3c1_Elmo(1-3)	[KY21.Chr10.1175]; m3c1_Elmo(1-3); [h] engulfment and cell motility 1
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Dock1	KY21.Chr5.83	N1.HOG0000919	m3c1_Dock(1,2,5)	[KY21.Chr5.83]; m3c1_Dock(1,2,5); [h] dedicator of cytokinesis 2
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Rac1	KY21.Chr9.784	N1.HOG0000601	m3c1_Rac(1-3)	[KY21.Chr9.784]; m3c1_Rac(1-3); [h] Rac family small GTPase 1
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Actr2	KY21.Chr11.1257	N1.HOG0005017	m1c1_Actr2	[KY21.Chr11.1257]; m1c1_Actr2; [h] actin related protein 2
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Actr3	KY21.Chr9.647	N1.HOG0004110	m2c1_Actr3(,b)	[KY21.Chr9.647]; m2c1_Actr3(,b); [h] actin related protein 3
+gut09	Phagocytosis	digestion	intracellular.digestion	phagocytosis	NA	Megf10	NA	NA	NA	NA
+gut08	Pinocytosis	digestion	intracellular.digestion	pinocytosis	NA	Lrp2	KY21.Chr9.1166	N1.HOG0005190	m1c1_Lrp2	[KY21.Chr9.1166]; m1c1_Lrp2; [h] LDL receptor related protein 2
+gut08	Pinocytosis	digestion	intracellular.digestion	pinocytosis	NA	Cubn	KY21.Chr13.159	N1.HOG0008425	m1c2_Cubn	[KY21.Chr13.159]; m1c2_Cubn; [h] cubilin
+gut08	Pinocytosis	digestion	intracellular.digestion	pinocytosis	NA	Cubn	KY21.Chr13.231	N1.HOG0008425	m1c2_Cubn	[KY21.Chr13.231]; m1c2_Cubn; [h] cubilin
+gut08	Pinocytosis	digestion	intracellular.digestion	pinocytosis	NA	Amn	KY21.Chr10.702	N1.HOG0007512	m1c1_Amn	[KY21.Chr10.702]; m1c1_Amn; [h] amnion associated transmembrane protein
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Mogat1	KY21.Chr2.899	N1.HOG0001381	m3c1_Dgat2.Mogat(1,2)	[KY21.Chr2.899]; m3c1_Dgat2.Mogat(1,2); [h] monoacylglycerol O-acyltransferase 2
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Mogat2	KY21.Chr2.899	N1.HOG0001381	m3c1_Dgat2.Mogat(1,2)	[KY21.Chr2.899]; m3c1_Dgat2.Mogat(1,2); [h] monoacylglycerol O-acyltransferase 2
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Dgat1	KY21.Chr13.35	N1.HOG0004551	m1c1_Dgat1	[KY21.Chr13.35]; m1c1_Dgat1; [h] diacylglycerol O-acyltransferase 1
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Dgat2	KY21.Chr2.899	N1.HOG0001381	m3c1_Dgat2.Mogat(1,2)	[KY21.Chr2.899]; m3c1_Dgat2.Mogat(1,2); [h] monoacylglycerol O-acyltransferase 2
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Lpcat3	KY21.Chr1.35	N1.HOG0008229	m1c1_Lpcat3	[KY21.Chr1.35]; m1c1_Lpcat3; [h] lysophosphatidylcholine acyltransferase 3
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Acat1	KY21.Chr1.807	NA	NA	[KY21.Chr1.807]; [h] ACAT1; [h] acetyl-CoA acetyltransferase 1
+gut18	Reesterification	digestion	absorption	lipid	reesterification	Acat2	NA	NA	NA	NA
+gut37	Stem cells	maintenance	renewal	stem.cell	NA	Pcna	KY21.Chr12.862	N1.HOG0007419	m1c1_Pcna	[KY21.Chr12.862]; m1c1_Pcna; [h] proliferating cell nuclear antigen
+gut37	Stem cells	maintenance	renewal	stem.cell	NA	Mki67	KY21.Chr2.1280	N1.HOG0003827	m2c1_Cdca2.Mki67	[KY21.Chr2.1280]; m2c1_Cdca2.Mki67; [h] marker of proliferation Ki-67
+gut37	Stem cells	maintenance	renewal	stem.cell	NA	Lgr5	KY21.Chr11.934	N1.HOG0002499	m3c1_Lgr(4-6)	[KY21.Chr11.934]; m3c1_Lgr(4-6); [h] leucine rich repeat containing G protein-coupled receptor 4
+gut37	Stem cells	maintenance	renewal	stem.cell	NA	Top2a	KY21.Chr9.846	N1.HOG0002834	m2c1_Top2(a,b)	[KY21.Chr9.846]; m2c1_Top2(a,b); [h] DNA topoisomerase II beta
+gut37	Stem cells	maintenance	renewal	stem.cell	NA	Olfm4	KY21.Chr9.1117	NA	NA	[KY21.Chr9.1117]; [h] OLFM4; [h] olfactomedin 4
+gut32	Storage: glycogen	digestion	storage	glycogen	NA	Gyg1	KY21.Chr1.36	N1.HOG0003259	m1c1_Gyg1	[KY21.Chr1.36]; m1c1_Gyg1; [h] glycogenin 1
+gut32	Storage: glycogen	digestion	storage	glycogen	NA	Gys1	KY21.Chr11.757	N1.HOG0003136	m2c1_Gys(1,2)	[KY21.Chr11.757]; m2c1_Gys(1,2); [h] glycogen synthase 1
+gut32	Storage: glycogen	digestion	storage	glycogen	NA	Gys2	KY21.Chr11.757	N1.HOG0003136	m2c1_Gys(1,2)	[KY21.Chr11.757]; m2c1_Gys(1,2); [h] glycogen synthase 1
+gut32	Storage: glycogen	digestion	storage	glycogen	NA	Pygl	KY21.Chr10.928	N1.HOG0001696	m3c1_Pyg(b,l,m)	[KY21.Chr10.928]; m3c1_Pyg(b,l,m); [h] glycogen phosphorylase B
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Plin1	KY21.Chr7.575	N1.HOG0000991	m5c1_Plin(1-5)	[KY21.Chr7.575]; m5c1_Plin(1-5); [h] perilipin 2
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Plin2	KY21.Chr7.575	N1.HOG0000991	m5c1_Plin(1-5)	[KY21.Chr7.575]; m5c1_Plin(1-5); [h] perilipin 2
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Plin3	KY21.Chr7.575	N1.HOG0000991	m5c1_Plin(1-5)	[KY21.Chr7.575]; m5c1_Plin(1-5); [h] perilipin 2
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Plin4	KY21.Chr7.575	N1.HOG0000991	m5c1_Plin(1-5)	[KY21.Chr7.575]; m5c1_Plin(1-5); [h] perilipin 2
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Plin5	KY21.Chr7.575	N1.HOG0000991	m5c1_Plin(1-5)	[KY21.Chr7.575]; m5c1_Plin(1-5); [h] perilipin 2
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Dgat1	KY21.Chr13.35	N1.HOG0004551	m1c1_Dgat1	[KY21.Chr13.35]; m1c1_Dgat1; [h] diacylglycerol O-acyltransferase 1
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Dgat2	KY21.Chr2.899	N1.HOG0001381	m3c1_Dgat2.Mogat(1,2)	[KY21.Chr2.899]; m3c1_Dgat2.Mogat(1,2); [h] monoacylglycerol O-acyltransferase 2
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Pnpla2	KY21.Chr3.1698	N1.HOG0001661	m3c1_Pnpla(1-3)	[KY21.Chr3.1698]; m3c1_Pnpla(1-3); [h] patatin like phospholipase domain containing 2
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Lipe	KY21.Chr3.1100	N1.HOG0007953	m1c1_Lipe	[KY21.Chr3.1100]; m1c1_Lipe; [h] lipase E, hormone sensitive type
+gut31	Storage: lipid droplet	digestion	storage	lipid.droplets	NA	Cidea	NA	NA	NA	NA
+gut26	Synthesis: AA	digestion	metabolism	amino.acid	synthesis	Glul	KY21.Chr6.567	N1.HOG0003229	m1c1_Glul	[KY21.Chr6.567]; m1c1_Glul; [h] glutamate-ammonia ligase
+gut26	Synthesis: AA	digestion	metabolism	amino.acid	synthesis	Gls	KY21.Chr1.776	N1.HOG0001969	m2c1_Gls(,2)	[KY21.Chr1.776]; m2c1_Gls(,2); [h] glutaminase
+gut27	Synthesis: FA	digestion	metabolism	lipid	synthesis	Fasn	KY21.Chr4.250	N1.HOG0003457	m1c1_Fasn	[KY21.Chr4.250]; m1c1_Fasn; [h] fatty acid synthase
+gut27	Synthesis: FA	digestion	metabolism	lipid	synthesis	Scd1	KY21.Chr4.1133	N1.HOG0002399	m4c1_Scd(1-4)	[KY21.Chr4.1133]; m4c1_Scd(1-4); [h] stearoyl-CoA desaturase
+gut23	Synthesis: carb	digestion	metabolism	carbohydrate	synthesis	Pck1	KY21.Chr11.181	N1.HOG0002933	m2c1_Pck(1,2)	[KY21.Chr11.181]; m2c1_Pck(1,2); [h] phosphoenolpyruvate carboxykinase 1
+gut29	Synthesis: cholesterol	digestion	metabolism	lipid	cholesterol.synthesis	Hmgcr	KY21.Chr11.418	N1.HOG0004492	m1c1_Hmgcr	[KY21.Chr11.418]; m1c1_Hmgcr; [h] 3-hydroxy-3-methylglutaryl-CoA reductase
+gut29	Synthesis: cholesterol	digestion	metabolism	lipid	cholesterol.synthesis	Sqle	NA	NA	NA	NA
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Tjp1	KY21.Chr5.626	N1.HOG0001202	m3c1_Tjp(1-3)	[KY21.Chr5.626]; m3c1_Tjp(1-3); [h] tight junction protein 2
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr1.1955	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.1955]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr1.649	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.649]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr1.708	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.708]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr10.463	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr10.463]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 7
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr10.784	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr10.784]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr11.149	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.149]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 18
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr11.150	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.150]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 7
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr11.292	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.292]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr11.457	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.457]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr5.441	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr5.441]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 17
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr5.95	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr5.95]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr8.736	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr8.736]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn2	KY21.Chr8.920	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr8.920]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr1.1955	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.1955]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr1.649	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.649]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr1.708	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.708]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr10.463	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr10.463]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 7
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr10.784	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr10.784]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr11.149	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.149]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 18
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr11.150	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.150]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 7
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr11.292	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.292]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr11.457	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.457]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr5.441	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr5.441]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 17
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr5.95	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr5.95]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr8.736	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr8.736]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn3	KY21.Chr8.920	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr8.920]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr1.1955	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.1955]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr1.649	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.649]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr1.708	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.708]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr10.463	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr10.463]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 7
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr10.784	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr10.784]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr11.149	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.149]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 18
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr11.150	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.150]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 7
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr11.292	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.292]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr11.457	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.457]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr5.441	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr5.441]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 17
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr5.95	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr5.95]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr8.736	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr8.736]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn4	KY21.Chr8.920	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr8.920]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr1.1955	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.1955]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr1.649	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.649]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr1.708	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.708]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr10.463	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr10.463]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 7
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr10.784	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr10.784]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr11.149	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.149]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 18
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr11.150	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.150]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 7
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr11.292	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.292]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr11.457	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.457]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr5.441	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr5.441]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 17
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr5.95	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr5.95]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr8.736	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr8.736]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn7	KY21.Chr8.920	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr8.920]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr1.1955	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.1955]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr1.649	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.649]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr1.708	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr1.708]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr10.463	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr10.463]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 7
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr10.784	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr10.784]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr11.149	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.149]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 18
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr11.150	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.150]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 7
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr11.292	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.292]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr11.457	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr11.457]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr5.441	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr5.441]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 17
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr5.95	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr5.95]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr8.736	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr8.736]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cldn15	KY21.Chr8.920	N1.HOG0000032	m22c13_Cldn(1-11,13-20,22,24,25)	[KY21.Chr8.920]; m22c13_Cldn(1-11,13-20,22,24,25); [h] claudin 19
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Cdh1	KY21.Chr9.187	N1.HOG0000136	m16c1_Cdh(1-4,13,15,26).Dsc(1-3).Dsg(1a,1b,1c,2,3,4)	[KY21.Chr9.187]; m16c1_Cdh(1-4,13,15,26).Dsc(1-3).Dsg(1a,1b,1c,2,3,4); [h] cadherin 4
+gut34	Tissue barrier	defense	tissue.barrier	NA	NA	Ocln	KY21.Chr7.117	NA	NA	[KY21.Chr7.117]; [h] OCLN; [h] occludin
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc15a1	KY21.Chr13.376	N1.HOG0001899	m2c3_Slc15a(1,2)	[KY21.Chr13.376]; m2c3_Slc15a(1,2); [h] solute carrier family 15 member 1
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc15a1	KY21.Chr13.377	N1.HOG0001899	m2c3_Slc15a(1,2)	[KY21.Chr13.377]; m2c3_Slc15a(1,2); [h] solute carrier family 15 member 1
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc15a1	KY21.Chr5.1075	N1.HOG0001899	m2c3_Slc15a(1,2)	[KY21.Chr5.1075]; m2c3_Slc15a(1,2); [h] solute carrier family 15 member 2
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a19	KY21.Chr3.979	N1.HOG0000331	m4c2_Slc6a(18,19,20a,20b)	[KY21.Chr3.979]; m4c2_Slc6a(18,19,20a,20b); [h] solute carrier family 6 member 18
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a19	KY21.Chr3.981	N1.HOG0000331	m4c2_Slc6a(18,19,20a,20b)	[KY21.Chr3.981]; m4c2_Slc6a(18,19,20a,20b); [h] solute carrier family 6 member 19
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a15	KY21.Chr2.1323	N1.HOG0000332	m3c3_Slc6a1(5-7)	[KY21.Chr2.1323]; m3c3_Slc6a1(5-7); [h] solute carrier family 6 member 17
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a15	KY21.Chr2.461	N1.HOG0000332	m3c3_Slc6a1(5-7)	[KY21.Chr2.461]; m3c3_Slc6a1(5-7); [h] solute carrier family 6 member 17
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a15	KY21.Chr7.397	N1.HOG0000332	m3c3_Slc6a1(5-7)	[KY21.Chr7.397]; m3c3_Slc6a1(5-7); [h] solute carrier family 6 member 15
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a14	KY21.Chr1.723	N1.HOG0004356	m1c3_Slc6a14	[KY21.Chr1.723]; m1c3_Slc6a14; [h] solute carrier family 6 member 14
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a14	KY21.Chr1.725	N1.HOG0004356	m1c3_Slc6a14	[KY21.Chr1.725]; m1c3_Slc6a14; [h] solute carrier family 6 member 14
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc6a14	KY21.Chr1.726	N1.HOG0004356	m1c3_Slc6a14	[KY21.Chr1.726]; m1c3_Slc6a14; [h] solute carrier family 6 member 14
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc7a9	KY21.Chr3.660	N1.HOG0000651	m1c2_Slc7a9	[KY21.Chr3.660]; m1c2_Slc7a9; [h] solute carrier family 7 member 9
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc7a9	KY21.Chr3.75	N1.HOG0000651	m1c2_Slc7a9	[KY21.Chr3.75]; m1c2_Slc7a9; [h] solute carrier family 7 member 9
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc3a1	KY21.Chr3.135	N1.HOG0005657	m1c1_Slc3a1	[KY21.Chr3.135]; m1c1_Slc3a1; [h] solute carrier family 3 member 1
+gut14	Uptake: AA	digestion	absorption	amino.acid	apical.uptake	Slc36a1	KY21.Chr2.764	N1.HOG0002253	m4c1_Slc36a(1-4)	[KY21.Chr2.764]; m4c1_Slc36a(1-4); [h] solute carrier family 36 member 1
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	KY21.Chr10.1043	N1.HOG0000603	m6c3_Slc5a(1,2,4a,4b,9,10)	[KY21.Chr10.1043]; m6c3_Slc5a(1,2,4a,4b,9,10); [h] solute carrier family 5 member 1
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	KY21.Chr7.755	N1.HOG0000603	m6c3_Slc5a(1,2,4a,4b,9,10)	[KY21.Chr7.755]; m6c3_Slc5a(1,2,4a,4b,9,10); [h] solute carrier family 5 member 1
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc5a1	KY21.Chr7.756	N1.HOG0000603	m6c3_Slc5a(1,2,4a,4b,9,10)	[KY21.Chr7.756]; m6c3_Slc5a(1,2,4a,4b,9,10); [h] solute carrier family 5 member 1
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc2a5	KY21.Chr7.760	N1.HOG0000163	m3c2_Slc2a(5,7,9)	[KY21.Chr7.760]; m3c2_Slc2a(5,7,9); [h] solute carrier family 2 member 1
+gut12	Uptake: carb	digestion	absorption	carbohydrate	apical.uptake	Slc2a5	KY21.Chr7.811	N1.HOG0000163	m3c2_Slc2a(5,7,9)	[KY21.Chr7.811]; m3c2_Slc2a(5,7,9); [h] solute carrier family 2 member 5
+gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Cd36	KY21.Chr6.183	N1.HOG0000656	m1c2_Cd36	[KY21.Chr6.183]; m1c2_Cd36; [h] CD36 molecule
+gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Cd36	KY21.Chr6.57	N1.HOG0000656	m1c2_Cd36	[KY21.Chr6.57]; m1c2_Cd36; [h] CD36 molecule
+gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Slc27a4	KY21.Chr2.1376	N1.HOG0003554	m2c1_Slc27a(1,4)	[KY21.Chr2.1376]; m2c1_Slc27a(1,4); [h] solute carrier family 27 member 4
+gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Npc1l1	KY21.Chr4.54	N1.HOG0003120	m1c1_Npc1l1	[KY21.Chr4.54]; m1c1_Npc1l1; [h] NPC1 like intracellular cholesterol transporter 1
+gut16	Uptake: lipid	digestion	absorption	lipid	apical.uptake	Scarb1	NA	NA	NA	NA
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc46a1	KY21.Chr3.449	N1.HOG0004724	m1c2_Slc46a1	[KY21.Chr3.449]; m1c2_Slc46a1; [h] solute carrier family 46 member 1
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc46a1	KY21.Chr3.450	N1.HOG0004724	m1c2_Slc46a1	[KY21.Chr3.450]; m1c2_Slc46a1; [h] solute carrier family 46 member 1
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc11a2	KY21.Chr14.3	N1.HOG0002378	m2c1_Slc11a(1,2)	[KY21.Chr14.3]; m2c1_Slc11a(1,2); [h] solute carrier family 11 member 2
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc40a1	KY21.Chr9.287	N1.HOG0003245	m1c1_Slc40a1	[KY21.Chr9.287]; m1c1_Slc40a1; [h] solute carrier family 40 member 1
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Heph	KY21.Chr10.1006	N1.HOG0000234	m3c1_Cp.Heph(,l1)	[KY21.Chr10.1006]; m3c1_Cp.Heph(,l1); [h] hephaestin like 1
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc23a1	KY21.Chr4.530	NA	NA	[KY21.Chr4.530]; [h] SLC23A1; [h] solute carrier family 23 member 1
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc23a1	KY21.Chr4.534	NA	NA	[KY21.Chr4.534]; [h] SLC23A1; [h] solute carrier family 23 member 1
+gut21	Uptake: micronutrient	digestion	absorption	micronutrient	uptake	Slc23a1	KY21.Chr8.163	NA	NA	[KY21.Chr8.163]; [h] SLC23A1; [h] solute carrier family 23 member 1
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Arg1	KY21.Chr11.604	N1.HOG0004282	m2c1_Arg(1,2)	[KY21.Chr11.604]; m2c1_Arg(1,2); [h] arginase 2
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Bhmt	KY21.Chr1.1755	N1.HOG0001546	m3c5_Bhmt(,1b,2)	[KY21.Chr1.1755]; m3c5_Bhmt(,1b,2); [h] betaine--homocysteine S-methyltransferase
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Bhmt	KY21.Chr1.1756	N1.HOG0001546	m3c5_Bhmt(,1b,2)	[KY21.Chr1.1756]; m3c5_Bhmt(,1b,2); [h] betaine--homocysteine S-methyltransferase
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Bhmt	KY21.Chr1.1758	N1.HOG0001546	m3c5_Bhmt(,1b,2)	[KY21.Chr1.1758]; m3c5_Bhmt(,1b,2); [h] betaine--homocysteine S-methyltransferase
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Bhmt	KY21.Chr3.1325	N1.HOG0001546	m3c5_Bhmt(,1b,2)	[KY21.Chr3.1325]; m3c5_Bhmt(,1b,2); [h] betaine--homocysteine S-methyltransferase
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Bhmt	KY21.Chr3.39	N1.HOG0001546	m3c5_Bhmt(,1b,2)	[KY21.Chr3.39]; m3c5_Bhmt(,1b,2); [h] betaine--homocysteine S-methyltransferase 2
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Otc	NA	NA	NA	NA
+gut25	Urea cycle	digestion	metabolism	amino.acid	urea.cycle	Cps1	NA	NA	NA	NA
