@@ -50,12 +50,6 @@ rsconnect/
 
 # additions below this ========================================================
 **/data
-
-!hcr-probes/data/
-hcr-probes/data/*
-!hcr-probes/data/hcr-v3-initiator-sequences.tsv
-!hcr-probes/data/probe-log.tsv
-
 **/results
 **/docs
 **/scratch
